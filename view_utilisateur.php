@@ -42,23 +42,25 @@ include './includes/sidebar.php';
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo '<div class="border col-md-4 mb-4" style="border: 1px solid #ddd; width: 300px; padding: 10px;">'; // Colonne pour chaque carte
                                 echo '<div class="card shadow-sm border-0 h-100">'; // Début de la carte
-                                echo '<div class="card-body text-center">';
+                                echo '<div class="card-body">';
                                 
                                 // Récupérer et afficher la photo de profil
                                 $photoProfil = $row["photoProfil"];
                                 if (!empty($photoProfil)) {
+                                  echo '<div class="text-center">';
                                     echo '<img src="./backend/uploads/' . htmlspecialchars($photoProfil) . '" alt="Photo de profil" class="rounded-circle" style="width:100px; height:100px; object-fit:cover; border-raduis: 50% !important;">';
+                                  echo '</div>';
                                 } else {
                                     echo '<img src="./dist/img/user.png" alt="Photo de profil par défaut" class="rounded-circle mb-3" style="width:100px; height:100px; border-raduis: 50% !important;">';
                                 }
 
                                 // Afficher les informations de l'utilisateur
-                                echo '<h5 class="card-title mb-0">' . htmlspecialchars($row["nom"]) . ' ' . htmlspecialchars($row["prenom"]) . '</h5>';
-                                echo '<p class="text-muted">' . htmlspecialchars($row["email"]) . '</p>';
+                                echo '<h5 class="card-title mb-0"><strong class="text-muted">Nom et prénom :</strong> ' . htmlspecialchars($row["nom"]) . ' ' . htmlspecialchars($row["prenom"]) . '</h5>';
+                                echo '<p class="text-muted"><strong>Email :</strong> ' . htmlspecialchars($row["email"]) . '</p>';
                                 echo '<p class="text-success"><strong>Statut :</strong> ' . ($row["statut"] == 1 ? 'Actif' : 'Inactif') . '</p>';
 
                                 // Boutons d'action
-                                echo '<div class="d-flex justify-content-center">';
+                                echo '<div class="d-flex justify-content-between gap-2">';
                                 echo '<button class="btn btn-info btn-sm me-2" title="Éditer"><i class="fa fa-edit"></i> Éditer</button>';
                                 echo '<button class="btn btn-danger btn-sm" title="Supprimer"><i class="fa fa-trash-o"></i> Supprimer</button>';
                                 echo '</div>';
