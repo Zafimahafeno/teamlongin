@@ -4,7 +4,7 @@ include './includes/sidebar.php';
 ?>
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper"> 
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>Liste des Candidats</h1>
@@ -15,71 +15,82 @@ include './includes/sidebar.php';
             <li class="active"><i class="fa fa-table"></i> Vue Globale</li>
         </ol>
     </section>
-    
+
     <!-- Main content -->
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-box">
                     <h4>Vue Globale des Listes des candidats</h4>
-                    
+
                     <div class="bind box1 table-responsive">
                         <table id="example1" class="table table-responsive table-bordered">
-<?php
+                            <?php
 
-    require_once './config/db.php';
+                            // Connexion à la base de données - Remplacez les valeurs par les vôtres
+                            $servername = "mysql-mahafeno.alwaysdata.net";
+                            $username = "mahafeno";
+                            $password = "antso0201";
+                            $dbname = "mahafeno_longin";
 
-    if ($conn->connect_error) {
-        die(json_encode(array("success" => false, "message" => "Échec de la connexion à la base de données: " . $conn->connect_error)));
-    }
+                            // Création de la connexion
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+                            // echo 'Connexion à la base de données établie :)';
 
-    // Effectuer la requête SQL pour récupérer les données des candidats depuis la base de données
-    $sql = "SELECT * FROM candidat";
-    $result = mysqli_query($conn, $sql);
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
 
-    // Vérifier s'il y a des données retournées
-    if (mysqli_num_rows($result) > 0) {
-        // Afficher les données dans le tableau
-        echo '<table id="example1" class="table table-responsive table-bordered">';
-        echo '<thead>';
-        echo '<tr>';
-        echo '<th class="sortable">Photo</th>';
-        echo '<th class="sortable">Nom</th>';
-        echo '<th class="sortable">Prenom</th>';
-        echo '<th class="sortable">Partie politique</th>';
-        echo '<th class="sortable">Contact</th>';
-        echo '<th class="sortable">Numero</th>';
-        echo '<th class="sortable">Action</th>';
-        echo '</tr>';
-        echo '</thead>';
-        echo '<tbody>';
-        // Parcourir les données et afficher chaque ligne dans le tableau
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo '<tr>';
-            echo '<td class="text-truncate"><img src="uploads/' . $row["photo"] . '" alt="Photo du candidat"width="100" height="100"></td>';
-            echo '<td class="text-truncate">' . $row["nom_candidat"] . '</td>';
-            echo '<td class="text-truncate">' . $row["prenom_candidat"] . '</td>';
-            echo '<td class="text-truncate">' . $row["partie"] . '</td>';
-            echo '<td class="text-truncate">' . $row["contact"] . '</td>';
-            echo '<td class="text-truncate">' . $row["num_electoral"] . '</td>';
-            // Ajouter des boutons d'action si nécessaire
-            echo '<td class="action-col">';
-            echo '<button class="btn btn-default btn-icon btn-xs tip" title="Editer"><i class="fa fa-edit text-info"></i></button>';
-            echo '<button class="btn btn-default btn-icon btn-xs tip" title="Supprimer"><i class="fa fa-trash-o text-danger"></i></button>';
-            echo '</td>';
-            echo '</tr>';
-        }
-        echo '</tbody>';
-        echo '</table>';
-    } else {
-        // Si aucune donnée n'est trouvée dans la base de données
-        echo "Aucun résultat trouvé";
-    }
+                            if ($conn->connect_error) {
+                                die(json_encode(array("success" => false, "message" => "Échec de la connexion à la base de données: " . $conn->connect_error)));
+                            }
 
-    // Fermer la connexion à la base de données
-    mysqli_close($conn);
+                            // Effectuer la requête SQL pour récupérer les données des candidats depuis la base de données
+                            $sql = "SELECT * FROM candidat";
+                            $result = mysqli_query($conn, $sql);
 
-?>
+                            // Vérifier s'il y a des données retournées
+                            if (mysqli_num_rows($result) > 0) {
+                                // Afficher les données dans le tableau
+                                echo '<table id="example1" class="table table-responsive table-bordered">';
+                                echo '<thead>';
+                                echo '<tr>';
+                                  // Ajout de la colonne ID
+                                echo '<th class="sortable">Numero</th>';
+                                echo '<th class="sortable">Nom</th>';
+                                echo '<th class="sortable">Prenom</th>';
+                                echo '<th class="sortable">Action</th>';  // Ajouter la colonne Action pour les boutons d'édition et suppression
+                                echo '</tr>';
+                                echo '</thead>';
+                                echo '<tbody>';
+
+                                // Parcourir les données et afficher chaque ligne dans le tableau
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<tr>';
+                                     
+                                    echo '<td class="text-truncate">' . $row["numero"] . '</td>';
+                                    echo '<td class="text-truncate">' . $row["nom"] . '</td>';
+                                    echo '<td class="text-truncate">' . $row["prenom"] . '</td>';
+
+                                    // Ajouter des boutons d'action pour l'édition et la suppression
+                                    echo '<td class="action-col">';
+                                    echo '<button class="btn btn-default btn-icon btn-xs tip" title="Editer"><i class="fa fa-edit text-info"></i></button>';
+                                    echo '<button class="btn btn-default btn-icon btn-xs tip" title="Supprimer"><i class="fa fa-trash-o text-danger"></i></button>';
+                                    echo '</td>';
+                                    echo '</tr>';
+                                }
+
+                                echo '</tbody>';
+                                echo '</table>';
+                            } else {
+                                // Si aucune donnée n'est trouvée dans la base de données
+                                echo "Aucun résultat trouvé";
+                            }
+
+                            // Fermer la connexion à la base de données
+                            mysqli_close($conn);
+
+                            ?>
 
                         </table>
                     </div>
@@ -87,9 +98,9 @@ include './includes/sidebar.php';
             </div>
         </div>
     </section>
-    <!-- content --> 
+    <!-- content -->
 </div>
-<!-- content-wrapper --> 
+<!-- content-wrapper -->
 
 <!-- Add Sender ID Modal -->
 <div id="addsender_inbound" class="modal fade in" tabindex="-1" role="dialog">
@@ -97,7 +108,8 @@ include './includes/sidebar.php';
         <div class="modal-content modal-lg">
             <!-- Modal Header -->
             <div class="modal-header btn-success">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clearSenderForm();">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                    onclick="clearSenderForm();">×</button>
                 <h4 class="modal-title"><i class="icon-notification"></i><span id="heading">Add Sender ID</span></h4>
             </div>
             <!-- Modal Body -->
@@ -119,9 +131,11 @@ include './includes/sidebar.php';
                                 <div class="col-md-12">
                                     <div class="col-md-7">
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" style="line-height: 30px;">Sender ID:</label>
+                                            <label class="col-md-4 control-label" style="line-height: 30px;">Sender
+                                                ID:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control ctl-name" name="txtSenderId" id="txtSenderId" maxlength="6">
+                                                <input type="text" class="form-control ctl-name" name="txtSenderId"
+                                                    id="txtSenderId" maxlength="6">
                                                 <div style="color: #FF0000;" id="errorSendertext"></div>
                                             </div>
                                         </div>
@@ -130,11 +144,13 @@ include './includes/sidebar.php';
                                         <select class="form-control" name="scope" id="scope">
                                             <option value="1">Allowed</option>
                                             <option value="0">Blocked</option>
-                                        </select> 
+                                        </select>
                                     </div>
                                     <div class="col-md-2">
-                                        <button class="btn btn-primary butt_padd" id="add" onclick="AddSenderId('abbsnl-num','INUSER311');" value="Add">Add</button>
-                                        <button type="button" class="btn btn-primary" id="senprocessAdd" style="display: none; margin-left: -10px;">
+                                        <button class="btn btn-primary butt_padd" id="add"
+                                            onclick="AddSenderId('abbsnl-num','INUSER311');" value="Add">Add</button>
+                                        <button type="button" class="btn btn-primary" id="senprocessAdd"
+                                            style="display: none; margin-left: -10px;">
                                             <i class="fa fa-spinner fa-spin"></i> Processing</button>
                                     </div>
                                 </div>
@@ -145,20 +161,21 @@ include './includes/sidebar.php';
                                     <div class="form-group">
                                         <div class="inline-group">
                                             <label class="radio" style="margin-right: 15px; margin-left: 20px;">
-                                                <input type="radio" name="uploadscope0" id="auploadscope" checked="checked">
+                                                <input type="radio" name="uploadscope0" id="auploadscope"
+                                                    checked="checked">
                                                 <i></i>All
                                             </label>
                                             <label class="radio" style="margin-right: 15px;">
                                                 <input type="radio" name="uploadscope0" id="buploadscope">
-                                                <i></i>Alpha 
+                                                <i></i>Alpha
                                             </label>
                                             <label class="radio" style="margin-right: 15px;">
                                                 <input type="radio" name="uploadscope0" id="cuploadscope">
-                                                <i></i>Numeric 
+                                                <i></i>Numeric
                                             </label>
                                             <label class="radio" style="margin-right: 15px;">
                                                 <input type="radio" name="uploadscope0" id="duploadscope">
-                                                <i></i>AlphaNumeric 
+                                                <i></i>AlphaNumeric
                                             </label>
                                         </div>
                                     </div>
@@ -167,7 +184,12 @@ include './includes/sidebar.php';
                                     <div class="demo-btn text-right" style="margin-top: -6px;">
                                         <section class="smart-form">
                                             <div class="input input-file">
-                                                <span class="button" style="padding: 10px 14px; padding-top : 0px;"><i class=" btn-label glyphicon glyphicon-cloud-upload" id="txtrefresh" style="padding: 8px 12px;"></i><label id="">Upload</label><label></label><input type="file" id="attachsenderfile" name="txtFile-name" onchange="addBulkSenderId();"></span>
+                                                <span class="button" style="padding: 10px 14px; padding-top : 0px;"><i
+                                                        class=" btn-label glyphicon glyphicon-cloud-upload"
+                                                        id="txtrefresh" style="padding: 8px 12px;"></i><label
+                                                        id="">Upload</label><label></label><input type="file"
+                                                        id="attachsenderfile" name="txtFile-name"
+                                                        onchange="addBulkSenderId();"></span>
                                             </div>
                                         </section>
                                     </div>
@@ -181,11 +203,14 @@ include './includes/sidebar.php';
                             <table class="table table-bordered" id="datatable_fixed_column">
                                 <thead>
                                     <tr>
-                                        <th>Sender ID</th><th>Privilege</th><th>Status</th><th>Action</th>
+                                        <th>Sender ID</th>
+                                        <th>Privilege</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
