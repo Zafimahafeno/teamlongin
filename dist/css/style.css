@@ -369,6 +369,7 @@ a:hover, a:active, a:focus {
 	overflow: hidden;
 	border-radius: 20px;
 	margin-bottom: 30px;
+	
 }
 .media-box.bg-sea {
 	background-color: #23d3d6;
@@ -380,7 +381,7 @@ a:hover, a:active, a:focus {
 	background-color: #4ac959;
 }
 .media-box .media-icon {
-	font-size: 40px;
+	font-size: 30px;
 	color: #FFF;
 	margin-right: 25px;
 }
