@@ -8,8 +8,8 @@
 </head>
 <body>
   
-  <?php include 'header.php'; ?>
-  <?php include 'sidebar.php'; ?>
+  <?php include './includes/header.php'; ?>
+  <?php include './includes/sidebar.php'; ?>
 
   <div class="alert-container"></div>
   <div class="content-wrapper">

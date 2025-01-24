@@ -15,9 +15,9 @@ include './includes/sidebar.php';
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>BIENVENUE ADMINISTRATEUR</h1>
+      <h1>BIENVENUE <?php echo $_SESSION['user_prenom']; ?></h1>
       <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home"></i> Accueil</a></li>
+        <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
        
       </ol>
     </section>
@@ -27,7 +27,7 @@ include './includes/sidebar.php';
       <div class="row">
 	  <div class="col-md-12"><h4>Rapports</h4></div>
   <div class="col-lg-2 col-xs-6">
-		<a href="#">
+		<a href="./view_user.php">
           <div class="media-box">
             <div class="media-icon "><i class="icon-envelope"></i> </div>
             <div class="media-info">
@@ -37,7 +37,7 @@ include './includes/sidebar.php';
 		  </a>
         </div>
   <div class="col-lg-2 col-xs-6">
-		<a href="#">
+		<a href="./view_gateway.php">
           <div class="media-box bg-sea">
             <div class="media-icon"><i class="fa fa-money"></i> </div>
             <div class="media-info">
@@ -57,7 +57,7 @@ include './includes/sidebar.php';
 		  </a>
         </div>
   <div class="col-lg-2 col-xs-6">
-		<a href="#">
+		<a href="./statistique_votes.php">
           <div class="media-box bg-green">
             <div class="media-icon "><i class="fa fa-envelope"></i> </div>
             <div class="media-info">
@@ -78,7 +78,7 @@ include './includes/sidebar.php';
 		  </a>
         </div>
   <div class="col-lg-2 col-xs-6">
-		<a href="#">
+		<a href="./planning.php">
           <div class="media-box bg-green">
             <div class="media-icon "><i class="fa fa-users"></i> </div>
             <div class="media-info">

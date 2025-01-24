@@ -33,7 +33,7 @@
 
         <li class="treeview"> <a href="#"><i class="fa fa-pencil-square-o"></i> <span>Statistique</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
-            <li><a href="statistique.php"><i class="fa fa-angle-right"></i>Statistique des votes</a></li>
+            <li><a href="statistique_votes"><i class="fa fa-angle-right"></i>Statistique des votes</a></li>
             <li><a href="#"><i class="fa fa-angle-right"></i>Statistique des votants</a></li>
           </ul>
         </li>

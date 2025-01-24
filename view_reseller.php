@@ -1,10 +1,10 @@
 <?php
 
-include 'header.php';
+include './includes/header.php';
 ?>
 
 <?php
-include 'sidebar.php';
+include './includes/sidebar.php';
 
 ?>
 
@@ -107,6 +107,6 @@ include 'sidebar.php';
 
   
   <?php
-include 'footer.php';
+include './includes/footer.php';
 
 ?>

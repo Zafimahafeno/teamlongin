@@ -1,5 +1,5 @@
-<?php include 'header.php'; ?>
-<?php include 'sidebar.php'; ?>
+<?php include './includes/header.php'; ?>
+<?php include './includes/sidebar.php'; ?>
 
 <style>
   .chart-container {

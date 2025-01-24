@@ -1,9 +1,9 @@
 <?php
-include 'header.php';
+include './includes/header.php';
 ?>
 
 <?php
-include 'sidebar.php';
+include './includes/sidebar.php';
 ?>
 
 <div class="modal" id="myModal">

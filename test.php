@@ -1,6 +1,6 @@
 <?php
-include 'header.php';
-include 'sidebar.php';
+include './includes/header.php';
+include './includes/sidebar.php';
 
 $conn = new mysqli("mysql-mahafeno.alwaysdata.net", "mahafeno", "antso0201", "mahafeno_longin");
 

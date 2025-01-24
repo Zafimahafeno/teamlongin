@@ -1,9 +1,9 @@
 <?php
-include 'header.php';
+include './includes/header.php';
 ?>
 
 <?php
-include 'sidebar.php';
+include './includes/sidebar.php';
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -105,5 +105,5 @@ include 'sidebar.php';
 <!-- content-wrapper --> 
 
 <?php
-include 'footer.php';
+include './includes/footer.php';
 ?>

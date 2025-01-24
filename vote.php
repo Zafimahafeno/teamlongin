@@ -16,8 +16,8 @@ $sql_zones = "SELECT id_zone, nom_zone FROM zone";
 $result_zones = $conn->query($sql_zones);
 ?>
 
-<?php include 'header.php'; ?>
-<?php include 'sidebar.php'; ?>
+<?php include './includes/header.php'; ?>
+<?php include './includes/sidebar.php'; ?>
 
 <div class="content-wrapper"> 
     <section class="content-header">
@@ -114,4 +114,4 @@ $result_zones = $conn->query($sql_zones);
     </section>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php include './includes/footer.php'; ?>

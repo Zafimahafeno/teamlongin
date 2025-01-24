@@ -1,7 +1,7 @@
 <?php
 
-include 'header.php';
-include 'sidebar.php';
+include './includes/header.php';
+include './includes/sidebar.php';
 
 ?>
 
