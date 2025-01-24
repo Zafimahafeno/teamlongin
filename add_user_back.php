@@ -1,11 +1,5 @@
 <?php
-// Connexion à la base de données
-$conn = new mysqli("mysql-mahafeno.alwaysdata.net", "mahafeno", "antso0201", "mahafeno_longin");
-
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    require_once './config/db.php';
 
 // Récupération des données du formulaire
 $nom_candidat = $_POST['nom_candidat'];

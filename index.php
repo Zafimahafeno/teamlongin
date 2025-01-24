@@ -1,10 +1,10 @@
 <?php
 
-include 'header.php';
+include './includes/header.php';
 ?>
 
 <?php
-include 'sidebar.php';
+include './includes/sidebar.php';
 
 ?>
 
@@ -13,7 +13,7 @@ include 'sidebar.php';
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>BIENVENUE ADMINISTRATEUR TEAM LONGIN</h1>
+      <h1>BIENVENUE ADMINISTRATEUR</h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Accueil</a></li>
        
@@ -113,6 +113,6 @@ include 'sidebar.php';
   <!-- content-wrapper --> 
   
   <?php
-include 'footer.php';
+include './includes/footer.php';
 
 ?>

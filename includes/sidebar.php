@@ -1,20 +1,6 @@
-<Style>
-/* Styles pour le lien */
-a.dashboard-link {
-    display: block; /* Afficher le lien comme un bloc pour prendre toute la largeur disponible */
-    padding: 10px; /* Espacement autour du lien */
-    background-color: #202020; /* Couleur de fond */
-    color: #ffff; /* Couleur du texte */
-    font-size: 16px; /* Taille de la police */
-    text-decoration: none; /* Supprime le soulignement par défaut */
-}
-
-/* Styles pour l'icône */
-a.dashboard-link i {
-    margin-right: 5px; /* Marge à droite de l'icône pour l'espacement */
-}
-
-</Style>
+<head>
+  <link rel="stylesheet" href="../dist/css/style.css">
+</head>
 
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar dark-bg">

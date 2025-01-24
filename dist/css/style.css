@@ -13,7 +13,7 @@ body.body-bg {
 body.body-bg-color {
 	background: #e8eff3;
 }
-h1, h2, h3, h4, h5, h6, {
+h1, h2, h3, h4, h5, h6 {
  font-family: 'Poppins', sans-serif;
 }
 a {
@@ -2761,6 +2761,22 @@ label input[type=checkbox].checkbox+span, label input[type=radio].radiobox+span 
     list-style: none;
 }
 
+/* Modification */
+
+/* Styles pour le lien */
+.main-sidebar a.dashboard-link {
+	display: block; /* Afficher le lien comme un bloc pour prendre toute la largeur disponible */
+	padding: 10px; /* Espacement autour du lien */
+	background-color: #202020; /* Couleur de fond */
+	color: #ffff; /* Couleur du texte */
+	font-size: 16px; /* Taille de la police */
+	text-decoration: none; /* Supprime le soulignement par défaut */
+}
+
+/* Styles pour l'icône */
+.main-sidebar a.dashboard-link i {
+	margin-right: 5px; /* Marge à droite de l'icône pour l'espacement */
+}
 
 
 
