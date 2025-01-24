@@ -51,7 +51,7 @@
           <ul class="treeview-menu">
             <li><a href="planing.php"><i class="fa fa-angle-right"></i> Planning</a></li>
             <li><a href="tache.php"><i class="fa fa-angle-right"></i> Gestion de tâche</a></li>
-            <li><a href="message.php"><i class="fa fa-angle-right"></i> Envoyer des messages</a></li>
+            <!-- <li><a href="message.php"><i class="fa fa-angle-right"></i> Envoyer des messages</a></li> -->
           </ul>
         </li>
         <li> <a href="../teamlongin/backend/logout.php"><i class="fa fa-power"></i> <span>Déconnexion</span> <span class="pull-right-container"></span> </a>

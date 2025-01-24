@@ -47,8 +47,8 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown messages-menu"> 
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-              <i class="icon-envelope"></i>
+            <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">  -->
+              <!-- <i class="icon-envelope"></i> -->
               <div class="notify"> 
                 <span class="heartbit"></span> 
                 <span class="point"></span> 
