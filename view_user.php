@@ -59,13 +59,14 @@ include './includes/sidebar.php';
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo '<tr>';
 
-                                    // Afficher la photo en première colonne
-                                    $photoPath = $row["photo"]; // Assurez-vous que la colonne "photo" contient le nom du fichier
-                                    if (!empty($row["photo"]) && file_exists($photoPath)) {
-                                        echo '<td class="text-truncate"><img src="./backend/' . $photoPath . '" alt="Photo de ' . $row["nom"] . '" style="width: 50px; height: 50px; border-radius: 5px;"></td>';
+                                    // Construire le chemin de la photo
+                                    $photoPath = "backend/uploads/" . $row["photo"];
+                                    if (!empty($row["photo"]) && file_exists(__DIR__ . "/../" . $photoPath)) {
+                                        echo '<td class="text-truncate"><img src="' . htmlspecialchars($photoPath) . '" alt="Photo de ' . htmlspecialchars($row["nom"]) . '" style="width: 50px; height: 50px; border-radius: 5px;"></td>';
                                     } else {
                                         echo '<td class="text-truncate">Aucune photo</td>';
                                     }
+
 
                                     // Afficher les autres colonnes
                                     echo '<td class="text-truncate">' . $row["numero"] . '</td>';

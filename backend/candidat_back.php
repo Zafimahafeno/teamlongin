@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
         // Mettre à jour les données
         $sql = "UPDATE candidat SET numero='$num_electoral', nom='$nom_candidat', prenom='$prenom_candidat', photo='$photo_candidat' WHERE id='$id'";
         if ($conn->query($sql) === TRUE) {
-            header("Location: view_user.php?message=Candidat modifié avec succès.");
+            header("Location: ./view_user.php?message=Candidat modifié avec succès.");
         } else {
             die("Erreur : " . $conn->error);
         }
@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
         $id = $_POST['id'];
         $sql = "DELETE FROM candidat WHERE id='$id'";
         if ($conn->query($sql) === TRUE) {
-            header("Location: view_user.php?message=Candidat supprimé avec succès.");
+            header("Location: ./view_user.php?message=Candidat supprimé avec succès.");
         } else {
             die("Erreur : " . $conn->error);
         }

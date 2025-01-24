@@ -43,7 +43,7 @@ include './includes/sidebar.php';
 				<div class="chart-box">
 
 
-					<form action="./backend/candidat_back.php" method="post" id="contact-form" novalidate="novalidate"
+					<form action="backend/candidat_back.php" method="post" id="contact-form" novalidate="novalidate"
 						onsubmit="verify();" enctype="multipart/form-data">
 						<input type="hidden" name="action" value="add">
 						<div class="tab-content">
