@@ -181,16 +181,16 @@
             <ul class="dropdown-menu">
               <li class="user-header">
                 <div class="pull-left user-img"><img src="dist/img/logo.png" class="img-responsive" alt="User"></div>
-                <p class="text-left">TEAM LONGIN  <small>zanajaona2404@gmail.com</small> </p>
+                <p class="text-left">TEAM LONGIN  <small><?php echo $_SESSION['user_prenom']; ?></small> </p>
                 <!--<div class="view-link text-left"><a href="#">View Profile</a> </div>-->
               </li>
-              <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
+              <!-- <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
               <li><a href="#"><i class="icon-wallet"></i> My Balance</a></li>
               <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+              <li role="separator" class="divider"></li> -->
+              <li><a href="../teamlongin/backend/logout.php"><i class="fa fa-power-off"></i> Se déconnecter</a></li>
             </ul>
           </li>
         </ul>
