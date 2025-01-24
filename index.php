@@ -1,118 +1,28 @@
-<?php
-
-include './includes/header.php';
-?>
-
-<?php
-include './includes/sidebar.php';
-
-?>
-
-
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"> 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>BIENVENUE ADMINISTRATEUR</h1>
-      <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home"></i> Accueil</a></li>
-       
-      </ol>
-    </section>
-    
-    <!-- Main content -->
-    <section class="content container-fluid">
-      <div class="row">
-	  <div class="col-md-12"><h4>Rapports</h4></div>
-  <div class="col-lg-2 col-xs-6">
-		<a href="#">
-          <div class="media-box">
-            <div class="media-icon "><i class="icon-envelope"></i> </div>
-            <div class="media-info">
-              <h5>Gestions des Candidats</h5>
-            </div>
-          </div>
-		  </a>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion - Compagne UF</title>
+  <link rel="stylesheet" href="./dist/css/style.css">
+</head>
+<body>
+  <div class="body-login">
+    <div class="form-container">
+      <h1>Connexion</h1>
+      <form action="./backend/login_user.php" method="POST">
+        <div class="form-group">
+          <label for="email">Email :</label>
+            <input type="email" id="email" name="email" placeholder="Votre email" required>
         </div>
-  <div class="col-lg-2 col-xs-6">
-		<a href="#">
-          <div class="media-box bg-sea">
-            <div class="media-icon"><i class="fa fa-money"></i> </div>
-            <div class="media-info">
-              <h5>Gestion des Votants</h5>
-            </div>
-          </div>
-		  </a>
+        <div class="form-group">
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
         </div>
-  <div class="col-lg-2 col-xs-6">
-		<a href="#">
-          <div class="media-box bg-blue">
-            <div class="media-icon"><i class="fa fa-mail-reply"></i> </div>
-            <div class="media-info">
-              <h5>Statistique des votants</h5>
-            </div>
-          </div>
-		  </a>
-        </div>
-  <div class="col-lg-2 col-xs-6">
-		<a href="#">
-          <div class="media-box bg-green">
-            <div class="media-icon "><i class="fa fa-envelope"></i> </div>
-            <div class="media-info">
-              <h5>Statistique des votes</h5>
-            </div>
-          </div>
-		  </a>
-        </div>
-
-	<div class="col-lg-2 col-xs-6">
-		 <a href="#">
-          <div class="media-box bg-blue">
-            <div class="media-icon "><i class="fa fa-envelope-o"></i> </div>
-            <div class="media-info">
-              <h5>Gestion des tâches</h5>
-            </div>
-          </div>
-		  </a>
-        </div>
-  <div class="col-lg-2 col-xs-6">
-		<a href="#">
-          <div class="media-box bg-green">
-            <div class="media-icon "><i class="fa fa-users"></i> </div>
-            <div class="media-info">
-              <h5>Gestion des planing</h5>
-            </div>
-          </div>
-		  </a>
-        </div>
-		
+        <button type="submit" class="btn">Se connecter</button>
+      </form>
+      <p>Pas encore de compte ? <a href="register.php">Inscrivez-vous</a></p>
+  	</div>
   </div>
-      <div class="row">
-        <div class="col-lg-7">
-          <div class="chart-box">
-            <h4>"SAHIA MANOVA,NDAO HIARA-DIA"</h4>
-            <div class="chart">
-              <div id="container"></div>
-              <!--for values check "Product Sales" chart on char-function.js--> 
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="chart-box">
-            <h4>"HO AN'NY FAMPANDROSOANA"</h4>
-            <div class="chart">
-              <div id="container1"></div>
-              <!--for values check "Sales Overview" chart on char-function.js--> 
-            </div>
-          </div>
-        </div>
-		</div>
-		</section>
-    <!-- content --> 
-  </div>
-  <!-- content-wrapper --> 
-  
-  <?php
-include './includes/footer.php';
-
-?>
+</body>
+</html>

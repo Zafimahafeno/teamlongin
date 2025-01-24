@@ -2763,6 +2763,27 @@ label input[type=checkbox].checkbox+span, label input[type=radio].radiobox+span 
 
 /* Modification */
 
+/* Login */
+.body-greeting {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--light-grey);
+}
+
+.greeting-container {
+  text-align: center;
+  background: var(--white);
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* --------------------------------------- */
+
 /* Styles pour le lien */
 .main-sidebar a.dashboard-link {
 	display: block; /* Afficher le lien comme un bloc pour prendre toute la largeur disponible */

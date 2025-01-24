@@ -15,7 +15,7 @@
       <ul class="sidebar-menu" data-widget="tree">
          <li class="header dark-bg">Menu de navigation</li>
 
-         <a href="index.php" class="dashboard-link"><i class="fa fa-angle-right"></i> Tableau de bord</a>
+         <a href="dashboard.php" class="dashboard-link"><i class="fa fa-angle-right"></i> Tableau de bord</a>
         
         <li class="treeview"> <a href="#"><i class="fa fa-desktop"></i> <span>Gestion des Candidats</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
