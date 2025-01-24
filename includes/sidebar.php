@@ -37,6 +37,15 @@
             <li><a href="#"><i class="fa fa-angle-right"></i>Statistique des votants</a></li>
           </ul>
         </li>
+
+        <li class="treeview"> <a href="#"><i class="fa fa-users"></i> <span>Gestion des Utilisateurs</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu">
+            <li><a href="add_utilisateur.php"><i class="fa fa-angle-right"></i>Ajouter Utilisateurs</a></li>
+            <li><a href="view_utilisateur.php"><i class="fa fa-angle-right"></i>Liste des Utilisateurs</a></li>
+            <li></li>
+          </ul>
+        </li>
+
         <li class="treeview"> <a href="#"><i class="fa fa-table"></i> <span>Communication</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
             <li><a href="planing.php"><i class="fa fa-angle-right"></i> Planning</a></li>
