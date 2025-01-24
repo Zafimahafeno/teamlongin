@@ -26,53 +26,53 @@ include './includes/sidebar.php';
                     <div class="bind box1 table-responsive">
                         <table id="example1" class="table table-responsive table-bordered">
                             <?php
-
-                            // Connexion à la base de données - Remplacez les valeurs par les vôtres
+                            // Connexion à la base de données
                             $servername = "mysql-mahafeno.alwaysdata.net";
                             $username = "mahafeno";
                             $password = "antso0201";
                             $dbname = "mahafeno_longin";
 
-                            // Création de la connexion
                             $conn = new mysqli($servername, $username, $password, $dbname);
-                            // echo 'Connexion à la base de données établie :)';
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            if ($conn->connect_error) {
-                                die(json_encode(array("success" => false, "message" => "Échec de la connexion à la base de données: " . $conn->connect_error)));
-                            }
-
-                            // Effectuer la requête SQL pour récupérer les données des candidats depuis la base de données
+                            // Requête pour récupérer les données des candidats
                             $sql = "SELECT * FROM candidat";
                             $result = mysqli_query($conn, $sql);
 
-                            // Vérifier s'il y a des données retournées
                             if (mysqli_num_rows($result) > 0) {
-                                // Afficher les données dans le tableau
                                 echo '<table id="example1" class="table table-responsive table-bordered">';
                                 echo '<thead>';
                                 echo '<tr>';
-                                  // Ajout de la colonne ID
+                                echo '<th class="sortable">Photo</th>'; // Nouvelle colonne pour la photo en première position
                                 echo '<th class="sortable">Numero</th>';
                                 echo '<th class="sortable">Nom</th>';
                                 echo '<th class="sortable">Prenom</th>';
-                                echo '<th class="sortable">Action</th>';  // Ajouter la colonne Action pour les boutons d'édition et suppression
+                                echo '<th class="sortable">Action</th>';
                                 echo '</tr>';
                                 echo '</thead>';
                                 echo '<tbody>';
 
-                                // Parcourir les données et afficher chaque ligne dans le tableau
+                                // Parcourir les résultats
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo '<tr>';
-                                     
+
+                                    // Afficher la photo en première colonne
+                                    $photoPath = $row["photo"]; // Assurez-vous que la colonne "photo" contient le nom du fichier
+                                    if (!empty($row["photo"]) && file_exists($photoPath)) {
+                                        echo '<td class="text-truncate"><img src="./backend/' . $photoPath . '" alt="Photo de ' . $row["nom"] . '" style="width: 50px; height: 50px; border-radius: 5px;"></td>';
+                                    } else {
+                                        echo '<td class="text-truncate">Aucune photo</td>';
+                                    }
+
+                                    // Afficher les autres colonnes
                                     echo '<td class="text-truncate">' . $row["numero"] . '</td>';
                                     echo '<td class="text-truncate">' . $row["nom"] . '</td>';
                                     echo '<td class="text-truncate">' . $row["prenom"] . '</td>';
 
-                                    // Ajouter des boutons d'action pour l'édition et la suppression
+                                    // Boutons d'action
                                     echo '<td class="action-col">';
                                     echo '<button class="btn btn-default btn-icon btn-xs tip" title="Editer"><i class="fa fa-edit text-info"></i></button>';
                                     echo '<button class="btn btn-default btn-icon btn-xs tip" title="Supprimer"><i class="fa fa-trash-o text-danger"></i></button>';
@@ -83,13 +83,11 @@ include './includes/sidebar.php';
                                 echo '</tbody>';
                                 echo '</table>';
                             } else {
-                                // Si aucune donnée n'est trouvée dans la base de données
                                 echo "Aucun résultat trouvé";
                             }
 
                             // Fermer la connexion à la base de données
                             mysqli_close($conn);
-
                             ?>
 
                         </table>

@@ -1,49 +1,82 @@
 <?php
-header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+// Connexion à la base de données
+$servername = "mysql-mahafeno.alwaysdata.net";
+$username = "mahafeno";
+$password = "antso0201";
+$dbname = "mahafeno_longin";
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-require_once "./config/db.php";
-
-// Récupérer la méthode HTTP
-$method = $_SERVER['REQUEST_METHOD'];
-
-switch ($method) {
-    case 'GET': // Récupérer tous les candidats
-        $stmt = $pdo->prepare("SELECT * FROM candidat");
-        $stmt->execute();
-        $candidats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($candidats);
-        break;
-
-    case 'POST': // Ajouter un candidat
-        $data = json_decode(file_get_contents("php://input"), true);
-        if (isset($data['nom'], $data['prenom'], $data['numero'])) {
-            $stmt = $pdo->prepare("INSERT INTO candidat (nom, prenom, numero) VALUES (?, ?, ?)");
-            $stmt->execute([$data['nom'], $data['prenom'], $data['numero']]);
-            echo json_encode(["message" => "Candidat ajouté avec succès.", "id" => $pdo->lastInsertId()]);
-        } else {
-            http_response_code(400);
-            echo json_encode(["message" => "Données invalides."]);
-        }
-        break;
-
-    case 'DELETE': // Supprimer un candidat
-        if (isset($_GET['id'])) {
-            $id = intval($_GET['id']);
-            $stmt = $pdo->prepare("DELETE FROM candidat WHERE id = ?");
-            $stmt->execute([$id]);
-            echo json_encode(["message" => "Candidat supprimé avec succès."]);
-        } else {
-            http_response_code(400);
-            echo json_encode(["message" => "ID non spécifié."]);
-        }
-        break;
-
-    default:
-        http_response_code(405);
-        echo json_encode(["message" => "Méthode non autorisée."]);
-        break;
+// Vérification de la connexion
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+// Vérifier l'action à effectuer
+if (isset($_POST['submit'])) {
+    $action = $_POST['action'];
+
+    if ($action == 'add') {
+        // Ajout d'un candidat
+        $num_electoral = $_POST['num_electoral'];
+        $nom_candidat = $_POST['nom_candidat'];
+        $prenom_candidat = $_POST['prenom_candidat'];
+        $photo_candidat = '';
+
+        // Gérer l'upload de la photo
+        if (isset($_FILES['photo_candidat']) && $_FILES['photo_candidat']['error'] == 0) {
+            $targetDir = "uploads/";
+            $photo_candidat = $targetDir . basename($_FILES["photo_candidat"]["name"]);
+            if (!move_uploaded_file($_FILES["photo_candidat"]["tmp_name"], $photo_candidat)) {
+                die("Erreur lors de l'upload de la photo.");
+            }
+        }
+
+        // Insérer les données dans la base
+        $sql = "INSERT INTO candidat (numero, nom, prenom, photo) VALUES ('$num_electoral', '$nom_candidat', '$prenom_candidat', '$photo_candidat')";
+        if ($conn->query($sql) === TRUE) {
+            header("Location: ../view_user.php");
+        } else {
+            die("Erreur : " . $conn->error);
+        }
+    } elseif ($action == 'edit') {
+        // Modification d'un candidat
+        $id = $_POST['id'];
+        $num_electoral = $_POST['num_electoral'];
+        $nom_candidat = $_POST['nom_candidat'];
+        $prenom_candidat = $_POST['prenom_candidat'];
+        $photo_candidat = $_POST['existing_photo']; // Garder la photo existante par défaut
+
+        // Gérer une nouvelle photo uploadée
+        if (isset($_FILES['photo_candidat']) && $_FILES['photo_candidat']['error'] == 0) {
+            $targetDir = "uploads/";
+            $photo_candidat = $targetDir . basename($_FILES["photo_candidat"]["name"]);
+            if (!move_uploaded_file($_FILES["photo_candidat"]["tmp_name"], $photo_candidat)) {
+                die("Erreur lors de l'upload de la photo.");
+            }
+        }
+
+        // Mettre à jour les données
+        $sql = "UPDATE candidat SET numero='$num_electoral', nom='$nom_candidat', prenom='$prenom_candidat', photo='$photo_candidat' WHERE id='$id'";
+        if ($conn->query($sql) === TRUE) {
+            header("Location: view_user.php?message=Candidat modifié avec succès.");
+        } else {
+            die("Erreur : " . $conn->error);
+        }
+    } elseif ($action == 'delete') {
+        // Suppression d'un candidat
+        $id = $_POST['id'];
+        $sql = "DELETE FROM candidat WHERE id='$id'";
+        if ($conn->query($sql) === TRUE) {
+            header("Location: view_user.php?message=Candidat supprimé avec succès.");
+        } else {
+            die("Erreur : " . $conn->error);
+        }
+    } else {
+        die("Action invalide.");
+    }
+} else {
+    die("Aucune action spécifiée.");
+}
+
+$conn->close();
 ?>

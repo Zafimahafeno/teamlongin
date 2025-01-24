@@ -4,8 +4,6 @@
 // Récupération des données du formulaire
 $nom_candidat = $_POST['nom_candidat'];
 $prenom_candidat = $_POST['prenom_candidat'];
-$partie = $_POST['partie'];
-$contact = $_POST['contact'];
 $num_electoral = $_POST['num_electoral'];
 
 // Traitement de l'upload de la photo
@@ -18,7 +16,7 @@ $photo_destination = $upload_dir . $photo_name;
 if (move_uploaded_file($photo_tmp_name, $photo_destination)) {
     // Le fichier a été déplacé avec succès
     // Insérer le candidat dans la base de données avec les autres données et le nom de la photo
-    $sql_insert_candidat = "INSERT INTO candidat (nom_candidat, prenom_candidat, partie, contact, num_electoral, photo) VALUES ('$nom_candidat', '$prenom_candidat', '$partie', '$contact', '$num_electoral', '$photo_name')";
+    $sql_insert_candidat = "INSERT INTO candidat (numero, nom, prenom, photo) VALUES ('$num_electoral','$nom_candidat', '$prenom_candidat','$photo_name')";
 
     // Si l'insertion du candidat s'est déroulée avec succès
     if ($conn->query($sql_insert_candidat) === TRUE) {

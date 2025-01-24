@@ -43,11 +43,10 @@ include './includes/sidebar.php';
 				<div class="chart-box">
 
 
-					<form action="add_user_back.php" method="post" id="contact-form" novalidate="novalidate"
+					<form action="./backend/candidat_back.php" method="post" id="contact-form" novalidate="novalidate"
 						onsubmit="verify();" enctype="multipart/form-data">
-
+						<input type="hidden" name="action" value="add">
 						<div class="tab-content">
-
 							<div class="tab-pane active" id="personalinfo">
 								<div class="tabbable tabs-below">
 									<div class="tab-content padding-10">
@@ -100,6 +99,19 @@ include './includes/sidebar.php';
 														</section>
 													</div>
 
+													<!-- Photo -->
+													<div class="row">
+														<section class="col col-md-12">
+															<label class="label">Photo du candidat</label>
+															<label class="input">
+																<i class="icon-append fa fa-camera"></i>
+																<input type="file" name="photo_candidat"
+																	id="photo_candidat" accept="image/*">
+															</label>
+															<div style="color: #FF0000;"></div>
+														</section>
+													</div>
+
 												</div>
 
 												<!-- Boutons pour Annuler et Soumettre -->
@@ -108,29 +120,25 @@ include './includes/sidebar.php';
 														<div class="col-md-12 text-right">
 															<div class="col-lg-12">
 																<footer>
-																	<a href="view_user.php"><button type="button"
-																			name="cancel"
-																			class="btn btn-danger">Annuler</button></a>
-
+																	<a href="view_user.php">
+																		<button type="button" name="cancel"
+																			class="btn btn-danger">Annuler</button>
+																	</a>
 																	<button type="submit" name="submit"
 																		class="btn btn-primary"
-																		id="createuser">Enregistrer</button>
-																	<button type="button" class="btn btn-primary"
-																		id="processAdd" style="display: none;">
-																		<i class="fa fa-spinner fa-spin"></i>
-																		Processing</button>
+																		>Enregistrer</button>
+																	
 																</footer>
-
 															</div>
 														</div>
 													</div>
 												</div>
+
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</form>
 
