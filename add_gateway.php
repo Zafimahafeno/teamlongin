@@ -1,5 +1,11 @@
 <?php
+session_start();
 
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+  header('Location: login.php');
+  exit;
+}
 include './includes/header.php';
 include './includes/sidebar.php';
 
@@ -130,5 +136,5 @@ include './includes/sidebar.php';
 
 <?php
 
-include 'footer.php';
+include './includes/footer.php';
 ?>
