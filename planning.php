@@ -28,7 +28,7 @@ include './includes/sidebar.php';
 <!-- /.content-wrapper -->
 
 <?php
-include 'footer.php';
+include './includes/footer.php';
 ?>
 <!-- Modal pour afficher les détails de la planification -->
 <div class="modal fade" id="modalDetails" tabindex="-1" role="dialog" aria-labelledby="modalDetailsLabel" aria-hidden="true">

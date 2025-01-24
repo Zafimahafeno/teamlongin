@@ -37,7 +37,7 @@
             <li><a href="#"><i class="fa fa-angle-right"></i>Statistique des votants</a></li>
           </ul>
         </li>
-
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
         <li class="treeview"> <a href="#"><i class="fa fa-users"></i> <span>Gestion des Utilisateurs</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
             <li><a href="add_utilisateur.php"><i class="fa fa-angle-right"></i>Ajouter Utilisateurs</a></li>
@@ -45,6 +45,7 @@
             <li></li>
           </ul>
         </li>
+        <?php endif; ?>
 
         <li class="treeview"> <a href="#"><i class="fa fa-table"></i> <span>Communication</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
