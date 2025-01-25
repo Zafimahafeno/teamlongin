@@ -57,26 +57,20 @@ include './includes/sidebar.php';
 
                                 // Parcourir les résultats
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $photoPath = "./backend/uploads/" . $row["photo"];
                                     echo '<tr>';
-
-                                    // Construire le chemin de la photo
-                                    $photoPath = "backend/uploads/" . $row["photo"];
-                                    if (!empty($row["photo"]) && file_exists(__DIR__ . "/../" . $photoPath)) {
-                                        echo '<td class="text-truncate"><img src="' . htmlspecialchars($photoPath) . '" alt="Photo de ' . htmlspecialchars($row["nom"]) . '" style="width: 50px; height: 50px; border-radius: 5px;"></td>';
+                                    if (!empty($row["photo"])) {
+                                        echo '<td><img src="' . $photoPath . '" alt="Photo de ' . htmlspecialchars($row["nom"]) . '" style="width: 50px; height: 50px; border-radius: 5px;"></td>';
                                     } else {
-                                        echo '<td class="text-truncate">Aucune photo</td>';
+                                        echo '<td>Aucune photo</td>';
                                     }
-
-
-                                    // Afficher les autres colonnes
-                                    echo '<td class="text-truncate">' . $row["numero"] . '</td>';
-                                    echo '<td class="text-truncate">' . $row["nom"] . '</td>';
-                                    echo '<td class="text-truncate">' . $row["prenom"] . '</td>';
-
+                                    echo '<td>' . htmlspecialchars($row["numero"]) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row["nom"]) . '</td>';
+                                    echo '<td>' . htmlspecialchars($row["prenom"]) . '</td>';
                                     // Boutons d'action
                                     echo '<td class="action-col">';
-                                    echo '<button class="btn btn-default btn-icon btn-xs tip" title="Editer"><i class="fa fa-edit text-info"></i></button>';
-                                    echo '<button class="btn btn-default btn-icon btn-xs tip" title="Supprimer"><i class="fa fa-trash-o text-danger"></i></button>';
+                                    echo '<a href="modifier_candidat.php?id=' . $row["id"] . '" class="btn btn-default btn-icon btn-xs tip" title="Editer"><i class="fa fa-edit text-info"></i></a>';
+                                    echo '<a href="backend/candidat_back.php?action=delete&id=' . $row["id"] . '" class="btn btn-default btn-icon btn-xs tip" title="Supprimer"><i class="fa fa-trash-o text-danger"></i></a>';
                                     echo '</td>';
                                     echo '</tr>';
                                 }
@@ -98,7 +92,11 @@ include './includes/sidebar.php';
         </div>
     </section>
     <!-- content -->
+
 </div>
+
+
+
 <!-- content-wrapper -->
 
 <!-- Add Sender ID Modal -->
@@ -236,6 +234,9 @@ include './includes/sidebar.php';
     <!-- Modal Content -->
 </div>
 
+
+
 <?php
 include './includes/footer.php';
 ?>
+
