@@ -1,7 +1,7 @@
   <!-- Main Footer -->
   <footer class="main-footer dark-bg">
-    <div class="pull-right hidden-xs">DEVELOPED BY ORIGAMI</div>
-    Copyright &copy; 2024 TEAM LONGIN. All rights reserved. </footer>
+    <!-- <div class="pull-right hidden-xs">DEVELOPED BY Origami Tech</div> -->
+    Copyright &copy; 2025 Origami Tech. Tous droits réservés. </footer>
 </div>
 <!-- wrapper --> 
 
