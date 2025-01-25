@@ -146,7 +146,7 @@ include './includes/sidebar.php';
 																	<label class="label">Commentaire<font color="red">*</font></label>
 																	<label class="input">
 																		<i class="icon-append fa fa-envelope"></i>
-																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Adresse du votant">
+																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Commentaire...">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>
@@ -154,7 +154,7 @@ include './includes/sidebar.php';
 																	<label class="label">Démarche effectuée</label>
 																	<label class="input">
 																		<i class="icon-append fa fa-image"></i>
-																		<input type="date" name="contact_votant" value="" id="contact_votant" placeholder="Contact du votant">
+																		<input type="text" name="contact_votant" value="" id="contact_votant" placeholder="Description">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>
@@ -166,7 +166,7 @@ include './includes/sidebar.php';
 																	<label class="label">Proposition<font color="red">*</font></label>
 																	<label class="input">
 																		<i class="icon-append fa fa-envelope"></i>
-																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Adresse du votant">
+																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Proposition">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>

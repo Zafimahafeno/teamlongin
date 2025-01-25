@@ -43,10 +43,18 @@ include './includes/sidebar.php';
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <!-- <th class="sortable">#</th> -->
                                     <th class="sortable">Nom</th>
                                     <th class="sortable">Prenom</th>
-                                    <th class="sortable">Adresse</th>
+                                    <th class="sortable">Fonction</th>
+                                    <th class="sortable">Établissement</th>
+                                    <th class="sortable">Email</th>
                                     <th class="sortable">Contact</th>
+                                    <th class="sortable">Intention de vote</th>
+                                    <th class="sortable">Dernier contact</th>
+                                    <th class="sortable">Commentaire</th>
+                                    <th class="sortable">Démarche effectuée</th>
+                                    <th class="sortable">Proposition</th>
                                    
                                 </tr>
                             </thead>
@@ -91,7 +99,7 @@ include './includes/sidebar.php';
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='9'>Aucune donnée disponible</td></tr>";
+                                    echo "<tr><td colspan='11'>Aucune donnée disponible</td></tr>";
                                 }
 
                                 // Fermeture de la connexion
