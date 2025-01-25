@@ -16,9 +16,9 @@ include './includes/sidebar.php';
     <section class="content-header">
         <h1>Liste des votants</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Accueil</a></li>
+            <li><a href="./dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
             <li class="active"><i class="fa fa-envelope-o"></i>Vue Global</li>
-            <li class="active"><i class="fa fa-table"></i> Liste</li>
+            <!-- <li class="active"><i class="fa fa-table"></i> Liste</li> -->
         </ol>
     </section>
 
@@ -27,7 +27,7 @@ include './includes/sidebar.php';
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-box">
-                    <h4>VOTANTS 2EME ARRONDISSEMENT</h4>
+                    <h4>VOTANTS</h4>
                     <!-- Ajout des boutons de filtrage -->
                     <div class="row">
                         <div class="col-md-12">

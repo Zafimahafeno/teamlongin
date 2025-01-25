@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>TEAM LONGIN- Admin</title>
+  <title>Compagne et Élection UF</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -35,7 +35,7 @@
     <!-- mini logo for sidebar mini 50x50 pixels --> 
         <span class="logo-mini"><img src="dist/img/logo.png" alt="Ovio"></span> 
     <!-- logo for regular state and mobile devices --> 
-        <span class="logo-lg">TEAM LONGIN Administrateur 
+        <span class="logo-lg">Administrateur 
       </a> 
     
     <!-- Header Navbar -->

@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+  header('Location: login.php');
+  exit;
+}
 include './includes/header.php';
 include './includes/sidebar.php';
 ?>
@@ -235,6 +242,8 @@ include './includes/sidebar.php';
 <div id="addkey_inbound" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
     <!-- Modal Content -->
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 
 <?php
 include './includes/footer.php';
