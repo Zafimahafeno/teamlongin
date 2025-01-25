@@ -16,9 +16,9 @@ include './includes/sidebar.php';
     <section class="content-header">
         <h1>Liste des votants</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Accueil</a></li>
+            <li><a href="./dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
             <li class="active"><i class="fa fa-envelope-o"></i>Vue Global</li>
-            <li class="active"><i class="fa fa-table"></i> Liste</li>
+            <!-- <li class="active"><i class="fa fa-table"></i> Liste</li> -->
         </ol>
     </section>
 
@@ -27,7 +27,7 @@ include './includes/sidebar.php';
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-box">
-                    <h4>VOTANTS 2EME ARRONDISSEMENT</h4>
+                    <h4>VOTANTS</h4>
                     <!-- Ajout des boutons de filtrage -->
                     <div class="row">
                         <div class="col-md-12">
@@ -43,10 +43,18 @@ include './includes/sidebar.php';
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <!-- <th class="sortable">#</th> -->
                                     <th class="sortable">Nom</th>
                                     <th class="sortable">Prenom</th>
-                                    <th class="sortable">Adresse</th>
+                                    <th class="sortable">Fonction</th>
+                                    <th class="sortable">Établissement</th>
+                                    <th class="sortable">Email</th>
                                     <th class="sortable">Contact</th>
+                                    <th class="sortable">Intention de vote</th>
+                                    <th class="sortable">Dernier contact</th>
+                                    <th class="sortable">Commentaire</th>
+                                    <th class="sortable">Démarche effectuée</th>
+                                    <th class="sortable">Proposition</th>
                                    
                                 </tr>
                             </thead>
@@ -91,7 +99,7 @@ include './includes/sidebar.php';
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='9'>Aucune donnée disponible</td></tr>";
+                                    echo "<tr><td colspan='11'>Aucune donnée disponible</td></tr>";
                                 }
 
                                 // Fermeture de la connexion

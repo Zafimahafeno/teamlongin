@@ -19,7 +19,7 @@ include './includes/sidebar.php';
 
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-home"></i> Accueil</a></li>
-        <li class="active">Ajout de nouveau votant</li>
+        <li class="active">Ajout d'un nouveau votant</li>
       </ol>
     </section>
     
@@ -59,15 +59,15 @@ include './includes/sidebar.php';
 																	<label class="label">Nom<font color="red">*</font></label>
 																	<label class="input">
 																		<i class="icon-append fa fa-user"></i>
-																		<input type="text" name="nom_votant" value="" id="nom_votant" placeholder="Nom du votant" maxlength="49">
+																		<input type="text" name="nom_votant" value="" id="nom_votant" placeholder="Nom du votant">
 																		<div style="color: #FF0000;"></div>
 																	</label>
 																</section>
 																<section class="col col-md-6">
-																	<label class="label">Prenom</label>
+																	<label class="label">Prénom</label>
 																	<label class="input">
 																		<i class="icon-append fa fa-user"></i>
-																		<input type="text" name="prenom_votant" value="" id="prenom_votant" placeholder="Prenom du votant" maxlength="49">
+																		<input type="text" name="prenom_votant" value="" id="prenom_votant" placeholder="Prenom du votant">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>
@@ -76,18 +76,97 @@ include './includes/sidebar.php';
 														<div class="fieldset">
 															<div class="row">
 																<section class="col col-md-6">
-																	<label class="label">Adresse<font color="red">*</font></label>
+																	<label class="label">Fonction<font color="red">*</font></label>
 																	<label class="input">
 																		<i class="icon-append fa fa-envelope"></i>
-																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Adresse du votant" maxlength="49">
+																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Fonction">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>
 																<section class="col col-md-6">
-																	<label class="label">Contact</label>
+																	<label class="label">Établissement</label>
 																	<label class="input">
 																		<i class="icon-append fa fa-image"></i>
-																		<input type="text" name="contact_votant" value="" id="contact_votant" placeholder="Contact du votant" maxlength="49">
+																		<input type="text" name="contact_votant" value="" id="contact_votant" placeholder="Établissement">
+																	</label>
+																	<div style="color: #FF0000;"></div>
+																</section>
+															</div>
+														</div>
+														<div class="fieldset">
+															<div class="row">
+																<section class="col col-md-6">
+																	<label class="label">Email<font color="red">*</font></label>
+																	<label class="input">
+																		<i class="icon-append fa fa-envelope"></i>
+																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Adresse email">
+																	</label>
+																	<div style="color: #FF0000;"></div>
+																</section>
+																<section class="col col-md-6">
+																	<label class="label">Téléphone</label>
+																	<label class="input">
+																		<i class="icon-append fa fa-image"></i>
+																		<input type="text" name="contact_votant" value="" id="contact_votant" placeholder="Contact du votant">
+																	</label>
+																	<div style="color: #FF0000;"></div>
+																</section>
+															</div>
+														</div>
+														<div class="fieldset">
+															<div class="row">
+																<section class="col col-md-6">
+																	<label class="label">Intention de vote<font color="red">*</font></label>
+																	<label class="input">
+																		<!-- <i class="icon-append fa fa-envelope"></i> -->
+																		<div class="smart-form">
+																			<select name="" id="" class="select" style="width: 388px;">
+																				<option value="">Intention de vote</option>
+																				<option value="">Favorable</option>
+																				<option value="">Indécis</option>
+																				<option value="">Opposant</option>
+																			</select>
+																		</div>
+																	</label>
+																	<div style="color: #FF0000;"></div>
+																</section>
+																<section class="col col-md-6">
+																	<label class="label">Dernier contact</label>
+																	<label class="input">
+																		<i class="icon-append fa fa-image"></i>
+																		<input type="date" name="contact_votant" value="" id="contact_votant" placeholder="Contact du votant">
+																	</label>
+																	<div style="color: #FF0000;"></div>
+																</section>
+															</div>
+														</div>
+														<div class="fieldset">
+															<div class="row">
+																<section class="col col-md-6">
+																	<label class="label">Commentaire<font color="red">*</font></label>
+																	<label class="input">
+																		<i class="icon-append fa fa-envelope"></i>
+																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Commentaire...">
+																	</label>
+																	<div style="color: #FF0000;"></div>
+																</section>
+																<section class="col col-md-6">
+																	<label class="label">Démarche effectuée</label>
+																	<label class="input">
+																		<i class="icon-append fa fa-image"></i>
+																		<input type="text" name="contact_votant" value="" id="contact_votant" placeholder="Description">
+																	</label>
+																	<div style="color: #FF0000;"></div>
+																</section>
+															</div>
+														</div>
+														<div class="fieldset">
+															<div class="row">
+																<section class="col col-md-6">
+																	<label class="label">Proposition<font color="red">*</font></label>
+																	<label class="input">
+																		<i class="icon-append fa fa-envelope"></i>
+																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Proposition">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>
@@ -99,11 +178,11 @@ include './includes/sidebar.php';
 																<div class="col-md-12 text-right">
 															<div class="col-lg-12">
 													<footer>
-															<button type="submit" name="submit" class="btn btn-danger">Cancel</button>
+															<button type="submit" name="submit" class="btn btn-danger">Annuler</button>
 															
-															<button type="submit" name="submit" class="btn btn-primary" id="createuser">Create</button>
+															<button type="submit" name="submit" class="btn btn-primary" id="createuser">Enregistrer</button>
 															<button type="button" class="btn btn-primary" id="processAdd" style="display: none;">
-																					<i class="fa fa-spinner fa-spin"></i> Processing</button>
+																					<i class="fa fa-spinner fa-spin"></i> Traitement...</button>
 														</footer>
 													
 												</div>

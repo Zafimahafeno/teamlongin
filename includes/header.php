@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>TEAM LONGIN- Admin</title>
+  <title>Compagne et Élection UF</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -35,7 +35,7 @@
     <!-- mini logo for sidebar mini 50x50 pixels --> 
         <span class="logo-mini"><img src="dist/img/logo.png" alt="Ovio"></span> 
     <!-- logo for regular state and mobile devices --> 
-        <span class="logo-lg">TEAM LONGIN Administrateur 
+        <span class="logo-lg">Administrateur 
       </a> 
     
     <!-- Header Navbar -->
@@ -177,11 +177,11 @@
 </li>
           <!-- Tasks Menu --> 
           <!-- User Account Menu -->
-          <li class="dropdown user user-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs">TEAM LONGIN </span> </a>
+          <li class="dropdown user user-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs">Compagne et Élection UF</span> </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <div class="pull-left user-img"><img src="dist/img/logo.png" class="img-responsive" alt="User"></div>
-                <p class="text-left">TEAM LONGIN  <small><?php echo $_SESSION['user_prenom']; ?></small> </p>
+                <p class="text-left">Compagne et Élection UF  <small><?php echo $_SESSION['user_prenom']; ?></small> </p>
                 <!--<div class="view-link text-left"><a href="#">View Profile</a> </div>-->
               </li>
               <!-- <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
