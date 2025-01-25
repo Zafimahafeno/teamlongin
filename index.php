@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Afficher le message d'erreur s'il existe
+if (isset($_SESSION['error'])) {
+  echo '<div id="error" class="error">';
+  echo '<div class="error-message">' . $_SESSION['error'] . '<span id="closeButton">X</span></div>';
+  echo '</div>';
+  unset($_SESSION['error']); // Supprimer le message après l'avoir affiché
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -111,6 +122,34 @@
       border-color: var(--blue);
       outline: none;
     }
+    .error {
+      position: relative;
+    }
+    .error-message {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: red;
+      background-color: #ffe6e6;
+      padding: 10px;
+      border: 1px solid red;
+      border-radius: 5px;
+      text-align: center;
+      transition: transform 1s ease;
+      transform: translateX(-10%);
+    }
+    .error-message span {
+      position: absolute;
+      top: 0;
+      right: 2px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 3s ease;
+      color: red;
+    }
+    .error-message span:hover {
+      color: rgb(248, 7, 7);
+    }
   </style>
 </head>
 <body>
@@ -131,5 +170,17 @@
       <!-- <p>Pas encore de compte ? <a href="register.php">Inscrivez-vous</a></p> -->
   	</div>
   </div>
+  <script>
+    const errorMessage = document.getElementById('error')
+    const closeButton = document.getElementById('closeButton')
+    if (closeButton) {
+      closeButton.addEventListener('click', () => {
+        // console.log("Coucou");
+        setTimeout(() => {
+          errorMessage.style.display = 'none';
+        }, 1000);
+      })
+    }
+  </script>
 </body>
 </html>
