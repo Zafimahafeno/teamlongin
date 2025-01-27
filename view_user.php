@@ -45,7 +45,7 @@ include './includes/sidebar.php';
                                 die("Connection failed: " . $conn->connect_error);
                             }
                             // Affichage de bouton de telechargement
-                            echo '<a href="telecharger_candidat.php" class="btn btn-primary">Télécharger la liste des candidats</a>';
+                           //  echo '<a href="telecharger_candidat.php" class="btn btn-primary">Télécharger la liste des candidats</a>';
 
                             // Requête pour récupérer les données des candidats
                             $sql = "SELECT * FROM candidat";

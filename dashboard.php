@@ -31,7 +31,7 @@ include './includes/sidebar.php';
   <div class="col-md-3 col-xs-6">
     <a href="./view_gateway.php">
       <div class="media-box">
-        <div class="media-icon"><i class="fa fa-users"></i> <span class="nombre_dash"> 123</span></div>
+        <div class="media-icon"><i class="fa fa-users"></i> <span class="nombre_dash"> <?php include 'totalVotants.php'; ?></span></div>
         <div class="media-info">
           <h5>Votants</h5>
         </div>
@@ -41,7 +41,7 @@ include './includes/sidebar.php';
   <div class="col-md-3 col-xs-6">
     <a href="opposants.php">
       <div class="media-box bg-sea">
-        <div class="media-icon"><i class="fa fa-thumbs-down"></i> 12</div>
+        <div class="media-icon"><i class="fa fa-thumbs-down"></i> <?php include('totalOpposant.php'); ?></div>
         <div class="media-info">
           <h5>Opposant</h5>
         </div>
@@ -51,7 +51,7 @@ include './includes/sidebar.php';
   <div class="col-md-3 col-xs-6">
     <a href="indecis.php">
       <div class="media-box bg-blue">
-        <div class="media-icon"><i class="fa fa-meh"></i> 35</div>
+        <div class="media-icon"><i class="fa fa-meh"></i>  <?php include('totalIndecis.php'); ?> </div>
         <div class="media-info">
           <h5>Indécis</h5>
         </div>
@@ -61,7 +61,7 @@ include './includes/sidebar.php';
   <div class="col-md-3 col-xs-6">
     <a href="favorable.php">
       <div class="media-box bg-green">
-        <div class="media-icon"><i class="fa fa-thumbs-up"></i> 90</div>
+        <div class="media-icon"><i class="fa fa-thumbs-up"></i> <?php include('totalFavorable.php'); ?></div>
         <div class="media-info">
           <h5>Favorable</h5>
         </div>
