@@ -29,7 +29,7 @@ include './includes/sidebar.php';
     <div class="row">
   <div class="col-md-12"><h4>Résultat des sondages</h4></div>
   <div class="col-md-3 col-xs-6">
-    <a href="./view_user.php">
+    <a href="./view_gateway.php">
       <div class="media-box">
         <div class="media-icon"><i class="fa fa-users"></i> <span class="nombre_dash"> 123</span></div>
         <div class="media-info">
@@ -39,7 +39,7 @@ include './includes/sidebar.php';
     </a>
   </div>
   <div class="col-md-3 col-xs-6">
-    <a href="./view_gateway.php">
+    <a href="opposants.php">
       <div class="media-box bg-sea">
         <div class="media-icon"><i class="fa fa-thumbs-down"></i> 12</div>
         <div class="media-info">
@@ -49,7 +49,7 @@ include './includes/sidebar.php';
     </a>
   </div>
   <div class="col-md-3 col-xs-6">
-    <a href="#">
+    <a href="indecis.php">
       <div class="media-box bg-blue">
         <div class="media-icon"><i class="fa fa-meh"></i> 35</div>
         <div class="media-info">
@@ -59,7 +59,7 @@ include './includes/sidebar.php';
     </a>
   </div>
   <div class="col-md-3 col-xs-6">
-    <a href="./statistique_votes.php">
+    <a href="favorable.php">
       <div class="media-box bg-green">
         <div class="media-icon"><i class="fa fa-thumbs-up"></i> 90</div>
         <div class="media-info">
