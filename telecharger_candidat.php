@@ -1,67 +1,122 @@
 <?php
-// Inclure la bibliothèque FPDF
-require_once('fpdf.php');  // Assurez-vous que le chemin vers fpdf.php est correct
+require_once('fpdf.php');
+
+class CandidatsPDF extends FPDF {
+    // En-tête de page
+    function Header() {
+        // Logo (à adapter selon vos besoins)
+        // $this->Image('logo.png', 10, 6, 30);
+        
+        // Police Arial gras 15
+        $this->SetFont('Arial', 'B', 15);
+        
+        // Titre
+        $this->Cell(0, 15, 'LISTE DES CANDIDATS', 0, 1, 'C');
+        
+        // Date d'impression
+        $this->SetFont('Arial', 'I', 8);
+        $this->Cell(0, 5, 'Date d\'impression : ' . date('d/m/Y'), 0, 1, 'R');
+        
+        // Saut de ligne
+        $this->Ln(10);
+    }
+
+    // Pied de page
+    function Footer() {
+        $this->SetY(-15);
+        $this->SetFont('Arial', 'I', 8);
+        $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+    }
+
+    // Fonction pour créer l'en-tête du tableau
+    function CreateTableHeader() {
+        $this->SetFont('Arial', 'B', 9);
+        $this->SetFillColor(40, 80, 155);
+        $this->SetTextColor(255, 255, 255);
+        
+        // En-têtes des colonnes avec largeurs optimisées
+        $headers = array(
+            array('text' => 'Nom', 'width' => 35),
+            array('text' => 'Prénom', 'width' => 35),
+            array('text' => 'Fonction', 'width' => 30),
+            array('text' => 'Établissement', 'width' => 45),
+            array('text' => 'Email', 'width' => 35),
+            array('text' => 'Contact', 'width' => 25),
+            array('text' => 'Intention de vote', 'width' => 30),
+            array('text' => 'Dernier Contact', 'width' => 35)
+        );
+
+        foreach ($headers as $header) {
+            $this->Cell($header['width'], 10, utf8_decode($header['text']), 1, 0, 'C', true);
+        }
+        $this->Ln();
+    }
+}
 
 // Connexion à la base de données
-$servername = "mysql-mahafeno.alwaysdata.net";
-$username = "mahafeno";
-$password = "antso0201";
-$dbname = "mahafeno_longin";
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $conn = new mysqli("mysql-mahafeno.alwaysdata.net", "mahafeno", "antso0201", "mahafeno_longin");
+    if ($conn->connect_error) {
+        throw new Exception("Erreur de connexion : " . $conn->connect_error);
+    }
+} catch (Exception $e) {
+    die($e->getMessage());
 }
 
-// Créer une instance de FPDF
-$pdf = new FPDF();
-$pdf->SetAutoPageBreak(true, 15); // Activation du saut de page automatique avec marge de 15mm
-$pdf->AddPage(); // Ajouter une page
+// Création du PDF
+$pdf = new CandidatsPDF('L', 'mm', 'A4');
+$pdf->AliasNbPages(); // Pour la numérotation des pages
+$pdf->SetAutoPageBreak(true, 15);
+$pdf->AddPage();
 
-// Définir la police pour le titre
-$pdf->SetFont('Arial', 'B', 16);
+// Création de l'en-tête du tableau
+$pdf->CreateTableHeader();
 
-// Ajouter un titre
-$pdf->Cell(0, 10, 'Liste des Candidats', 0, 1, 'C');
+// Requête SQL
+$sql = "SELECT v.*, e.nom as nom_etablissement 
+        FROM votant v 
+        LEFT JOIN etablissement e ON v.id_etablissement = e.id";
+$result = $conn->query($sql);
 
-// Saut de ligne
-$pdf->Ln(10);
+if ($result->num_rows > 0) {
+    $rowCount = 0;
+    $pdf->SetFont('Arial', '', 8);
+    
+    while ($row = $result->fetch_assoc()) {
+        // Alternance des couleurs de fond
+        $pdf->SetFillColor($rowCount % 2 == 0 ? 245 : 255, $rowCount % 2 == 0 ? 245 : 255, $rowCount % 2 == 0 ? 245 : 255);
+        $pdf->SetTextColor(0, 0, 0);
 
-// Définir la police pour les données
-$pdf->SetFont('Arial', '', 12);
+        // Calcul de la hauteur maximale pour la ligne
+        $lineHeight = 6;
 
-// Afficher les en-têtes des colonnes
-$pdf->Cell(40, 10, 'Numero', 1, 0, 'C');
-$pdf->Cell(60, 10, 'Nom', 1, 0, 'C');
-$pdf->Cell(60, 10, 'Prenom', 1, 0, 'C');
-$pdf->Cell(50, 10, 'Photo', 1, 1, 'C'); // Dernière cellule avec un saut de ligne
+        // Affichage des données avec des largeurs correspondant aux en-têtes
+        $pdf->Cell(35, $lineHeight, utf8_decode($row['nom_votant']), 1, 0, 'L', true);
+        $pdf->Cell(35, $lineHeight, utf8_decode($row['prenom']), 1, 0, 'L', true);
+        $pdf->Cell(30, $lineHeight, utf8_decode($row['fonction']), 1, 0, 'L', true);
+        $pdf->Cell(45, $lineHeight, utf8_decode($row['nom_etablissement'] ?? 'N/A'), 1, 0, 'L', true);
+        $pdf->Cell(35, $lineHeight, utf8_decode($row['email'] ?? 'N/A'), 1, 0, 'L', true);
+        $pdf->Cell(25, $lineHeight, utf8_decode($row['tel']), 1, 0, 'C', true);
+        $pdf->Cell(30, $lineHeight, utf8_decode($row['intentionVote']), 1, 0, 'C', true);
+        $pdf->Cell(35, $lineHeight, utf8_decode($row['DernierContact']), 1, 0, 'C', true);
 
-// Remplir les données du tableau
-$sql = "SELECT numero, nom, prenom, photo FROM candidat";
-$result = mysqli_query($conn, $sql);
+        $pdf->Ln();
+        $rowCount++;
 
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $numero_candidat = htmlspecialchars($row['numero']);
-        $nom_candidat = htmlspecialchars($row['nom']);
-        $prenom_candidat = htmlspecialchars($row['prenom']);
-        $photo_candidat = htmlspecialchars($row['photo']);  // Photo (nom du fichier ou URL)
-
-        // Afficher les données dans le tableau
-        $pdf->Cell(40, 10, $numero_candidat, 1, 0, 'C');
-        $pdf->Cell(60, 10, $nom_candidat, 1, 0, 'C');
-        $pdf->Cell(60, 10, $prenom_candidat, 1, 0, 'C');
-        $pdf->Cell(50, 10, $photo_candidat, 1, 1, 'C');  // Affiche le nom du fichier photo
+        // Vérification de l'espace restant sur la page
+        if ($pdf->GetY() > 180) {
+            $pdf->AddPage();
+            $pdf->CreateTableHeader();
+        }
     }
 } else {
-    // Si aucun candidat trouvé
-    $pdf->Cell(0, 10, 'Aucun candidat trouvé.', 0, 1, 'C');
+    $pdf->SetFont('Arial', 'I', 10);
+    $pdf->Cell(0, 10, 'Aucun candidat trouvé dans la base de données.', 0, 1, 'C');
 }
 
-// Fermer la connexion à la base de données
-mysqli_close($conn);
+// Fermeture de la connexion
+$conn->close();
 
-// Générer et télécharger le PDF
-$pdf->Output('D', 'liste_candidats.pdf');  // 'D' pour télécharger le fichier
+// Génération du PDF
+$pdf->Output('D', 'Liste_des_Candidats_' . date('Y-m-d') . '.pdf');
 ?>

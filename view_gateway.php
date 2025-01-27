@@ -34,16 +34,22 @@ include './includes/sidebar.php';
                             <div class="pull-right">
                                 <label><input type="radio" name="colorRadio" checked="checked" value="bind"> All</label>
                                 <label><input type="radio" name="colorRadio" value="other"> Active</label>
+                               
+                                <button class="btn btn-primary" onclick="window.location.href='telecharger_candidat.php'" title="Télécharger en fichier pdf">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                                                                                                    
                             </div>
                         </div>
                     </div>
-
+                   
                     <!-- Tableau responsive pour afficher les données -->
                     <div class="table-responsive">
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
                                     <!-- <th class="sortable">#</th> -->
+                                    <th class="sortable">#</th>
                                     <th class="sortable">Nom</th>
                                     <th class="sortable">Prenom</th>
                                     <th class="sortable">Fonction</th>
@@ -88,6 +94,7 @@ include './includes/sidebar.php';
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
+                                        echo "<td>" . $row["id"] . "</td>";
                                         echo "<td>" . $row["nom_votant"] . "</td>";
                                         echo "<td>" . $row["prenom"] . "</td>";
                                         echo "<td>" . $row["fonction"] . "</td>";
