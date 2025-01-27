@@ -73,7 +73,7 @@ include './includes/sidebar.php';
 													<div class="row">
 														<section class="col col-md-3">
 															<label class="label">User ID<font color="red">*</font>
-																</label>
+															</label>
 															<label class="input">
 																<i class="icon-append fa fa-info-circle"></i>
 																<input type="text" name="smppUserId" value=""
@@ -86,7 +86,7 @@ include './includes/sidebar.php';
 														</section>
 														<section class="col col-md-3">
 															<label class="label">Password<font color="red">*</font>
-																</label>
+															</label>
 															<label class="input">
 																<i class="icon-append fa fa-lock" data-container="body"
 																	rel="popover-hover" data-placement="top"
@@ -144,7 +144,7 @@ include './includes/sidebar.php';
 														</section>
 														<section class="col col-md-3">
 															<label class="label">Gateway<font color="red">*</font>
-																</label>
+															</label>
 															<label class="select">
 
 																<select name="gateway">
@@ -183,7 +183,7 @@ include './includes/sidebar.php';
 													<div class="row">
 														<section class="col col-md-3">
 															<label class="label">Validity<font color="red">*</font>
-																</label>
+															</label>
 															<div class="input-group">
 																<label class="input">
 																	<input name="validity" value="" id="validity"
@@ -1337,7 +1337,7 @@ include './includes/sidebar.php';
 													<div class="row">
 														<section class="col col-md-6">
 															<label class="label">Email ID<font color="red">*</font>
-																</label>
+															</label>
 															<label class="input">
 																<i class="icon-append fa fa-envelope"></i>
 																<input type="text" name="email" value="" id="email"
@@ -1360,7 +1360,7 @@ include './includes/sidebar.php';
 													<div class="row">
 														<section class="col col-md-6">
 															<label class="label">Mobile Number<font color="red">*</font>
-																</label>
+															</label>
 															<div class="input">
 																<span class="icon-prepend">+91</span>
 																<input type="text" class="form-control" name="mobileNo"
@@ -1626,7 +1626,8 @@ include './includes/sidebar.php';
 																						role="textbox"
 																						aria-autocomplete="list"
 																						placeholder=""
-																						style="width: 0.75em;"></li>
+																						style="width: 0.75em;">
+																				</li>
 																			</ul>
 																		</span></span><span class="dropdown-wrapper"
 																		aria-hidden="true"></span></span>
@@ -1692,7 +1693,8 @@ include './includes/sidebar.php';
 																						role="textbox"
 																						aria-autocomplete="list"
 																						placeholder=""
-																						style="width: 0.75em;"></li>
+																						style="width: 0.75em;">
+																				</li>
 																			</ul>
 																		</span></span><span class="dropdown-wrapper"
 																		aria-hidden="true"></span></span>
@@ -1741,7 +1743,8 @@ include './includes/sidebar.php';
 																						role="textbox"
 																						aria-autocomplete="list"
 																						placeholder=""
-																						style="width: 0.75em;"></li>
+																						style="width: 0.75em;">
+																				</li>
 																			</ul>
 																		</span></span><span class="dropdown-wrapper"
 																		aria-hidden="true"></span></span>
@@ -2009,7 +2012,7 @@ include './includes/sidebar.php';
 														<div class="row">&nbsp;</div>
 														<section class="col col-md-4">
 															<label class="label">DND ErrorCode<font color="red">*</font>
-																</label>
+															</label>
 															<label class="input">
 																<i class="icon-append fa fa-warning"></i>
 																<input type="text" name="dndErrorCode" value="900"
@@ -2168,7 +2171,8 @@ include './includes/sidebar.php';
 																						role="textbox"
 																						aria-autocomplete="list"
 																						placeholder=""
-																						style="width: 0.75em;"></li>
+																						style="width: 0.75em;">
+																				</li>
 																			</ul>
 																		</span></span><span class="dropdown-wrapper"
 																		aria-hidden="true"></span></span>
@@ -2234,7 +2238,8 @@ include './includes/sidebar.php';
 																						role="textbox"
 																						aria-autocomplete="list"
 																						placeholder=""
-																						style="width: 0.75em;"></li>
+																						style="width: 0.75em;">
+																				</li>
 																			</ul>
 																		</span></span><span class="dropdown-wrapper"
 																		aria-hidden="true"></span></span>
