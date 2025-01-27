@@ -44,6 +44,8 @@ include './includes/sidebar.php';
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
+                            // Affichage de bouton de telechargement
+                            echo '<a href="telecharger_candidat.php" class="btn btn-primary">Télécharger la liste des candidats</a>';
 
                             // Requête pour récupérer les données des candidats
                             $sql = "SELECT * FROM candidat";
@@ -64,7 +66,7 @@ include './includes/sidebar.php';
 
                                 // Parcourir les résultats
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    $photoPath = "./backend/uploads/" . $row["photo"];
+                                    $photoPath = ".uploads/" . $row["photo"];
                                     echo '<tr>';
                                     if (!empty($row["photo"])) {
                                         echo '<td><img src="' . $photoPath . '" alt="Photo de ' . htmlspecialchars($row["nom"]) . '" style="width: 50px; height: 50px; border-radius: 5px;"></td>';
@@ -77,7 +79,7 @@ include './includes/sidebar.php';
                                     // Boutons d'action
                                     echo '<td class="action-col">';
                                     echo '<a href="modifier_candidat.php?id=' . $row["id"] . '" class="btn btn-default btn-icon btn-xs tip" title="Editer"><i class="fa fa-edit text-info"></i></a>';
-                                    echo '<a href="backend/candidat_back.php?action=delete&id=' . $row["id"] . '" class="btn btn-default btn-icon btn-xs tip" title="Supprimer"><i class="fa fa-trash-o text-danger"></i></a>';
+                                    echo '<a href="javascript:void(0);" class="btn btn-default btn-icon btn-xs tip" title="Supprimer" onclick="confirmDeletion(' . $row["id"] . ')"><i class="fa fa-trash-o text-danger"></i></a>';
                                     echo '</td>';
                                     echo '</tr>';
                                 }
@@ -243,7 +245,16 @@ include './includes/sidebar.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 
-
+<script>
+// Fonction de confirmation avant suppression
+function confirmDeletion(id) {
+    var confirmAction = confirm("Êtes-vous sûr de vouloir supprimer ce candidat ?");
+    if (confirmAction) {
+        // Si l'utilisateur confirme, redirige vers la page de suppression
+        window.location.href = "supprimer_candidat.php?id=" + id;
+    }
+}
+</script>
 
 <?php
 include './includes/footer.php';
