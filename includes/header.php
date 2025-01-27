@@ -14,6 +14,7 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-DhISw5U6dovpM+gs3vIi5JzCA/6w6AdewRxnANslWx+UQEGmPmJVbKzm0ofVsmZtcnB8d+gIqK2kpyMM23eFEA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
   <!-- Template style -->
   <link rel="stylesheet" href="dist/css/style.css">
   <link rel="stylesheet" href="dist/et-line-font/et-line-font.css">
@@ -22,6 +23,12 @@
   <link type="text/css" rel="stylesheet" href="dist/weather/weather-icons-wind.min.css">
   <link rel="stylesheet" href="dist/css/chosen.min.css">
   <link rel="stylesheet" href="dist/css/select2.css">
+
+  <!-- Ajout du CDN de Select2 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+
 </head>
 
 <body class="sidebar-mini">

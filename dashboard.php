@@ -9,7 +9,9 @@ if (!isset($_SESSION['user_id'])) {
 include './includes/header.php';
 include './includes/sidebar.php';
 ?>
-
+<header>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</header>
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper"> 
@@ -39,7 +41,7 @@ include './includes/sidebar.php';
   <div class="col-md-3 col-xs-6">
     <a href="./view_gateway.php">
       <div class="media-box bg-sea">
-        <div class="media-icon"><i class="fa fa-money"></i> 12</div>
+        <div class="media-icon"><i class="fa fa-thumbs-down"></i> 12</div>
         <div class="media-info">
           <h5>Opposant</h5>
         </div>
@@ -49,7 +51,7 @@ include './includes/sidebar.php';
   <div class="col-md-3 col-xs-6">
     <a href="#">
       <div class="media-box bg-blue">
-        <div class="media-icon"><i class="fa fa-mail-reply"></i> 35</div>
+        <div class="media-icon"><i class="fa fa-meh"></i> 35</div>
         <div class="media-info">
           <h5>Indécis</h5>
         </div>
@@ -59,7 +61,7 @@ include './includes/sidebar.php';
   <div class="col-md-3 col-xs-6">
     <a href="./statistique_votes.php">
       <div class="media-box bg-green">
-        <div class="media-icon"><i class="fa fa-envelope"></i> 90</div>
+        <div class="media-icon"><i class="fa fa-thumbs-up"></i> 90</div>
         <div class="media-info">
           <h5>Favorable</h5>
         </div>
@@ -86,7 +88,7 @@ include './includes/sidebar.php';
           <div class="chart-box">
             <h4>VOTES PAR CANDIDAT</h4>
             <div class="chart">
-              <div id="container1"></div>
+              <div id="container1" ></div>
               <!--for values check "Sales Overview" chart on char-function.js--> 
               <canvas id="voteResultsChart"></canvas>
             </div>
@@ -228,7 +230,7 @@ include './includes/footer.php';
 
   // Création du graphique
   new Chart(ctxBar, {
-    type: "bar", // Type du graphique
+    type: "pie", // Type du graphique
     data: voteData,
     options: voteOptions
   });

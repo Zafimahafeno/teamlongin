@@ -59,7 +59,7 @@ include './includes/sidebar.php';
 																	<label class="label">Nom<font color="red">*</font></label>
 																	<label class="input">
 																		<i class="icon-append fa fa-user"></i>
-																		<input type="text" name="nom_votant" value="" id="nom_votant" placeholder="Nom du votant">
+																		<input type="text" name="nom" value="" id="nom_votant" placeholder="Nom du votant">
 																		<div style="color: #FF0000;"></div>
 																	</label>
 																</section>
@@ -67,7 +67,7 @@ include './includes/sidebar.php';
 																	<label class="label">Prénom</label>
 																	<label class="input">
 																		<i class="icon-append fa fa-user"></i>
-																		<input type="text" name="prenom_votant" value="" id="prenom_votant" placeholder="Prenom du votant">
+																		<input type="text" name="prenom" value="" id="prenom_votant" placeholder="Prenom du votant">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>
@@ -75,22 +75,41 @@ include './includes/sidebar.php';
 														</div>
 														<div class="fieldset">
 															<div class="row">
-																<section class="col col-md-6">
-																	<label class="label">Fonction<font color="red">*</font></label>
+															<section class="col col-md-6">
+																<label class="label">Fonction<font color="red">*</font></label>
+																<label class="select">
+																	<select name="fonction" id="fonction" required>
+																		<option value="" disabled selected>Choisir une fonction</option>
+																		<option value="Enseignant">Enseignant</option>
+																		<option value="PAT">PAT</option>
+																	</select>
+																	<i></i>
+																</label>
+																<div style="color: #FF0000;"></div>
+															</section>
+
+															<section class="col col-md-6">
+																<label class="label">Établissement</label>
+																<label class="select">
+																	<!-- Liste déroulante avec recherche -->
+																	<select name="id_etablissement" id="id_etablissement" class="select2" style="width: 100%;" required>
+																		<option value="" disabled selected>Choisir un établissement</option>
+																		<!-- Les options seront chargées dynamiquement -->
+																	</select>
+																</label>
+																<div style="color: #FF0000;"></div>
+
+																<!-- Champ pour ajouter un nouvel établissement -->
+																<div id="new_etablissement" style="display: none; margin-top: 15px;">
+																	<label class="label">Nouvel établissement</label>
 																	<label class="input">
-																		<i class="icon-append fa fa-envelope"></i>
-																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Fonction">
+																		<i class="icon-append fa fa-plus"></i>
+																		<input type="text" name="new_etablissement" id="new_etablissement_input" placeholder="Nom de l'établissement" />
 																	</label>
-																	<div style="color: #FF0000;"></div>
-																</section>
-																<section class="col col-md-6">
-																	<label class="label">Établissement</label>
-																	<label class="input">
-																		<i class="icon-append fa fa-image"></i>
-																		<input type="text" name="contact_votant" value="" id="contact_votant" placeholder="Établissement">
-																	</label>
-																	<div style="color: #FF0000;"></div>
-																</section>
+																	<button id="add_etablissement_btn" type="button" style="margin-top: 10px;">Ajouter</button>
+																</div>
+															</section>
+
 															</div>
 														</div>
 														<div class="fieldset">
@@ -99,15 +118,15 @@ include './includes/sidebar.php';
 																	<label class="label">Email<font color="red">*</font></label>
 																	<label class="input">
 																		<i class="icon-append fa fa-envelope"></i>
-																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Adresse email">
+																		<input type="text" name="email" value="" id="adresse_votant" placeholder="Adresse email">
 																	</label>
-																	<div style="color: #FF0000;"></div>
+																	<!-- <div style="color: #FF0000;"></div> -->
 																</section>
 																<section class="col col-md-6">
 																	<label class="label">Téléphone</label>
 																	<label class="input">
-																		<i class="icon-append fa fa-image"></i>
-																		<input type="text" name="contact_votant" value="" id="contact_votant" placeholder="Contact du votant">
+																		<i class="icon-append fa fa-phone"></i>
+																		<input type="text" name="tel" value="" id="contact_votant" placeholder="Contact du votant">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>
@@ -115,26 +134,25 @@ include './includes/sidebar.php';
 														</div>
 														<div class="fieldset">
 															<div class="row">
+																
 																<section class="col col-md-6">
-																	<label class="label">Intention de vote<font color="red">*</font></label>
-																	<label class="input">
-																		<!-- <i class="icon-append fa fa-envelope"></i> -->
-																		<div class="smart-form">
-																			<select name="" id="" class="select" style="width: 388px;">
-																				<option value="">Intention de vote</option>
-																				<option value="">Favorable</option>
-																				<option value="">Indécis</option>
-																				<option value="">Opposant</option>
+																		<label class="label">Intention de vote<font color="red">*</font></label>
+																		<label class="select">
+																			<select name="id_candidat" id="id_candidat" required>
+																				<option value="" disabled selected>Intention de vote</option>
+																				<option value="Favorable">Favorable</option>
+																				<option value="Indécis">Indécis</option>
+																				<option value="Opposant">Opposant</option>
 																			</select>
-																		</div>
-																	</label>
-																	<div style="color: #FF0000;"></div>
-																</section>
+																			<i></i>
+																		</label>
+																		<div style="color: #FF0000;"></div>
+																	</section>
 																<section class="col col-md-6">
 																	<label class="label">Dernier contact</label>
 																	<label class="input">
-																		<i class="icon-append fa fa-image"></i>
-																		<input type="date" name="contact_votant" value="" id="contact_votant" placeholder="Contact du votant">
+																		<!-- <i class="icon-append fa fa-image"></i> -->
+																		<input type="date" name="DernierContact" value="" id="contact_votant" placeholder="Contact du votant">
 																	</label>
 																	<div style="color: #FF0000;"></div>
 																</section>
@@ -145,18 +163,18 @@ include './includes/sidebar.php';
 																<section class="col col-md-6">
 																	<label class="label">Commentaire<font color="red">*</font></label>
 																	<label class="input">
-																		<i class="icon-append fa fa-envelope"></i>
-																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Commentaire...">
+																		<i class="icon-append fa fa-comment"></i>
+																		<input type="text" name="commentaire" value="" id="adresse_votant" placeholder="Commentaire...">
 																	</label>
-																	<div style="color: #FF0000;"></div>
+																	<!-- <div style="color: #FF0000;"></div> -->
 																</section>
 																<section class="col col-md-6">
 																	<label class="label">Démarche effectuée</label>
 																	<label class="input">
-																		<i class="icon-append fa fa-image"></i>
-																		<input type="text" name="contact_votant" value="" id="contact_votant" placeholder="Description">
+																		<i class="icon-append fa fa-tasks"></i>
+																		<input type="text" name="demarcheEffectue" value="" id="contact_votant" placeholder="Démarche effectuée">
 																	</label>
-																	<div style="color: #FF0000;"></div>
+																	<!-- <div style="color: #FF0000;"></div> -->
 																</section>
 															</div>
 														</div>
@@ -165,11 +183,37 @@ include './includes/sidebar.php';
 																<section class="col col-md-6">
 																	<label class="label">Proposition<font color="red">*</font></label>
 																	<label class="input">
-																		<i class="icon-append fa fa-envelope"></i>
-																		<input type="text" name="adresse_votant" value="" id="adresse_votant" placeholder="Proposition">
+																		<i class="icon-append fa fa-comments"></i>
+																		<input type="text" name="proposition" value="" id="adresse_votant" placeholder="Description de la proposition">
 																	</label>
-																	<div style="color: #FF0000;"></div>
+																	<!-- <div style="color: #FF0000;"></div> -->
 																</section>
+																<section class="col col-md-6">
+																		<label class="label">Candidat<font color="red">*</font></label>
+																		<label class="select">
+																			<select name="id_candidat" id="id_candidat" required>
+																				<option value="" disabled selected>Choisir un candidat</option>
+																				<?php
+																				// Inclure le fichier backend pour récupérer les candidats
+																				include './backend/candidat_back.php';
+
+																				// Vérifier si la requête a renvoyé des résultats
+																				if ($result && mysqli_num_rows($result) > 0) {
+																					// Parcourir les résultats et créer une option pour chaque candidat
+																					while ($row = mysqli_fetch_assoc($result)) {
+																						echo '<option value="' . $row['id'] . '">'.'Candidat N° '. htmlspecialchars($row['numero']) .' : '  . htmlspecialchars($row['nom']) . ' ' . htmlspecialchars($row['prenom']) .'</option>';
+																					}
+																				} else {
+																					echo '<option value="" disabled>Aucun candidat disponible</option>';
+																				}
+																				?>
+																			</select>
+																			<i></i>
+																		</label>
+																		<div style="color: #FF0000;"></div>
+																	</section>
+
+
 															</div>
 														</div>
 														

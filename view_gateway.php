@@ -55,6 +55,7 @@ include './includes/sidebar.php';
                                     <th class="sortable">Commentaire</th>
                                     <th class="sortable">Démarche effectuée</th>
                                     <th class="sortable">Proposition</th>
+                                    <th class="sortable">Actions</th>
                                    
                                 </tr>
                             </thead>
@@ -69,7 +70,18 @@ include './includes/sidebar.php';
                                 }
 
                                 // Exécution de la requête SQL pour récupérer les données de la table
-                                $sql = "SELECT * FROM votant";
+                                $sql = "
+    SELECT 
+        votant.*, 
+        etablissement.nom 
+    FROM 
+        votant 
+    LEFT JOIN 
+        etablissement 
+    ON 
+        votant.id_etablissement = etablissement.id
+";
+
                                 $result = $conn->query($sql);
 
                                 // Affichage des données dans le tableau
@@ -77,9 +89,15 @@ include './includes/sidebar.php';
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
                                         echo "<td>" . $row["nom_votant"] . "</td>";
-                                        echo "<td><a href='#'>" . $row["prenom_votant"] . "</a></td>";
-                                        echo "<td>" . $row["adresse_votant"] . "</td>";
-                                        echo "<td>" . $row["contact_votant"] . "</td>";
+                                        echo "<td>" . $row["prenom"] . "</td>";
+                                        echo "<td>" . $row["fonction"] . "</td>";
+                                        echo "<td>" . ($row["nom"] ? $row["nom"] : "Aucun établissement") . "</td>";                                        echo "<td>" . $row["email"] . "</td>";
+                                        echo "<td>" . $row["tel"] . "</td>";
+                                        echo "<td>" . $row["intentionVote"] . "</td>";
+                                        echo "<td>" . $row["DernierContact"] . "</td>";
+                                        echo "<td>" . $row["commentaire"] . "</td>";
+                                        echo "<td>" . $row["demarcheEffectue"] . "</td>";
+                                        echo "<td>" . $row["proposition"] . "</td>";
                                         
 
                                         echo "<td class='action-col' scope='col' id='0'>";
@@ -87,13 +105,13 @@ include './includes/sidebar.php';
                                         echo "<a href='edit_gateway.php' onclick='document.editfrm1.submit(); return false;' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='tooltip' data-placement='top' data-original-title='Edit Smpp Provider'><i class='fa fa-edit text-info'></i></a>";
                                         echo "</label>";
                                         echo "<label>";
-                                        echo "<a href='#addsender_outbound' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Add SenderID' onclick='addSenderIdOutBound(\"" . $row["id_votant"] . "\", \"" . $row["nom_votant"] . "\");'><i class='fa fa-info-circle text-success'></i></a>";
+                                        echo "<a href='#addsender_outbound' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Add SenderID' onclick='addSenderIdOutBound(\"" . $row["id"] . "\", \"" . $row["nom"] . "\");'><i class='fa fa-info-circle text-success'></i></a>";
                                         echo "</label>";
                                         echo "<label>";
-                                        echo "<a href='#confrmdel-emp' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Del Smpp Provider' onclick='getDelSmppClient(\"" . $row["id_votant"] . "\", \"" . $row["nom_votant"] . "\");'><i class='fa fa-trash-o text-danger'></i></a>";
+                                        echo "<a href='#confrmdel-emp' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Del Smpp Provider' onclick='getDelSmppClient(\"" . $row["id"] . "\", \"" . $row["nom"] . "\");'><i class='fa fa-trash-o text-danger'></i></a>";
                                         echo "</label>";
                                         echo "<label>";
-                                        echo "<a href='#' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Reset Bind' onclick='getResetBind(\"" . $row["id_votant"] . "\", \"" . $row["nom_votant"] . "\");'><i class='glyphicon glyphicon-link text-warning'></i></a>";
+                                        echo "<a href='#' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Reset Bind' onclick='getResetBind(\"" . $row["id"] . "\", \"" . $row["nom"] . "\");'><i class='glyphicon glyphicon-link text-warning'></i></a>";
                                         echo "</label>";
                                         echo "</td>";
                                         echo "</tr>";
