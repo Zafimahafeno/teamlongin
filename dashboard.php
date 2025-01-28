@@ -137,11 +137,7 @@ include './includes/sidebar.php';
     </div>
   </section>
 
-  <!-- Le footer doit être à la fin, en dehors de la section "content-wrapper" -->
-  <?php
-  include './includes/footer.php';
-  ?>
-
+ 
 </div> <!-- Fin de la content-wrapper -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -302,3 +298,8 @@ include './includes/sidebar.php';
 </script>
 
 </div> <!-- Fermeture de content-wrapper -->
+ <!-- Le footer doit être à la fin, en dehors de la section "content-wrapper" -->
+ <?php
+  include './includes/footer.php';
+  ?>
+

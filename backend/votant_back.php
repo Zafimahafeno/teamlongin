@@ -10,24 +10,38 @@ if ($conn->connect_error) {
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $nom = $_POST["nom_votant"];
-    $prenom = $_POST["prenom"];
-    $fonction = $_POST["fonction"];
-    $email = $_POST["email"];
-    $tel = $_POST["tel"];
-    $DernierContact = $_POST["DernierContact"];
-    $commentaire = $_POST["commentaire"];
-    $demarcheEffectue = $_POST["demarcheEffectue"];
-    $proposition = $_POST["proposition"];
-    $id_etablissement = $_POST["id_etablissement"];
-    $intentionVote = $_POST["intentionVote"];
-    $id_candidat = $_POST["id_candidat"];
-    
+    $nom = isset($_POST["nom_votant"]) ? $_POST["nom_votant"] : null;
+    $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : null;
+    $fonction = isset($_POST["fonction"]) ? $_POST["fonction"] : null;
+    $email = isset($_POST["email"]) ? $_POST["email"] : null;
+    $tel = isset($_POST["tel"]) ? $_POST["tel"] : null;
+    $DernierContact = isset($_POST["DernierContact"]) ? $_POST["DernierContact"] : null;
+    $commentaire = isset($_POST["commentaire"]) ? $_POST["commentaire"] : null;
+    $demarcheEffectue = isset($_POST["demarcheEffectue"]) ? $_POST["demarcheEffectue"] : null;
+    $proposition = isset($_POST["proposition"]) ? $_POST["proposition"] : null;
+    $id_etablissement = isset($_POST["id_etablissement"]) ? $_POST["id_etablissement"] : null;
+    $intentionVote = isset($_POST["intentionVote"]) ? $_POST["intentionVote"] : null;
+    $id_candidat = isset($_POST["id_candidat"]) ? $_POST["id_candidat"] : null;
+
+    // Validation des champs obligatoires
+    if (empty($nom) || empty($prenom) || empty($fonction) || empty($email)) {
+        die("Les champs nom, prénom, fonction et email sont obligatoires.");
+    }
+
     // Préparer et exécuter la requête d'insertion
-    $sql = "INSERT INTO votant (nom_votant, prenom, fonction, email,tel,DernierContact,commentaire,demarcheEffectue,proposition,id_etablissement,intentionVote,id_candidat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO votant (nom_votant, prenom, fonction, email, tel, DernierContact, commentaire, demarcheEffectue, proposition, id_etablissement, intentionVote, id_candidat) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssssssss", $nom, $prenom, $fonction, $email, $tel, $DernierContact, $commentaire, $demarcheEffectue, $proposition, $id_etablissement, $intentionVote, $id_candidat);
     
+    if ($stmt === false) {
+        die("Erreur de préparation de la requête : " . $conn->error);
+    }
+
+    // Lier les paramètres à la requête préparée
+    $stmt->bind_param("ssssssssssss", $nom, $prenom, $fonction, $email, $tel, $DernierContact, $commentaire, $demarcheEffectue, $proposition, $id_etablissement, $intentionVote, $id_candidat);
+
+    // Exécuter la requête
     if ($stmt->execute()) {
         echo "Le votant a été ajouté avec succès.";
         

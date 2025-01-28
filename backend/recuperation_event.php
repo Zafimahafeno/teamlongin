@@ -8,7 +8,7 @@ if ($conn->connect_error) {
 }
 
 // Requête SQL pour récupérer les plannings depuis la base de données
-$query = "SELECT * FROM planing";
+$query = "SELECT * FROM agenda";
 
 // Exécution de la requête
 $result = mysqli_query($conn, $query);
