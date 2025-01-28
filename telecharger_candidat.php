@@ -11,7 +11,7 @@ class CandidatsPDF extends FPDF {
         $this->SetFont('Arial', 'B', 15);
         
         // Titre
-        $this->Cell(0, 15, 'LISTE DES CANDIDATS', 0, 1, 'C');
+        $this->Cell(0, 15, 'LISTES DES VOTANTS', 0, 1, 'C');
         
         // Date d'impression
         $this->SetFont('Arial', 'I', 8);
@@ -111,12 +111,12 @@ if ($result->num_rows > 0) {
     }
 } else {
     $pdf->SetFont('Arial', 'I', 10);
-    $pdf->Cell(0, 10, 'Aucun candidat trouvé dans la base de données.', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Aucun votant trouvé dans la base de données.', 0, 1, 'C');
 }
 
 // Fermeture de la connexion
 $conn->close();
 
 // Génération du PDF
-$pdf->Output('D', 'Liste_des_Candidats_' . date('Y-m-d') . '.pdf');
+$pdf->Output('D', 'Liste_des_votants_' . date('Y-m-d') . '.pdf');
 ?>

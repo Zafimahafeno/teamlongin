@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 if (isset($_GET['date'])) {
     $date = $_GET['date'];
     // Requête SQL pour récupérer les détails de la planification pour la date cliquée
-    $query = "SELECT * FROM planing WHERE date_event = '$date'";
+    $query = "SELECT * FROM agenda WHERE date_event = '$date'";
 
     // Exécution de la requête
     $result = mysqli_query($conn, $query);
@@ -39,11 +39,11 @@ if (isset($_GET['date'])) {
                     <input type="TIME" class="form-control" value="<?php echo $row['heure']; ?>" readonly>
                 </div>
                 <div class="form-group">
-                    <label>Acteur</label>
+                    <label>Responsable</label>
                     <input type="text" class="form-control" value="<?php echo $row['acteur']; ?>" readonly>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
+                    <label>Objectif</label>
                     <input type="text" class="form-control" value="<?php echo $row['description']; ?>" readonly>
                 </div>
                 <!-- Ajoutez d'autres champs de formulaire pour d'autres détails de la planification si nécessaire -->

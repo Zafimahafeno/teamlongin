@@ -67,7 +67,7 @@
             <!-- <li><a href="message.php"><i class="fa fa-angle-right"></i> Envoyer des messages</a></li> -->
           </ul>
         </li>
-        <li> <a href="../teamlongin/backend/logout.php"><i class="fa fa-power"></i> <span>Déconnexion</span> <span class="pull-right-container"></span> </a>
+        <li> <a href="../teamlongin/backend/logout.php"><i class="fa fa-power-off"></i> <span>Déconnexion</span> <span class="pull-right-container"></span> </a>
         </li>
     </section>
   </aside>

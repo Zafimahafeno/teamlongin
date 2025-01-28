@@ -71,6 +71,28 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
+        locale: 'fr', // Définir la langue en français
+        buttonText: {
+            today: "Aujourd'hui",
+            month: "Mois",
+            week: "Semaine",
+            day: "Jour",
+        },
+        firstDay: 1, // Faire commencer la semaine le lundi
+        monthNames: [
+            "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
+            "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+        ],
+        monthNamesShort: [
+            "Janv.", "Févr.", "Mars", "Avr.", "Mai", "Juin",
+            "Juil.", "Août", "Sept.", "Oct.", "Nov.", "Déc."
+        ],
+        dayNames: [
+            "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"
+        ],
+        dayNamesShort: [
+            "Dim.", "Lun.", "Mar.", "Mer.", "Jeu.", "Ven.", "Sam."
+        ],
         events: function(start, end, timezone, callback) {
             $.ajax({
                 url: 'backend/recuperation_event.php',

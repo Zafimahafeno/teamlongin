@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST["description"];
     
     // Préparer et exécuter la requête d'insertion
-    $sql = "INSERT INTO planing (titre, lieu, date_event, heure, acteur, description) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO agenda (titre, lieu, date_event, heure, acteur, description) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssss", $titre, $lieu, $date_event, $heure, $acteur, $description);
     
