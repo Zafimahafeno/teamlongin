@@ -1,4 +1,5 @@
 <head>
+  <link rel="icon" href="../dist/img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="../dist/css/style.css">
 </head>
 
