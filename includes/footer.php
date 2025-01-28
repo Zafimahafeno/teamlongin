@@ -23,8 +23,7 @@
 
 
 <script src="plugins/stepform/jq.stepform.js"></script>
-
-
+<!-- modification des votant -->
 <script>
   $(function () {
     $('#example1, #example3').DataTable()

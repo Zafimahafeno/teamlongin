@@ -45,92 +45,97 @@ include './includes/sidebar.php';
                    
                     <!-- Tableau responsive pour afficher les données -->
                     <div class="table-responsive">
-                        <table id="example1" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <!-- <th class="sortable">#</th> -->
-                                    <th class="sortable">#</th>
-                                    <th class="sortable">Nom</th>
-                                    <th class="sortable">Prenom</th>
-                                    <th class="sortable">Fonction</th>
-                                    <th class="sortable">Établissement</th>
-                                    <th class="sortable">Email</th>
-                                    <th class="sortable">Contact</th>
-                                    <th class="sortable">Intention de vote</th>
-                                    <th class="sortable">Dernier contact</th>
-                                    <th class="sortable">Commentaire</th>
-                                    <th class="sortable">Démarche effectuée</th>
-                                    <th class="sortable">Proposition</th>
-                                    <th class="sortable">Actions</th>
-                                   
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                // Connexion à la base de données
-                                $conn = new mysqli("mysql-mahafeno.alwaysdata.net", "mahafeno", "antso0201", "mahafeno_longin");
+                    <table id="example1" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="sortable">#</th>
+                                <th class="sortable">Nom</th>
+                                <th class="sortable">Prenom</th>
+                                <th class="sortable">Fonction</th>
+                                <th class="sortable">Établissement</th>
+                                <th class="sortable">Email</th>
+                                <th class="sortable">Contact</th>
+                                <th class="sortable">Intention de vote</th>
+                                <th class="sortable">Dernier contact</th>
+                                <th class="sortable">Commentaire</th>
+                                <th class="sortable">Démarche effectuée</th>
+                                <th class="sortable">Proposition</th>
+                                <th class="sortable">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Connexion à la base de données
+                            $conn = new mysqli("mysql-mahafeno.alwaysdata.net", "mahafeno", "antso0201", "mahafeno_longin");
 
-                                // Vérification de la connexion
-                                if ($conn->connect_error) {
-                                    die("Échec de la connexion à la base de données: " . $conn->connect_error);
+                            // Vérification de la connexion
+                            if ($conn->connect_error) {
+                                die("Échec de la connexion à la base de données: " . $conn->connect_error);
+                            }
+
+                            // Exécution de la requête SQL pour récupérer les données de la table
+                            $sql = "SELECT votant.*, etablissement.nom as nom_etablissement FROM votant 
+                                    LEFT JOIN etablissement ON votant.id_etablissement = etablissement.id";
+
+                            $result = $conn->query($sql);
+
+                            // Affichage des données dans le tableau
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row["id"] . "</td>";
+                                    echo "<td data-field='nom_votant'>" . $row["nom_votant"] . "</td>";
+                                    echo "<td data-field='prenom'>" . $row["prenom"] . "</td>";
+                                    echo "<td data-field='fonction'>" . $row["fonction"] . "</td>";
+                                    echo "<td data-field='id_etablissement'>" . ($row["nom_etablissement"] ? $row["nom_etablissement"] : "Aucun établissement") . "</td>";
+                                    echo "<td data-field='email'>" . $row["email"] . "</td>";
+                                    echo "<td data-field='tel'>" . $row["tel"] . "</td>";
+                                    echo "<td data-field='intentionVote'>" . $row["intentionVote"] . "</td>";
+                                    echo "<td data-field='DernierContact'>" . $row["DernierContact"] . "</td>";
+                                    echo "<td data-field='commentaire'>" . $row["commentaire"] . "</td>";
+                                    echo "<td data-field='demarcheEffectue'>" . $row["demarcheEffectue"] . "</td>";
+                                    echo "<td data-field='proposition'>" . $row["proposition"] . "</td>";
+                                    
+                                    echo "<td class='action-col'>";
+                                    echo "<label>";
+                                    echo "<a href='#' class='btn btn-default btn-icon btn-xs tip' title='Modifier' rel='tooltip' data-toggle='tooltip' data-placement='top' data-original-title='Modifier'>";
+                                    echo "<i class='fa fa-edit text-info'></i>";
+                                    echo "</a>";
+                                    echo "</label>";
+                                    echo "<label>";
+                                    echo "<a href='#addsender_outbound' class='btn btn-default btn-icon btn-xs tip' title='Info' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Info' onclick='addSenderIdOutBound(\"" . $row["id"] . "\", \"" . $row["nom_votant"] . "\");'>";
+                                    echo "<i class='fa fa-info-circle text-success'></i>";
+                                    echo "</a>";
+                                    echo "</label>";
+                                    echo "<label>";
+                                    echo "<a href='#confrmdel-emp' class='btn btn-default btn-icon btn-xs tip' title='Supprimer' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Supprimer' onclick='getDelSmppClient(\"" . $row["id"] . "\", \"" . $row["nom_votant"] . "\");'>";
+                                    echo "<i class='fa fa-trash-o text-danger'></i>";
+                                    echo "</a>";
+                                    echo "</label>";
+                                    echo "</td>";
+                                    echo "</tr>";
                                 }
+                            } else {
+                                echo "<tr><td colspan='13'>Aucune donnée disponible</td></tr>";
+                            }
 
-                                // Exécution de la requête SQL pour récupérer les données de la table
-                                $sql = "SELECT  votant.*, etablissement.nom FROM   votant  LEFT JOIN  etablissement ON  votant.id_etablissement = etablissement.id";
-
-                                $result = $conn->query($sql);
-
-                                // Affichage des données dans le tableau
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<tr>";
-                                        echo "<td>" . $row["id"] . "</td>";
-                                        echo "<td>" . $row["nom_votant"] . "</td>";
-                                        echo "<td>" . $row["prenom"] . "</td>";
-                                        echo "<td>" . $row["fonction"] . "</td>";
-                                        echo "<td>" . ($row["nom"] ? $row["nom"] : "Aucun établissement") . "</td>";                                        echo "<td>" . $row["email"] . "</td>";
-                                        echo "<td>" . $row["tel"] . "</td>";
-                                        echo "<td>" . $row["intentionVote"] . "</td>";
-                                        echo "<td>" . $row["DernierContact"] . "</td>";
-                                        echo "<td>" . $row["commentaire"] . "</td>";
-                                        echo "<td>" . $row["demarcheEffectue"] . "</td>";
-                                        echo "<td>" . $row["proposition"] . "</td>";
-                                        
-
-                                        echo "<td class='action-col' scope='col' id='0'>";
-                                        echo "<label>";
-                                        echo "<a href='edit_gateway.php' onclick='document.editfrm1.submit(); return false;' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='tooltip' data-placement='top' data-original-title='Edit Smpp Provider'><i class='fa fa-edit text-info'></i></a>";
-                                        echo "</label>";
-                                        echo "<label>";
-                                        echo "<a href='#addsender_outbound' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Add SenderID' onclick='addSenderIdOutBound(\"" . $row["id"] . "\", \"" . $row["nom"] . "\");'><i class='fa fa-info-circle text-success'></i></a>";
-                                        echo "</label>";
-                                        echo "<label>";
-                                        echo "<a href='#confrmdel-emp' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Del Smpp Provider' onclick='getDelSmppClient(\"" . $row["id"] . "\", \"" . $row["nom"] . "\");'><i class='fa fa-trash-o text-danger'></i></a>";
-                                        echo "</label>";
-                                        echo "<label>";
-                                        echo "<a href='#' class='btn btn-default btn-icon btn-xs tip' title='' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Reset Bind' onclick='getResetBind(\"" . $row["id"] . "\", \"" . $row["nom"] . "\");'><i class='glyphicon glyphicon-link text-warning'></i></a>";
-                                        echo "</label>";
-                                        echo "</td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='11'>Aucune donnée disponible</td></tr>";
-                                }
-
-                                // Fermeture de la connexion
-                                $conn->close();
-                                ?>
-                            </tbody>
-                        </table>
+                            // Fermeture de la connexion
+                            $conn->close();
+                            ?>
+                        </tbody>
+                    </table>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
     <!-- content --> 
 </div>
 <!-- content-wrapper --> 
 
+<script src="./includes/updateVotant.js"></script>
 <?php
 include './includes/footer.php';
 ?>

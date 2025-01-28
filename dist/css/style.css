@@ -2800,3 +2800,25 @@ label input[type=checkbox].checkbox+span, label input[type=radio].radiobox+span 
 }
 
 
+/* update Votant */
+.input-sm {
+    padding: 2px 5px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.action-col .btn-xs {
+    padding: 1px 5px;
+    margin: 0 2px;
+}
+
+.notification {
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+select.form-control.input-sm {
+    height: 30px;
+    padding: 2px 5px;
+}
