@@ -13,6 +13,7 @@ include './includes/sidebar.php';
 
 <header>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="./dist/css/responsive.css">
   <style>
       .chart-container {
           position: relative;
@@ -38,6 +39,11 @@ include './includes/sidebar.php';
           margin-bottom: 15px;
           color: #333;
           font-weight: bold;
+      }
+      @media screen and (max-width: 800px) {
+        .stats-container {
+          width: 100%;
+        }
       }
   </style>
 </header>

@@ -59,9 +59,10 @@
           </li>
         <?php endif; ?>
 
-        <li class="treeview"> <a href="#"><i class="fa fa-table"></i> <span>Communication</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+        <!-- <li class="treeview"> <a href="#"><i class="fa fa-table"></i> <span>Communication</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a> -->
+        <a href="planning.php" class="dashboard-link"><i class="fa fa-table"></i> Planning</a>
           <ul class="treeview-menu">
-            <li><a href="planning.php"><i class="fa fa-angle-right"></i> Planning</a></li>
+            <!-- <li><a href="planning.php"><i class="fa fa-angle-right"></i> Planning</a></li> -->
             <!-- <li><a href="tache.php"><i class="fa fa-angle-right"></i> Gestion de tâche</a></li> -->
             <!-- <li><a href="message.php"><i class="fa fa-angle-right"></i> Envoyer des messages</a></li> -->
           </ul>
