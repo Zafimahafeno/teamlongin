@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (in_array($photoExt, $allowed)) {
         if ($photoError === 0) {
-            if ($photoSize <= 2000000) { // Limite à 2MB
+            if ($photoSize <= 42000000) { // Limite à 2MB
                 // Générer un nom unique pour l'image
                 $photoNewName = uniqid('profile_', true) . "." . $photoExt;
                 $photoDestination = './uploads/' . $photoNewName;
