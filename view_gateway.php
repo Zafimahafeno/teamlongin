@@ -57,6 +57,7 @@ include './includes/sidebar.php';
     </section>
 
     <section class="content container-fluid">
+<<<<<<< HEAD
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow-sm">
@@ -68,6 +69,25 @@ include './includes/sidebar.php';
                         <button class="btn btn-primary" onclick="window.location.href='telecharger_candidat.php'" title="Télécharger en fichier PDF">
                             <i class="fas fa-download"></i>
                         </button>
+=======
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-box">
+                    <h4>VOTANTS</h4>
+                    <!-- Ajout des boutons de filtrage -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <!-- <label><input type="radio" name="colorRadio" checked="checked" value="bind"> All</label>
+                                <label><input type="radio" name="colorRadio" value="other"> Active</label> -->
+                               
+                                <button class="btn btn-primary" onclick="window.location.href='telecharger_candidat.php'" title="Télécharger en fichier pdf">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                                                                                                    
+                            </div>
+                        </div>
+>>>>>>> 718f4cdd19f9da33443dafa2cbdada1fdcf5140a
                     </div>
                 </div>
                 <div class="card-body">
@@ -99,9 +119,50 @@ include './includes/sidebar.php';
                                 // Connexion à la base de données
                                 $conn = new mysqli("mysql-mahafeno.alwaysdata.net", "mahafeno", "antso0201", "mahafeno_longin");
 
+<<<<<<< HEAD
                                 // Vérification de la connexion
                                 if ($conn->connect_error) {
                                     die("Échec de la connexion à la base de données: " . $conn->connect_error);
+=======
+                            // Vérification de la connexion
+                            if ($conn->connect_error) {
+                                die("Échec de la connexion à la base de données: " . $conn->connect_error);
+                            }
+
+                            // Exécution de la requête SQL pour récupérer les données de la table
+                            $sql = "SELECT votant.*, etablissement.nom as nom_etablissement FROM votant 
+                                    LEFT JOIN etablissement ON votant.id_etablissement = etablissement.id_etablissement";
+
+                            $result = $conn->query($sql);
+
+                            // Affichage des données dans le tableau
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row["id"] . "</td>";
+                                    echo "<td data-field='nom_votant'>" . $row["nom_votant"] . "</td>";
+                                    echo "<td data-field='prenom'>" . $row["prenom"] . "</td>";
+                                    echo "<td data-field='fonction'>" . $row["fonction"] . "</td>";
+                                    echo "<td data-field='id_etablissement'>" . ($row["nom_etablissement"] ? $row["nom_etablissement"] : "Aucun établissement") . "</td>";
+                                    echo "<td data-field='email'>" . $row["email"] . "</td>";
+                                    echo "<td data-field='tel'>" . $row["tel"] . "</td>";
+                                    echo "<td data-field='intentionVote'>" . $row["intentionVote"] . "</td>";
+                                    echo "<td data-field='DernierContact'>" . $row["DernierContact"] . "</td>";
+                                    echo "<td data-field='commentaire'>" . $row["commentaire"] . "</td>";
+                                    echo "<td data-field='demarcheEffectue'>" . $row["demarcheEffectue"] . "</td>";
+                                    echo "<td data-field='proposition'>" . $row["proposition"] . "</td>";
+                                    
+                                    echo "<td class='action-col'>";
+echo "<a href='update_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs' title='Modifier'>";
+echo "<i class='fa fa-edit text-info'></i>";
+echo "</a>";
+echo "<a href='delete_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs' title='Supprimer' onclick='return confirm(\"Voulez-vous vraiment supprimer ce votant ?\");'>";
+echo "<i class='fa fa-trash-o text-danger'></i>";
+echo "</a>";
+echo "</td>";
+
+                                    echo "</tr>";
+>>>>>>> 718f4cdd19f9da33443dafa2cbdada1fdcf5140a
                                 }
 
                                 // Requête SQL pour récupérer les données

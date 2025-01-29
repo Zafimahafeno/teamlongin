@@ -13,10 +13,10 @@ $result = [];
 
 switch ($type) {
     case 'id_etablissement':
-        $sql = "SELECT id, nom FROM etablissement ORDER BY nom";
+        $sql = "SELECT id_etablissement, nom FROM etablissement ORDER BY nom";
         break;
     case 'id_candidat':
-        $sql = "SELECT id, numero,prenom, nom FROM candidat ORDER BY numero";
+        $sql = "SELECT id_candidat, numero,prenom, nom FROM candidat ORDER BY numero";
         break;
     default:
         die(json_encode(['error' => 'Type invalide']));
