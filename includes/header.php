@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="../dist/img/logo.png" type="image/x-icon">
 
-  <title>Compagne et Élection UF</title>
+  <title>Campagne et Élection UF</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -166,13 +166,13 @@
 
 <!-- Section de notification -->
 <li class="dropdown notifications-menu">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="icon-megaphone"></i>
         <div class="notify">
             <span class="heartbit"></span>
             <span class="point"></span>
         </div>
-    </a>
+    </a> -->
     <ul class="dropdown-menu">
         <li class="header">Notifications</li>
         <li>
@@ -189,11 +189,11 @@
 </li>
           <!-- Tasks Menu --> 
           <!-- User Account Menu -->
-          <li class="dropdown user user-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs">Compagne et Élection UF</span> </a>
+          <li class="dropdown user user-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs">Campagne et Élection UF</span> </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <div class="pull-left user-img"><img src="dist/img/logo.png" class="img-responsive" alt="User"></div>
-                <p class="text-left">Compagne et Élection UF  <small><?php echo $_SESSION['user_prenom']; ?></small> </p>
+                <p class="text-left">Campagne et Élection UF  <small><?php echo $_SESSION['user_prenom']; ?></small> </p>
                 <!--<div class="view-link text-left"><a href="#">View Profile</a> </div>-->
               </li>
               <!-- <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>

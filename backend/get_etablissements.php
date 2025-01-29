@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 // Générer les options pour la liste déroulante
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo '<option value="' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['nom']) . '</option>';
+        echo '<option value="' . htmlspecialchars($row['id_etablissement']) . '">' . htmlspecialchars($row['nom']) . '</option>';
     }
 }
 echo '<option value="other">Ajouter un autre établissement</option>'; // Option pour ajouter un nouvel établissement
