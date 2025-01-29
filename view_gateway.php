@@ -32,8 +32,8 @@ include './includes/sidebar.php';
                     <div class="row">
                         <div class="col-md-12">
                             <div class="pull-right">
-                                <label><input type="radio" name="colorRadio" checked="checked" value="bind"> All</label>
-                                <label><input type="radio" name="colorRadio" value="other"> Active</label>
+                                <!-- <label><input type="radio" name="colorRadio" checked="checked" value="bind"> All</label>
+                                <label><input type="radio" name="colorRadio" value="other"> Active</label> -->
                                
                                 <button class="btn btn-primary" onclick="window.location.href='telecharger_candidat.php'" title="Télécharger en fichier pdf">
                                     <i class="fas fa-download"></i>
@@ -75,7 +75,7 @@ include './includes/sidebar.php';
 
                             // Exécution de la requête SQL pour récupérer les données de la table
                             $sql = "SELECT votant.*, etablissement.nom as nom_etablissement FROM votant 
-                                    LEFT JOIN etablissement ON votant.id_etablissement = etablissement.id";
+                                    LEFT JOIN etablissement ON votant.id_etablissement = etablissement.id_etablissement";
 
                             $result = $conn->query($sql);
 
@@ -97,22 +97,14 @@ include './includes/sidebar.php';
                                     echo "<td data-field='proposition'>" . $row["proposition"] . "</td>";
                                     
                                     echo "<td class='action-col'>";
-                                    echo "<label>";
-                                    echo "<a href='#' class='btn btn-default btn-icon btn-xs tip' title='Modifier' rel='tooltip' data-toggle='tooltip' data-placement='top' data-original-title='Modifier'>";
-                                    echo "<i class='fa fa-edit text-info'></i>";
-                                    echo "</a>";
-                                    echo "</label>";
-                                    echo "<label>";
-                                    echo "<a href='#addsender_outbound' class='btn btn-default btn-icon btn-xs tip' title='Info' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Info' onclick='addSenderIdOutBound(\"" . $row["id"] . "\", \"" . $row["nom_votant"] . "\");'>";
-                                    echo "<i class='fa fa-info-circle text-success'></i>";
-                                    echo "</a>";
-                                    echo "</label>";
-                                    echo "<label>";
-                                    echo "<a href='#confrmdel-emp' class='btn btn-default btn-icon btn-xs tip' title='Supprimer' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Supprimer' onclick='getDelSmppClient(\"" . $row["id"] . "\", \"" . $row["nom_votant"] . "\");'>";
-                                    echo "<i class='fa fa-trash-o text-danger'></i>";
-                                    echo "</a>";
-                                    echo "</label>";
-                                    echo "</td>";
+echo "<a href='update_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs' title='Modifier'>";
+echo "<i class='fa fa-edit text-info'></i>";
+echo "</a>";
+echo "<a href='delete_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs' title='Supprimer' onclick='return confirm(\"Voulez-vous vraiment supprimer ce votant ?\");'>";
+echo "<i class='fa fa-trash-o text-danger'></i>";
+echo "</a>";
+echo "</td>";
+
                                     echo "</tr>";
                                 }
                             } else {
