@@ -98,7 +98,7 @@ include './includes/sidebar.php';
                                     
                                     echo "<td class='action-col'>";
                                     echo "<label>";
-                                    echo "<a href='update_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs tip' title='Modifier' rel='tooltip' data-toggle='tooltip' data-placement='top' data-original-title='Modifier'>";
+                                    echo "<a href='./backend/update_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs tip' title='Modifier' rel='tooltip' data-toggle='tooltip' data-placement='top' data-original-title='Modifier'>";
                                     echo "<i class='fa fa-edit text-info'></i>";
                                     echo "</a>";
                                     echo "</label>";

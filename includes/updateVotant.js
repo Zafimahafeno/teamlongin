@@ -119,29 +119,35 @@ async function saveChanges(rowId, updatedData) {
       }),
     });
 
+    const responseText = await response.text(); // Lire la réponse en texte brut
+    console.log("Réponse serveur :", responseText);
+
     if (!response.ok) throw new Error("Erreur lors de la sauvegarde");
 
-    const result = await response.json();
+    let result;
+    try {
+      result = JSON.parse(responseText); // Transformer en JSON
+    } catch (error) {
+      throw new Error("Réponse invalide du serveur");
+    }
+
     if (result.success) {
       showNotification("Modifications enregistrées avec succès", "success");
-      // Recharger la page après 1 seconde
       setTimeout(() => {
         window.location.reload();
       }, 1000);
     } else {
-      showNotification(
-        result.message || "Erreur lors de la sauvegarde",
-        "error"
-      );
+      showNotification(result.message || "Erreur lors de la sauvegarde", "error");
     }
 
     return result;
   } catch (error) {
     console.error("Erreur:", error);
-    showNotification("Erreur lors de la sauvegarde des modifications", "error");
+    showNotification(error.message || "Erreur lors de la sauvegarde des modifications", "error");
     return { success: false };
   }
 }
+
 
 // Function to handle edit mode
 function enableEditMode(row) {
