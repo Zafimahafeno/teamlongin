@@ -18,7 +18,7 @@ include './includes/sidebar.php';
 	<section class="content-header">
 
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-home"></i> Accueil</a></li>
+			<li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
 			<li class="active">Ajout d'un nouveau votant</li>
 		</ol>
 	</section>

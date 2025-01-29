@@ -70,7 +70,7 @@ include './includes/sidebar.php';
                                 }
 
                                 // Exécution de la requête SQL pour récupérer les données de la table
-                                $sql = "SELECT  votant.*,  etablissement.nom FROM  votant  LEFT JOIN  etablissement ON votant.id_etablissement = etablissement.id WHERE  votant.intentionVote = 'indecis'";
+                                $sql = "SELECT  votant.*,  etablissement.nom FROM  votant  LEFT JOIN  etablissement ON votant.id_etablissement = etablissement.id_etablissement WHERE  votant.intentionVote = 'indecis'";
 
                                 $result = $conn->query($sql);
 

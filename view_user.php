@@ -17,7 +17,7 @@ include './includes/sidebar.php';
         <h1>Liste des Candidats</h1>
         <a href="add_user.php" class="btn btn-primary">Ajouter un nouveau Candidat</a>
         <ol class="breadcrumb">
-            <li><a href="index.php"><i class="fa fa-home"></i> Accueil</a></li>
+            <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
             <li class="active"><i class="fa fa-envelope-o"></i>Liste des Candidats</li>
             <li class="active"><i class="fa fa-table"></i> Vue Globale</li>
         </ol>

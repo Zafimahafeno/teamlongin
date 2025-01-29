@@ -20,7 +20,7 @@ include './includes/sidebar.php';
             <a href="add_planing.php" class="btn btn-primary">Ajouter un nouveau planning</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Accueil</a></li>
+            <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
             <li class="active">Gestion de planing</li>
         </ol>
     </section>

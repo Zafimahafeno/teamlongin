@@ -12,21 +12,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $nombre = $_POST["nombre"];
     $id_candidat = $_POST["id_candidat"];
-    $id_zone = $_POST["id_zone"];
-    
+   
     // Préparer et exécuter la requête d'insertion
-    $sql = "INSERT INTO vote (nombre, id_candidat, id_zone) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO voix (nombreVote, id_candidat) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iii", $nombre, $id_candidat, $id_zone);
+    $stmt->bind_param("ii", $nombre, $id_candidat);
     
     if ($stmt->execute()) {
-        echo "Le vote a été ajouté avec succès.";
+        // Fermer la déclaration et la connexion avant la redirection
+        $stmt->close();
+        $conn->close();
+        
+        // Redirection avec un message de succès
+        header("Location: ../statistique_votes.php?success=1");
+        exit();
     } else {
-        echo "Erreur lors de l'ajout du vote: " . $conn->error;
+        // Fermer la déclaration et la connexion
+        $stmt->close();
+        $conn->close();
+        
+        // Redirection avec un message d'erreur
+        header("Location: ../statistique_votes.php?error=1");
+        exit();
     }
-    
-    // Fermer la déclaration et la connexion
-    $stmt->close();
-    $conn->close();
 }
 ?>

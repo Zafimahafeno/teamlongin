@@ -36,7 +36,7 @@ include './includes/sidebar.php';
   <section class="content-header">
     <h1>STATISTIQUE DES VOTES</h1>
     <ol class="breadcrumb">
-      <li><a href="index.php"><i class="fa fa-home"></i> Accueil</a></li>
+      <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
       <li class="active"><i class="fa fa-envelope-o"></i>Statistique</li>
       <li class="active"><i class="fa fa-table"></i> Vue Globale</li>
     </ol>
@@ -68,7 +68,9 @@ include './includes/sidebar.php';
   </section>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php
+  include './includes/footer.php';
+  ?>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

@@ -19,7 +19,7 @@ $sql = "SELECT
     COUNT(v.id) AS nombre_votants,
     v.fonction
 FROM votant v
-JOIN etablissement e ON v.id_etablissement = e.id
+JOIN etablissement e ON v.id_etablissement = e.id_etablissement
 GROUP BY e.nom, v.intentionVote, v.fonction
 ORDER BY e.nom, v.fonction, v.intentionVote;";
 
