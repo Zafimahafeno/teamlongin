@@ -192,7 +192,8 @@ include './includes/sidebar.php';
       {
         label: 'Enseignant - Favorable',
         data: etablissements.map(e => data[e].Enseignant.Favorable),
-        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        // backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        backgroundColor: 'rgba(47, 8, 219, 0.6)',
         stack: 'Enseignant'
       },
       {
