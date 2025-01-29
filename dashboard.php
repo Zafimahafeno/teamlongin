@@ -186,7 +186,7 @@ include './includes/sidebar.php';
       {
         label: 'PAT - Indécis',
         data: etablissements.map(e => data[e].PAT.Indécis),
-        backgroundColor: 'rgba(255, 206, 86, 0.6)',
+        backgroundColor: 'rgba(86, 255, 133, 0.6) ',
         stack: 'PAT'
       },
       {
