@@ -75,7 +75,7 @@ $pdf->CreateTableHeader();
 // Requête SQL
 $sql = "SELECT v.*, e.nom as nom_etablissement 
         FROM votant v 
-        LEFT JOIN etablissement e ON v.id_etablissement = e.id";
+        LEFT JOIN etablissement e ON v.id_etablissement = e.id_etablissement";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

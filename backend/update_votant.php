@@ -31,8 +31,9 @@ if (!isset($data['id']) || !is_numeric($data['id'])) {
     exit;
 }
 
+// Récupération et validation des autres données
 $id = intval($data['id']);
-$nom = htmlspecialchars($data['nom'] ?? '', ENT_QUOTES, 'UTF-8');
+$nom_votant = htmlspecialchars($data['nom_votant'] ?? '', ENT_QUOTES, 'UTF-8');
 $prenom = htmlspecialchars($data['prenom'] ?? '', ENT_QUOTES, 'UTF-8');
 $fonction = htmlspecialchars($data['fonction'] ?? '', ENT_QUOTES, 'UTF-8');
 $id_etablissement = isset($data['id_etablissement']) && is_numeric($data['id_etablissement']) ? intval($data['id_etablissement']) : null;
@@ -44,23 +45,12 @@ $commentaire = htmlspecialchars($data['commentaire'] ?? '', ENT_QUOTES, 'UTF-8')
 $demarcheEffectue = htmlspecialchars($data['demarcheEffectue'] ?? '', ENT_QUOTES, 'UTF-8');
 $proposition = htmlspecialchars($data['proposition'] ?? '', ENT_QUOTES, 'UTF-8');
 
-error_log("Données après filtrage : ID=$id, Nom=$nom, Prénom=$prenom, Email=$email, Téléphone=$tel");
+error_log("Données après filtrage : ID=$id, Nom votant=$nom_votant, Prénom=$prenom, Email=$email, Téléphone=$tel");
 
-// Préparation de la requête
-$sql = "UPDATE votant SET 
-            nom_votant = ?, 
-            prenom = ?, 
-            fonction = ?, 
-            id_etablissement = ?, 
-            email = ?, 
-            tel = ?, 
-            intentionVote = ?, 
-            DernierContact = ?, 
-            commentaire = ?, 
-            demarcheEffectue = ?, 
-            proposition = ? 
-        WHERE id = ?";
+// Préparation de la requête de mise à jour
+$sql = "UPDATE votant SET nom_votant = ?, prenom = ?, fonction = ?, email = ?, tel = ?, intentionVote = ?, DernierContact = ?, id_etablissement = ?, commentaire = ?, demarcheEffectue = ?, proposition = ? WHERE id = ?";
 
+// Préparation de la requête SQL
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
@@ -69,12 +59,12 @@ if (!$stmt) {
     exit;
 }
 
+// Liaison des paramètres
 $stmt->bind_param(
-    "sssssssssssi",
-    $nom,
+    "ssssssssssii",
+    $nom_votant,   // Nom votant
     $prenom,
     $fonction,
-    $id_etablissement,
     $email,
     $tel,
     $intentionVote,
@@ -82,9 +72,11 @@ $stmt->bind_param(
     $commentaire,
     $demarcheEffectue,
     $proposition,
-    $id
+    $id,
+    $id_etablissement
 );
 
+// Exécution de la requête
 if ($stmt->execute()) {
     error_log("Mise à jour réussie pour l'ID $id.");
     echo json_encode(["success" => true, "message" => "Mise à jour réussie"]);
@@ -93,7 +85,7 @@ if ($stmt->execute()) {
     echo json_encode(["success" => false, "message" => "Erreur lors de la mise à jour"]);
 }
 
-// Fermeture de la connexion
+// Fermeture de la connexion à la base de données
 $stmt->close();
 $conn->close();
 error_log("Connexion fermée.");

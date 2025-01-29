@@ -72,9 +72,9 @@ include './includes/sidebar.php';
                 </div>
                 <div class="card-body">
                     <!-- Barre de recherche intégrée à DataTables -->
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <input id="tableSearch" type="text" class="form-control" placeholder="Rechercher...">
-                    </div>
+                    </div> -->
                     <!-- Tableau responsive -->
                     <div class="table-responsive">
                         <table id="votantsTable" class="table table-bordered table-striped">
