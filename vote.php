@@ -1,3 +1,15 @@
+
+<?php
+session_start();
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+  header('Location: login.php');
+  exit;
+}
+include './includes/header.php';
+include './includes/sidebar.php';
+?>
 <?php
 // Connexion à la base de données (remplacez les informations par les vôtres)
 $conn = new mysqli("mysql-mahafeno.alwaysdata.net", "mahafeno", "antso0201", "mahafeno_longin");
@@ -14,8 +26,6 @@ $result_candidats = $conn->query($sql_candidats);
 
 ?>
 
-<?php include './includes/header.php'; ?>
-<?php include './includes/sidebar.php'; ?>
 
 <div class="content-wrapper"> 
     <section class="content-header">

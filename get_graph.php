@@ -8,7 +8,7 @@ if ($conn->connect_error) {
 }
 
 // Requête SQL pour récupérer les données
-$sql = "SELECT nom_candidat AS nom_candidat, SUM(vote.nombre) AS total_votes 
+$sql = "SELECT nom AS nom_candidat, SUM(vote.nombre) AS total_votes 
         FROM candidat 
         INNER JOIN vote ON candidat.id_candidat = vote.id_candidat 
         GROUP BY candidat.id_candidat";
