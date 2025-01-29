@@ -43,7 +43,7 @@
     <header class="main-header dark-bg"> 
     
     <!-- Logo --> 
-      <a href="index.html" class="logo dark-bg"> 
+      <a href="./dashboard.php" class="logo dark-bg"> 
     <!-- mini logo for sidebar mini 50x50 pixels --> 
         <span class="logo-mini"><img src="dist/img/logo.png" alt="Ovio"></span> 
     <!-- logo for regular state and mobile devices --> 
