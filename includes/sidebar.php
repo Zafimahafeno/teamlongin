@@ -47,13 +47,27 @@
           </ul>
         </li>
       <?php endif; ?>
-      <li class="treeview"> <a href="#"><i class="fa fa-bullseye"></i> <span>Gestion des Votants</span> <span
-            class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-bullseye"></i>
+          <span>Gestion des Votants</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
         <ul class="treeview-menu">
-          <li><a href="add_gateway.php"><i class="fa fa-angle-right"></i>Ajouter Votants</a></li>
-          <li><a href="view_gateway.php"><i class="fa fa-angle-right"></i>Liste des Votants</a></li>
+          <li><a href="add_gateway.php"><i class="fa fa-angle-right"></i> Ajouter Votants</a></li>
+          <!-- Liste des Votants avec sous-menus pour les PAT et les Enseignants -->
+          <li class="treeview">
+            <a href="#"><i class="fa fa-angle-right"></i> Liste des Votants</a>
+            <ul class="treeview-menu">
+              <li><a href="liste_pat.php"><i class="fa fa-angle-right"></i> Liste des PAT</a></li>
+              <li><a href="liste_enseignants.php"><i class="fa fa-angle-right"></i> Liste des Enseignants</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
+
       <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
         <li class="treeview"> <a href="#"><i class="fa fa-pencil-square-o"></i> <span>Statistique</span> <span
               class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>

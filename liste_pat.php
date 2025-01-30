@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 include './includes/header.php';
 include './includes/sidebar.php';
 ?>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,13 +32,14 @@ include './includes/sidebar.php';
 
                     <div class="table-responsive">
                         <table class="table table-bordered">
+
                             <tr>
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Fonction</th>
                                 <th>Etablissement</th>
-                                <th>Dernier Contact</th>
                                 <th>Intention de Vote</th>
+                                <th>Dernier Contact</th>
                                 <th>Actions</th>
                             </tr>
 
@@ -60,7 +61,13 @@ include './includes/sidebar.php';
                             }
                             // Vérifier si la connexion est encore active avant d'exécuter la requête
                             if ($conn) {
-                                $sql = "SELECT id, nom_votant,prenom, fonction, intentionVote FROM votant WHERE fonction = 'PAT' ORDER BY nom_votant";
+                                $sql = "
+                                SELECT v.id, v.nom_votant, v.prenom, v.fonction, v.intentionVote,v.DernierContact, e.nom 
+                                FROM votant v 
+                                JOIN etablissement e ON v.id_etablissement = e.id_etablissement 
+                                WHERE v.fonction = 'PAT' 
+                                ORDER BY v.nom_votant
+                            ";
                                 $result = $conn->query($sql);
 
                                 if ($result && $result->num_rows > 0) {
@@ -69,6 +76,7 @@ include './includes/sidebar.php';
                                         echo "<td>" . htmlspecialchars($row['nom_votant']) . "</td>";
                                         echo "<td>" . htmlspecialchars($row['prenom']) . "</td>";
                                         echo "<td>" . htmlspecialchars($row['fonction']) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row['nom']) . "</td>";
                                         echo "<td>
                                             <select id='vote-" . $row['id'] . "' onchange='updateVote(" . $row['id'] . ", this.value)' class='form-select'>
                                                 <option value='favorable'" . ($row['intentionVote'] == 'favorable' ? ' selected' : '') . ">Favorable</option>
@@ -76,9 +84,17 @@ include './includes/sidebar.php';
                                                 <option value='indécis'" . ($row['intentionVote'] == 'indécis' ? ' selected' : '') . ">Indécis</option>
                                             </select>
                                         </td>";
+                                        echo "<td>" . htmlspecialchars($row['DernierContact']) . "</td>";
                                         echo "<td>
-                                            <button class='btn btn-success btn-sm' onclick='modifierVotant(" . $row['id'] . ")'>Modifier</button>
-                                            <button class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#confirmModal' onclick='setDeleteId(" . $row['id'] . ")'>Supprimer</button>
+                                            <!-- Bouton Modifier avec une icône -->
+<button class='btn btn-success btn-sm' onclick='modifierVotant(" . $row['id'] . ")'>
+    <i class='bi bi-pencil'></i> <!-- Icône de modification -->
+</button>
+
+<!-- Bouton Supprimer avec une icône -->
+<button class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#confirmModal' onclick='setDeleteId(" . $row['id'] . ")'>
+    <i class='bi bi-trash'></i> <!-- Icône de suppression -->
+</button>
                                         </td>";
                                         echo "</tr>";
                                     }
