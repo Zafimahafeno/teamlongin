@@ -101,12 +101,14 @@ a:hover, a:active, a:focus {
 }
 /* Content */
 .content {
+	height: 485px;
 	min-height: 250px;
 	padding: 15px;
 	margin-right: auto;
 	margin-left: auto;
 	padding-left: 15px;
 	padding-right: 15px;
+	overflow-y: scroll;
 }
 /* Page Header */
 .page-header {

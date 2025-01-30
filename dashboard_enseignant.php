@@ -53,7 +53,7 @@ include './includes/sidebar.php';
   
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>BIENVENUE <?php echo $_SESSION['user_prenom']; ?></h1>
+    <h1>Bienvenue <?php echo $_SESSION['user_prenom']; ?></h1>
     <ol class="breadcrumb">
       <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
     </ol>
@@ -71,10 +71,24 @@ include './includes/sidebar.php';
         <a href="./view_gateway.php">
           <div class="media-box">
             <div class="media-icon">
-              <i class="fa fa-users"></i> <span class="nombre_dash"> <?php include 'totalVotants.php'; ?></span>
+              <i class="fa fa-users"></i> <span class="nombre_dash"> <?php include './backend/totalVotantsEnseignant.php'; ?></span>
             </div>
             <div class="media-info">
               <h5>Votants</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Favorables Section -->
+      <div class="col-md-3 col-xs-6">
+        <a href="favorable.php">
+          <div class="media-box bg-green">
+            <div class="media-icon">
+              <i class="fa fa-thumbs-up"></i> <?php include('./backend/totalFavorableEnseignant.php'); ?>
+            </div>
+            <div class="media-info">
+              <h5>Favorables</h5>
             </div>
           </div>
         </a>
@@ -85,7 +99,7 @@ include './includes/sidebar.php';
         <a href="opposants.php">
           <div class="media-box bg-sea">
             <div class="media-icon">
-              <i class="fa fa-thumbs-down"></i> <?php include('totalOpposant.php'); ?>
+              <i class="fa fa-thumbs-down"></i> <?php include('./backend/totalOpposantEnseignant.php'); ?>
             </div>
             <div class="media-info">
               <h5>Opposants</h5>
@@ -99,24 +113,10 @@ include './includes/sidebar.php';
         <a href="indecis.php">
           <div class="media-box bg-blue">
             <div class="media-icon">
-              <i class="fa fa-meh"></i>  <?php include('totalIndecis.php'); ?>
+              <i class="fa fa-meh"></i>  <?php include('./backend/totalIndecisEnseignant.php'); ?>
             </div>
             <div class="media-info">
               <h5>Indécis</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <!-- Favorables Section -->
-      <div class="col-md-3 col-xs-6">
-        <a href="favorable.php">
-          <div class="media-box bg-green">
-            <div class="media-icon">
-              <i class="fa fa-thumbs-up"></i> <?php include('totalFavorable.php'); ?>
-            </div>
-            <div class="media-info">
-              <h5>Favorables</h5>
             </div>
           </div>
         </a>
