@@ -37,6 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     if ($stmt->execute()) {
                         echo "Assistant ajouté avec succès.";
+                        
+                        header("Location: ../view_utilisateur.php");
+                        exit();
                     } else {
                         echo "Erreur lors de l'ajout : " . $stmt->error;
                     }

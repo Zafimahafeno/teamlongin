@@ -63,7 +63,7 @@ include './includes/sidebar.php';
   <section class="content container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <h4>Résultat des sondages</h4>
+        <h4>Résultat des sondages Enseignants</h4>
       </div>
 
       <!-- Votants Section -->
@@ -150,158 +150,134 @@ include './includes/sidebar.php';
 <script>
   // Fonction pour charger les données des graphiques depuis le backend
   async function loadChartData() {
-    try {
-      const response = await fetch('get_vote_data.php');
-      const data = await response.json();
-      createCharts(data);
-    } catch (error) {
-      console.error('Erreur de chargement:', error);
+  try {
+    const response = await fetch('get_vote_data.php');
+    const data = await response.json();
+    createCharts(data);
+  } catch (error) {
+    console.error('Erreur de chargement:', error);
+  }
+}
+
+function createCharts(rawData) {
+  createVoteChart(rawData);
+  createOverviewChart(rawData);
+}
+
+function createVoteChart(data) {
+  const ctx = document.getElementById('voteChart').getContext('2d');
+  const etablissements = Object.keys(data);
+
+  const datasets = [
+    {
+      label: 'Enseignant - Favorable',
+      data: etablissements.map(e => data[e].Enseignant.Favorable),
+      backgroundColor: 'rgba(47, 8, 219, 0.6)',
+      stack: 'Enseignant'
+    },
+    {
+      label: 'Enseignant - Opposant',
+      data: etablissements.map(e => data[e].Enseignant.Opposant),
+      backgroundColor: 'rgba(153, 102, 255, 0.6)',
+      stack: 'Enseignant'
+    },
+    {
+      label: 'Enseignant - Indécis',
+      data: etablissements.map(e => data[e].Enseignant.Indécis),
+      backgroundColor: 'rgba(255, 159, 64, 0.6)',
+      stack: 'Enseignant'
     }
-  }
+  ];
 
-  // Fonction pour créer les graphiques
-  function createCharts(rawData) {
-    createVoteChart(rawData);
-    createOverviewChart(rawData);
-  }
-
-  // Créer le graphique des votes par établissement
-  function createVoteChart(data) {
-    const ctx = document.getElementById('voteChart').getContext('2d');
-    const etablissements = Object.keys(data);
-
-    const datasets = [
-      {
-        label: 'PAT - Favorable',
-        data: etablissements.map(e => data[e].PAT.Favorable),
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        stack: 'PAT'
-      },
-      {
-        label: 'PAT - Opposant',
-        data: etablissements.map(e => data[e].PAT.Opposant),
-        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-        stack: 'PAT'
-      },
-      {
-        label: 'PAT - Indécis',
-        data: etablissements.map(e => data[e].PAT.Indécis),
-        backgroundColor: 'rgba(86, 255, 133, 0.6) ',
-        stack: 'PAT'
-      },
-      {
-        label: 'Enseignant - Favorable',
-        data: etablissements.map(e => data[e].Enseignant.Favorable),
-        // backgroundColor: 'rgba(54, 162, 235, 0.6)',
-        backgroundColor: 'rgba(47, 8, 219, 0.6)',
-        stack: 'Enseignant'
-      },
-      {
-        label: 'Enseignant - Opposant',
-        data: etablissements.map(e => data[e].Enseignant.Opposant),
-        backgroundColor: 'rgba(153, 102, 255, 0.6)',
-        stack: 'Enseignant'
-      },
-      {
-        label: 'Enseignant - Indécis',
-        data: etablissements.map(e => data[e].Enseignant.Indécis),
-        backgroundColor: 'rgba(255, 159, 64, 0.6)',
-        stack: 'Enseignant'
-      }
-    ];
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: etablissements,
-        datasets: datasets
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            stacked: true
-          },
-          y: {
-            stacked: true,
-            beginAtZero: true
-          }
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: etablissements,
+      datasets: datasets
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          stacked: true
         },
-        plugins: {
-          legend: {
-            position: 'top',
-            align: 'start'
-          },
-          tooltip: {
-            mode: 'index',
-            intersect: false
-          }
+        y: {
+          stacked: true,
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          align: 'start'
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false
         }
       }
+    }
+  });
+}
+
+function createOverviewChart(data) {
+  const ctx = document.getElementById('overviewChart').getContext('2d');
+
+  let totals = {
+    Favorable: 0,
+    Opposant: 0,
+    Indécis: 0
+  };
+
+  // Calcul des totaux uniquement pour les enseignants
+  Object.values(data).forEach(etablissement => {
+    Object.entries(etablissement.Enseignant).forEach(([intention, count]) => {
+      totals[intention] += count;
     });
-  }
+  });
 
-  // Créer le graphique de vue d'ensemble des votes
-  function createOverviewChart(data) {
-    const ctx = document.getElementById('overviewChart').getContext('2d');
-
-    let totals = {
-      Favorable: 0,
-      Opposant: 0,
-      Indécis: 0
-    };
-
-    // Calcul des totaux pour chaque catégorie
-    Object.values(data).forEach(etablissement => {
-      ['PAT', 'Enseignant'].forEach(fonction => {
-        Object.entries(etablissement[fonction]).forEach(([intention, count]) => {
-          totals[intention] += count;
-        });
-      });
-    });
-
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: Object.keys(totals),
-        datasets: [{
-          data: Object.values(totals),
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(255, 206, 86, 0.6)'
-          ],
-          borderColor: [
-            'rgba(75, 192, 192, 1)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(255, 206, 86, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom'
-          },
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                const total = Object.values(totals).reduce((a, b) => a + b, 0);
-                const percentage = ((context.raw / total) * 100).toFixed(1);
-                return `${context.label}: ${context.raw} (${percentage}%)`;
-              }
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: Object.keys(totals),
+      datasets: [{
+        data: Object.values(totals),
+        backgroundColor: [
+          'rgba(47, 8, 219, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 159, 64, 0.6)'
+        ],
+        borderColor: [
+          'rgba(47, 8, 219, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const total = Object.values(totals).reduce((a, b) => a + b, 0);
+              const percentage = ((context.raw / total) * 100).toFixed(1);
+              return `${context.label}: ${context.raw} (${percentage}%)`;
             }
           }
         }
       }
-    });
-  }
+    }
+  });
+}
 
-  document.addEventListener('DOMContentLoaded', loadChartData);
+document.addEventListener('DOMContentLoaded', loadChartData);
 </script>
 
 </div> <!-- Fermeture de content-wrapper -->
