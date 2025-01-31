@@ -39,8 +39,7 @@ class CandidatsPDF extends FPDF {
             array('text' => 'Nom', 'width' => 35),
             array('text' => 'Prénom', 'width' => 35),
             array('text' => 'Fonction', 'width' => 30),
-            array('text' => 'Établissement', 'width' => 45),
-            array('text' => 'Email', 'width' => 35),
+            array('text' => 'Établissement', 'width' => 30),
             array('text' => 'Contact', 'width' => 25),
             array('text' => 'Intention de vote', 'width' => 30),
             array('text' => 'Dernier Contact', 'width' => 35),
@@ -90,15 +89,14 @@ if ($result->num_rows > 0) {
         $pdf->SetFillColor($rowCount % 2 == 0 ? 245 : 255, $rowCount % 2 == 0 ? 245 : 255, $rowCount % 2 == 0 ? 245 : 255);
         $pdf->SetTextColor(0, 0, 0);
 
-        // Calcul de la hauteur maximale pour la ligne
+        // Calcul de la hauteur maximale pour la ligne   
         $lineHeight = 6;
 
         // Affichage des données avec des largeurs correspondant aux en-têtes
         $pdf->Cell(35, $lineHeight, utf8_decode($row['nom_votant']), 1, 0, 'L', true);
         $pdf->Cell(35, $lineHeight, utf8_decode($row['prenom']), 1, 0, 'L', true);
         $pdf->Cell(30, $lineHeight, utf8_decode($row['fonction']), 1, 0, 'L', true);
-        $pdf->Cell(45, $lineHeight, utf8_decode($row['nom_etablissement'] ?? 'N/A'), 1, 0, 'L', true);
-        $pdf->Cell(35, $lineHeight, utf8_decode($row['email'] ?? 'N/A'), 1, 0, 'L', true);
+        $pdf->Cell(30, $lineHeight, utf8_decode($row['nom_etablissement'] ?? 'N/A'), 1, 0, 'L', true);
         $pdf->Cell(25, $lineHeight, utf8_decode($row['tel']), 1, 0, 'C', true);
         $pdf->Cell(30, $lineHeight, utf8_decode($row['intentionVote']), 1, 0, 'C', true);
         $pdf->Cell(35, $lineHeight, utf8_decode($row['DernierContact']), 1, 0, 'C', true);

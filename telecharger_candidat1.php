@@ -11,7 +11,7 @@ class CandidatsPDF extends FPDF {
         $this->SetFont('Arial', 'B', 15);
         
         // Titre
-        $this->Cell(0, 15, 'LISTES DES ENSEIGNANTS', 0, 1, 'C');
+        $this->Cell(0, 15, 'LISTES DES PAT', 0, 1, 'C');
         
         // Date d'impression
         $this->SetFont('Arial', 'I', 8);
@@ -39,7 +39,7 @@ class CandidatsPDF extends FPDF {
             array('text' => 'Nom', 'width' => 35),
             array('text' => 'Prénom', 'width' => 35),
             array('text' => 'Fonction', 'width' => 30),
-            array('text' => 'Établissement', 'width' => 45),
+            array('text' => 'Établissement', 'width' => 30),
             array('text' => 'Email', 'width' => 35),
             array('text' => 'Contact', 'width' => 25),
             array('text' => 'Intention de vote', 'width' => 30),
@@ -97,7 +97,7 @@ if ($result->num_rows > 0) {
         $pdf->Cell(35, $lineHeight, utf8_decode($row['nom_votant']), 1, 0, 'L', true);
         $pdf->Cell(35, $lineHeight, utf8_decode($row['prenom']), 1, 0, 'L', true);
         $pdf->Cell(30, $lineHeight, utf8_decode($row['fonction']), 1, 0, 'L', true);
-        $pdf->Cell(45, $lineHeight, utf8_decode($row['nom_etablissement'] ?? 'N/A'), 1, 0, 'L', true);
+        $pdf->Cell(30, $lineHeight, utf8_decode($row['nom_etablissement'] ?? 'N/A'), 1, 0, 'L', true);
         $pdf->Cell(35, $lineHeight, utf8_decode($row['email'] ?? 'N/A'), 1, 0, 'L', true);
         $pdf->Cell(25, $lineHeight, utf8_decode($row['tel']), 1, 0, 'C', true);
         $pdf->Cell(30, $lineHeight, utf8_decode($row['intentionVote']), 1, 0, 'C', true);

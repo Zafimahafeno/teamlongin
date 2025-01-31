@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $IM = $_POST["IM"] ?? '';
     $corps = $_POST["corps"] ?? '';
     // Définir une valeur par défaut pour id_candidat (par exemple 1)
-    $id_candidat = 12; // À ajuster selon votre logique métier
+    $id_candidat = ""; // À ajuster selon votre logique métier
     
     // Préparer la requête d'insertion avec id_candidat
     $sql = "INSERT INTO votant (nom_votant, grade_enseignant, IM, corps, prenom, fonction, tel, commentaire, id_etablissement, id_candidat) 
