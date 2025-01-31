@@ -14,7 +14,7 @@ include './includes/sidebar.php';
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Liste des votants favorables</h1>
+        <h1>Liste des enseignants favorables</h1>
         <ol class="breadcrumb">
             <li><a href="./dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
             <li class="active"><i class="fa fa-envelope-o"></i>Vue Global</li>
@@ -46,15 +46,11 @@ include './includes/sidebar.php';
                                     <!-- <th class="sortable">#</th> -->
                                     <th class="sortable">Nom</th>
                                     <th class="sortable">Prenom</th>
-                                    <th class="sortable">Fonction</th>
                                     <th class="sortable">Établissement</th>
-                                    <th class="sortable">Email</th>
                                     <th class="sortable">Contact</th>
                                     <th class="sortable">Intention de vote</th>
                                     <th class="sortable">Dernier contact</th>
                                     <th class="sortable">Commentaire</th>
-                                    <th class="sortable">Démarche effectuée</th>
-                                    <th class="sortable">Proposition</th>
                                     <th class="sortable">Actions</th>
 
                                 </tr>
@@ -80,15 +76,12 @@ include './includes/sidebar.php';
                                         echo "<tr>";
                                         echo "<td>" . $row["nom_votant"] . "</td>";
                                         echo "<td>" . $row["prenom"] . "</td>";
-                                        echo "<td>" . $row["fonction"] . "</td>";
                                         echo "<td>" . ($row["nom"] ? $row["nom"] : "Aucun établissement") . "</td>";
                                         echo "<td>" . $row["email"] . "</td>";
                                         echo "<td>" . $row["tel"] . "</td>";
                                         echo "<td>" . $row["intentionVote"] . "</td>";
                                         echo "<td>" . $row["DernierContact"] . "</td>";
                                         echo "<td>" . $row["commentaire"] . "</td>";
-                                        echo "<td>" . $row["demarcheEffectue"] . "</td>";
-                                        echo "<td>" . $row["proposition"] . "</td>";
 
 
                                         echo "<td class='action-col' scope='col' id='0'>";

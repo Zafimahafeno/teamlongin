@@ -73,11 +73,11 @@
               class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
             <li><a href="statistique_votes.php"><i class="fa fa-angle-right"></i>Statistique des votes</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i>Statistique des votants</a></li>
+            <!-- <li><a href="#"><i class="fa fa-angle-right"></i>Statistique des votants</a></li> -->
           </ul>
         </li>
       <?php endif; ?>
-      <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+      <!-- <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
         <li class="treeview"> <a href="#"><i class="fa fa-users"></i> <span>Gestion des Utilisateurs</span> <span
               class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
@@ -86,7 +86,7 @@
             <li></li>
           </ul>
         </li>
-      <?php endif; ?>
+      <?php endif; ?> -->
 
       <!-- <li class="treeview"> <a href="#"><i class="fa fa-table"></i> <span>Communication</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a> -->
       <a href="planning.php" class="dashboard-link"><i class="fa fa-table"></i> Planning</a>

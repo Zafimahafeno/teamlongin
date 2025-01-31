@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include './includes/header.php';
 include './includes/sidebar.php';
+include './backend/stats.php';
 ?>
 
 <header>
@@ -23,6 +24,16 @@ include './includes/sidebar.php';
           padding: 15px;
           border-radius: 8px;
           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .chart-container-table {
+          position: relative;
+          margin: 20px 0;
+          height: 250px;
+          background: #fff;
+          padding: 15px;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          overflow-y: scroll;
       }
       .stats-container {
           display: flex;
@@ -39,6 +50,30 @@ include './includes/sidebar.php';
           margin-bottom: 15px;
           color: #333;
           font-weight: bold;
+      }
+      .stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+
+      .stats-table th, .stats-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+      }
+
+      .stats-table th {
+        background-color: #4a90e2;
+        color: white;
+      }
+
+      .stats-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .stats-table tr:hover {
+        background-color: #ddd;
       }
       @media screen and (max-width: 800px) {
         .stats-container {
@@ -141,6 +176,45 @@ include './includes/sidebar.php';
         </div>
       </div>
     </div>
+
+    <div class="container-fluid">
+      <div class="stats-container">
+        <div class="chart-wrapper">
+          <div class="chart-container-table">
+          <h3>Tableau récapitulatif</h3> 
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th>ÉTABLISSEMENT</th>
+                <th>Effectif par établissement</th>
+                <th>Favorable</th>
+                <th>Indécis</th>
+                <th>Opposant</th>
+                <th>% Favorable</th>
+                <th>% Indécis</th>
+                <th>% Opposant</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($stats as $row): ?>
+                <tr>
+                    <td><?= htmlspecialchars($row['etablissement']) ?></td>
+                    <td><?= $row['total'] ?></td>
+                    <td><?= $row['favorable'] ?></td>
+                    <td><?= $row['indecis'] ?></td>
+                    <td><?= $row['opposant'] ?></td>
+                    <td><?= $row['pourcentageFavorable'] ?></td>
+                    <td><?= $row['pourcentageIndecis'] ?></td>
+                    <td><?= $row['pourcentageOpposant'] ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </section>
 
  
@@ -172,19 +246,19 @@ function createVoteChart(data) {
     {
       label: 'Enseignant - Favorable',
       data: etablissements.map(e => data[e].Enseignant.Favorable),
-      backgroundColor: 'rgba(47, 8, 219, 0.6)',
+      backgroundColor: 'rgba(144, 238, 144, 0.6)', // Vert pastel
       stack: 'Enseignant'
     },
     {
       label: 'Enseignant - Opposant',
       data: etablissements.map(e => data[e].Enseignant.Opposant),
-      backgroundColor: 'rgba(153, 102, 255, 0.6)',
+      backgroundColor: 'rgba(240, 128, 128, 0.6)', // Rouge pastel
       stack: 'Enseignant'
     },
     {
       label: 'Enseignant - Indécis',
       data: etablissements.map(e => data[e].Enseignant.Indécis),
-      backgroundColor: 'rgba(255, 159, 64, 0.6)',
+      backgroundColor: 'rgba(255, 239, 150, 0.6)', // Jaune pastel
       stack: 'Enseignant'
     }
   ];
@@ -244,14 +318,14 @@ function createOverviewChart(data) {
       datasets: [{
         data: Object.values(totals),
         backgroundColor: [
-          'rgba(47, 8, 219, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)'
+          'rgba(144, 238, 144, 0.6)',
+          'rgba(240, 128, 128, 0.6)',
+          'rgba(255, 239, 150, 0.6)'
         ],
         borderColor: [
-          'rgba(47, 8, 219, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
+          'rgba(144, 238, 144, 0.6)',
+          'rgba(240, 128, 128, 0.6)',
+          'rgba(255, 239, 150, 0.6)'
         ],
         borderWidth: 1
       }]

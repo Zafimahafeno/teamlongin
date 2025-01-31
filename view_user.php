@@ -66,7 +66,9 @@ include './includes/sidebar.php';
 
                                 // Parcourir les résultats
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    $photoPath = ".uploads/" . $row["photo"];
+                                    // $photoPath = "uploads/" . $row["photo"];
+                                    $photoPath = $row["photo"];
+                                    // var_dump($photoPath);
                                     echo '<tr>';
                                     if (!empty($row["photo"])) {
                                         echo '<td><img src="' . $photoPath . '" alt="Photo de ' . htmlspecialchars($row["nom"]) . '" style="width: 50px; height: 50px; border-radius: 5px;"></td>';

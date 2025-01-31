@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_nom'] = $user['nom'];
             $_SESSION['user_prenom'] = $user['prenom'];
             $_SESSION['role'] = 'admin'; // Identifier le rôle
-            header('Location: ../dashboard.php'); // Rediriger vers le tableau de bord admin
+            header('Location: ../dashboard_pat.php'); // Rediriger vers le tableau de bord admin
             exit;
         } else {
             $_SESSION['error'] = 'Mot de passe incorrect.';
@@ -52,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_nom'] = $user['nom'];
                 $_SESSION['user_prenom'] = $user['prenom'];
                 $_SESSION['role'] = 'assistant'; // Identifier le rôle
-                header('Location: ../dashboard.php'); // Rediriger vers un tableau de bord assistant
+                // header('Location: ../dashboard.php');
+                header('Location: ../dashboard_pat.php');
                 exit;
             } else {
                 $_SESSION['error'] = 'Mot de passe incorrect.';

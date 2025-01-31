@@ -73,7 +73,7 @@ th, td {
                 <th class="sortable">Nom</th>
                 <th class="sortable">Prénom</th>
                 <th class="sortable">Fonction</th>
-                <th class="sortable">Établissement</th>
+                <th class="sortable">Corps</th>
                 <th class="sortable">Intention de vote</th>
                 <th class="sortable">Dernier contact</th>
                 <th class="sortable">Actions</th>
@@ -104,7 +104,7 @@ th, td {
                     echo "<td data-field='nom_votant'>" . htmlspecialchars($row["nom_votant"]) . "</td>";
                     echo "<td data-field='prenom'>" . htmlspecialchars($row["prenom"]) . "</td>";
                     echo "<td data-field='fonction'>" . htmlspecialchars($row["fonction"]) . "</td>";
-                    echo "<td data-field='id_etablissement'>" . htmlspecialchars($row["nom_etablissement"] ?? "Aucun établissement") . "</td>";
+                    echo "<td data-field='id_etablissement'>" . htmlspecialchars($row["corps"]) . "</td>";
                     echo "<td>
                         <select id='vote-" . $row['id'] . "' onchange='updateVote(" . $row['id'] . ", this.value)' class='form-select'>
                             <option value='favorable'" . ($row['intentionVote'] == 'favorable' ? ' selected' : '') . ">Favorable</option>
@@ -134,9 +134,9 @@ th, td {
                 </a>";
                                                 echo "</label>";
                     echo "<label>";
-                    echo "<a href='./backend/update_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs tip' title='Modifier' rel='tooltip' data-toggle='tooltip' data-placement='top' data-original-title='Modifier'>";
-                    echo "<i class='fa fa-edit text-info'></i>";
-                    echo "</a>";
+                    // echo "<a href='./backend/update_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs tip' title='Modifier' rel='tooltip' data-toggle='tooltip' data-placement='top' data-original-title='Modifier'>";
+                    // echo "<i class='fa fa-edit text-info'></i>";
+                    // echo "</a>";
                     echo "</label>";
                     echo "<label>";
                     echo "<a href='delete_votant.php?id=" . $row["id"] . "' class='btn btn-default btn-icon btn-xs tip' title='Supprimer' rel='tooltip' data-toggle='modal' data-placement='top' data-original-title='Supprimer' onclick='getDelSmppClient(\"" . $row["id"] . "\", \"" . $row["nom_votant"] . "\");'>";

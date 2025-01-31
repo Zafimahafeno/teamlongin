@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include './includes/header.php';
 include './includes/sidebar.php';
+include './backend/statspat.php';
 ?>
 
 <header>
@@ -39,6 +40,40 @@ include './includes/sidebar.php';
           margin-bottom: 15px;
           color: #333;
           font-weight: bold;
+      }
+      .stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+
+      .stats-table th, .stats-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+      }
+
+      .stats-table th {
+        background-color: #4a90e2;
+        color: white;
+      }
+
+      .stats-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .stats-table tr:hover {
+        background-color: #ddd;
+      }
+      .chart-container-table {
+          position: relative;
+          margin: 20px 0;
+          height: 250px;
+          background: #fff;
+          padding: 15px;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          overflow-y: scroll;
       }
       @media screen and (max-width: 800px) {
         .stats-container {
@@ -124,10 +159,10 @@ include './includes/sidebar.php';
     </div>
     
     <div class="container-fluid">
-      <div class="stats-container">
+      <!-- <div class="stats-container">
         <div class="chart-wrapper">
           <div class="chart-container">
-            <h4 class="chart-title">Répartition par établissement</h4>
+            <h4 class="chart-title">Répartition</h4>
             <canvas id="voteChart"></canvas>
           </div>
         </div>
@@ -139,7 +174,46 @@ include './includes/sidebar.php';
           </div>
         </div>
       </div>
+    </div> -->
+
+    <div class="container-fluid">
+      <div class="stats-container">
+        <div class="chart-wrapper">
+          <div class="chart-container-table">
+          <h3>Tableau récapitulatif</h3>  
+          <table class="stats-table">
+            <thead>
+                <tr>
+                    <th>Corps</th>
+                    <th>Effectif</th>
+                    <th>Favorable</th>
+                    <th>Indécis</th>
+                    <th>Opposant</th>
+                    <th>% Favorable</th>
+                    <th>% Indécis</th>
+                    <th>% Opposant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($stats as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['corps']) ?></td>
+                        <td><?= $row['total'] ?></td>
+                        <td><?= $row['favorable'] ?></td>
+                        <td><?= $row['indecis'] ?></td>
+                        <td><?= $row['opposant'] ?></td>
+                        <td><?= $row['pourcentageFavorable'] ?></td>
+                        <td><?= $row['pourcentageIndecis'] ?></td>
+                        <td><?= $row['pourcentageOpposant'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
     </div>
+
   </section>
 
  
@@ -150,7 +224,7 @@ include './includes/sidebar.php';
   // Fonction pour charger les données des graphiques depuis le backend
   async function loadChartData() {
   try {
-    const response = await fetch('get_vote_data.php');
+    const response = await fetch('get_vote_data2.php');
     const data = await response.json();
     createCharts(data);
   } catch (error) {
