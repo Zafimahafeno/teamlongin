@@ -333,7 +333,7 @@ th, td {
                  "info": "Affichage de _START_ à _END_ sur _TOTAL_ entrées",
                  "infoEmpty": "Aucune entrée disponible",
                  "infoFiltered": "(filtré à partir de _MAX_ entrées au total)",
-                  "search": "Filtrer :",
+                  "search": "Rechercher :",
                  "paginate": {
                 "first": "Premier",
                 "last": "Dernier",
