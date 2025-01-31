@@ -83,14 +83,15 @@ include './includes/sidebar.php';
 					<li class="nav-item ms-3 d-flex align-items-center">
 						<form action="backend/votant_back.php" method="post" id="contact-form" novalidate="novalidate"
 								onsubmit="verify();">
-						<div class="btn-group" role="group" aria-label="Type de votant">
-							<button type="button" class="btn btn-outline-primary" onclick="selectVoterType('Enseignant', this)">
-							Enseignant
-							</button>
-							<button type="button" class="btn btn-outline-primary" onclick="selectVoterType('PAT', this)">
-							PAT
-							</button>
-						</div>
+								<div class="btn-group" role="group" aria-label="Type de votant">
+									<button type="button" class="btn btn-outline-primary" onclick="selectVoterType('Enseignant', this)">
+										Enseignant
+									</button>
+									<button type="button" class="btn btn-outline-primary active" onclick="selectVoterType('PAT', this)">
+										PAT
+									</button>
+								</div>
+								<input type="hidden" name="fonction" id="fonction" value="PAT">
 					</li>
 				</ul>
 			</header>
@@ -100,19 +101,16 @@ include './includes/sidebar.php';
 
 			<div class="col-md-12">
 
-				<div class="chart-box">
+				<div class="chart-box" style="height:90%; margin-top:50px"<div class="tab-content" >
 
-
-						<div class="tab-content">
-
-							<div class="tab-pane active" id="personalinfo">
+							<div class="tab-pane active" id="personalinfo" >
 								<div class="tabbable tabs-below">
-									<div class="tab-content padding-10">
+									<div class="tab-content padding-10" >
 										<div class="tab-pane active" id="AA11">
 											<div class="smart-form">
 											<div class="fieldset form-container">
 												<section>
-												<label class="label">Grade de l'enseignant<font color="red">*</font></label>
+												<label class="label">Grade de l'enseignant</label>
 												<label class="input">
 													<i class="icon-append fa fa-user"></i>
 													<input type="text" name="grade_enseignant" id="grade_enseignant" placeholder="Grade de l'enseignant">
@@ -120,18 +118,18 @@ include './includes/sidebar.php';
 												</section>
 
 												<section>
-												<label class="label">IM</label>
+												<label class="label">IM <font color="red">*</font></label>
 												<label class="input">
 													<i class="icon-append fa fa-user"></i>
-													<input type="text" name="IM" id="IM" placeholder="IM">
+													<input type="text" name="IM" id="IM" placeholder="IM" required>
 												</label>
 												</section>
 
 												<section>
-												<label class="label">Nom<font color="red">*</font></label>
+												<label class="label">Nom <font color="red">*</font></label>
 												<label class="input">
 													<i class="icon-append fa fa-user"></i>
-													<input type="text" name="nom_votant" id="nom" placeholder="Nom du votant">
+													<input type="text" name="nom_votant" id="nom" placeholder="Nom du votant" required>
 												</label>
 												</section>
 
@@ -152,7 +150,7 @@ include './includes/sidebar.php';
 												</section>
 
 												<section>
-												<label class="label">Établissement</label>
+												<label class="label">Établissement <font color="red">*</font></label>
 												<label class="select">
 													<select name="id_etablissement" id="id_etablissement" class="select2" required>
 													<option value="" disabled selected>Choisir un établissement</option>
@@ -160,8 +158,8 @@ include './includes/sidebar.php';
 												</label>
 												</section>
 
-												<section>
-												<!-- <label class="label">Email<font color="red">*</font></label>
+												<!-- <section>
+												<label class="label">Email<font color="red">*</font></label>
 												<label class="input">
 													<i class="icon-append fa fa-envelope"></i>
 													<input type="email" name="email" id="email" placeholder="Adresse email">
@@ -172,7 +170,7 @@ include './includes/sidebar.php';
 												<label class="label">Téléphone</label>
 												<label class="input">
 													<i class="icon-append fa fa-phone"></i>
-													<input type="tel" name="tel" id="tel" placeholder="Téléphone">
+													<input type="text" name="tel" id="tel" placeholder="Téléphone">
 												</label>
 												</section>
 
@@ -196,7 +194,7 @@ include './includes/sidebar.php';
 												</section> -->
 
 												<section>
-												<label class="label">Commentaire<font color="red">*</font></label>
+												<label class="label">Commentaire</label>
 												<label class="input">
 													<i class="icon-append fa fa-comment"></i>
 													<input type="text" name="commentaire" id="commentaire" placeholder="Commentaire...">
@@ -211,46 +209,49 @@ include './includes/sidebar.php';
 																		candidat</option>
 																	<?php
 																	// Inclure le fichier backend pour récupérer les candidats
-																	include './backend/candidat_back.php';
+																	// include './backend/candidat_back.php';
 
-																	// Vérifier si la requête a renvoyé des résultats
-																	if ($result && mysqli_num_rows($result) > 0) {
-																		// Parcourir les résultats et créer une option pour chaque candidat
-																		while ($row = mysqli_fetch_assoc($result)) {
-																			echo '<option value="' . $row['id'] . '">' . 'Candidat N° ' . htmlspecialchars($row['numero']) . ' : ' . htmlspecialchars($row['nom']) . ' ' . htmlspecialchars($row['prenom']) . '</option>';
-																		}
-																	} else {
-																		echo '<option value="" disabled>Aucun candidat disponible</option>';
-																	}
+																	// // Vérifier si la requête a renvoyé des résultats
+																	// if ($result && mysqli_num_rows($result) > 0) {
+																	// 	// Parcourir les résultats et créer une option pour chaque candidat
+																	// 	while ($row = mysqli_fetch_assoc($result)) {
+																	// 		echo '<option value="' . $row['id'] . '">' . 'Candidat N° ' . htmlspecialchars($row['numero']) . ' : ' . htmlspecialchars($row['nom']) . ' ' . htmlspecialchars($row['prenom']) . '</option>';
+																	// 	}
+																	// } else {
+																	// 	echo '<option value="" disabled>Aucun candidat disponible</option>';
+																	// }
 																	?>
 																</select> -->
 																<i></i>
 															</label>
 															<div style="color: #FF0000;"></div>
 														</section>
-											</div>
-
-												<div class="fieldset">
-													<div class="row">
-														<div class="col-md-12 text-right">
-															<div class="col-lg-12">
-																<footer>
-																	<button type="submit" name="submit"
-																		class="btn btn-danger">Annuler</button>
-
-																	<button type="submit" name="submit"
-																		class="btn btn-primary"
-																		id="createuser">Enregistrer</button>
-																	<button type="button" class="btn btn-primary"
-																		id="processAdd" style="display: none;">
-																		<i class="fa fa-spinner fa-spin"></i>
-																		Traitement...</button>
-																</footer>
-
+														
+																	
+																
+														<div class="fieldset">
+															<div class="row">
+																<div class="col-md-12 text-right">
+																	<div class="col-lg-12">
+																		<footer>
+																			<button type="submit" name="submit"
+																				class="btn btn-danger">Annuler</button>
+			
+																			<button type="submit" name="submit"
+																				class="btn btn-primary"
+																				id="createuser">Enregistrer</button>
+																			<button type="button" class="btn btn-primary"
+																				id="processAdd" style="display: none;">
+																				<i class="fa fa-spinner fa-spin"></i>
+																				Traitement...</button>
+																		</footer>
+			
+																	</div>
+																</div>
 															</div>
 														</div>
-													</div>
-												</div>
+											</div>
+
 											</div>
 										</div>
 									</div>
@@ -276,33 +277,42 @@ include './includes/sidebar.php';
 
 </div>
 <script>
-function selectVoterType(type, button) {
-  // Retire la classe active de tous les boutons
-  const buttons = button.parentElement.getElementsByTagName('button');
-  Array.from(buttons).forEach(btn => btn.classList.remove('active'));
-
-  // Ajoute la classe active au bouton cliqué
-  button.classList.add('active');
-
-  // Sélectionne la section contenant le champ "Corps"
-  const corpsSection = document.getElementById('corps').closest('section');
-  
-  // Récupère l'input pour la fonction
-  const fonctionInput = document.getElementById('fonction');
-
-  // Cache ou affiche le champ "Corps" en fonction du type sélectionné
-  if (type === 'enseignant') {
-    corpsSection.style.display = 'none';
-    // Remplir le champ "fonction" avec "Enseignant"
-    fonctionInput.value = 'Enseignant';
-  } else {
-    corpsSection.style.display = 'block';
-    // Remplir le champ "fonction" avec "PAT"
+// Fonction pour initialiser l'état par défaut
+function initializeDefaultState() {
+    const fonctionInput = document.getElementById('fonction');
     fonctionInput.value = 'PAT';
-  }
-
-  console.log(`Type de votant sélectionné : ${type}`);
+    const corpsSection = document.getElementById('corps').closest('section');
+    corpsSection.classList.remove('hidden');
 }
+
+function selectVoterType(type, button) {
+    // Retire la classe active de tous les boutons
+    const buttons = button.parentElement.getElementsByTagName('button');
+    Array.from(buttons).forEach(btn => btn.classList.remove('active'));
+
+    // Ajoute la classe active au bouton cliqué
+    button.classList.add('active');
+
+    // Sélectionne la section contenant le champ "Corps"
+    const corpsSection = document.getElementById('corps').closest('section');
+    
+    // Récupère l'input pour la fonction
+    const fonctionInput = document.getElementById('fonction');
+
+    // Cache ou affiche le champ "Corps" en fonction du type sélectionné
+    if (type === 'Enseignant') {
+        corpsSection.classList.add('hidden');
+        fonctionInput.value = 'Enseignant';
+    } else {
+        corpsSection.classList.remove('hidden');
+        fonctionInput.value = 'PAT';
+    }
+
+    console.log(`Type de votant sélectionné : ${type}`);
+}
+
+// Appeler la fonction d'initialisation au chargement de la page
+document.addEventListener('DOMContentLoaded', initializeDefaultState);
 </script>
 
 

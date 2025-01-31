@@ -77,7 +77,7 @@ $pdf->CreateTableHeader();
 $sql = "SELECT v.*, e.nom AS nom_etablissement
 FROM votant v
 LEFT JOIN etablissement e ON v.id_etablissement = e.id_etablissement
-WHERE v.fonction = 'enseignant';
+WHERE v.fonction = 'PAT';
 ";
 $result = $conn->query($sql);
 
@@ -122,5 +122,5 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 // Génération du PDF
-$pdf->Output('D', 'Liste_des_Enseignants_' . date('Y-m-d') . '.pdf');
+$pdf->Output('D', 'Liste_des_PAT_' . date('Y-m-d') . '.pdf');
 ?>

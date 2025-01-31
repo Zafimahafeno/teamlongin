@@ -9,45 +9,50 @@ if ($conn->connect_error) {
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    var_dump($_POST["fonction"]);
     // Récupérer les données du formulaire
-    $nom = isset($_POST["nom_votant"]) ? $_POST["nom_votant"] : null;
-    $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : null;
-    $fonction = isset($_POST["fonction"]) ? $_POST["fonction"] : null;
-    $tel = isset($_POST["tel"]) ? $_POST["tel"] : null;
-    $commentaire = isset($_POST["commentaire"]) ? $_POST["commentaire"] : null;
-    $id_etablissement = isset($_POST["id_etablissement"]) ? $_POST["id_etablissement"] : null;
-    $grade_enseignant = isset($_POST["grade_enseignant"]) ? $_POST["grade_enseignant"] : null;
-    $IM = isset($_POST["IM"]) ? $_POST["IM"] : null;
-    $corps = isset($_POST["corps"]) ? $_POST["corps"] : null;
-
-    // Validation des champs obligatoires
-    // if (empty($nom) || empty($prenom) || empty($fonction)) {
-    //     die("Les champs nom, prénom, fonction et email sont obligatoires.");
-    // }
-
-    // Préparer et exécuter la requête d'insertion
-    $sql = "INSERT INTO votant (nom_votant,grade_enseignant, IM, corps, prenom, fonction, email, tel, commentaire, id_etablissement) 
+    $nom = $_POST["nom_votant"] ?? '';
+    $prenom = $_POST["prenom"] ?? '';
+    $fonction = $_POST["fonction"] ?? '';
+    $tel = $_POST["tel"] ?? '';
+    $commentaire = $_POST["commentaire"] ?? '';
+    $id_etablissement = $_POST["id_etablissement"] ?? '';
+    $grade_enseignant = $_POST["grade_enseignant"] ?? '';
+    $IM = $_POST["IM"] ?? '';
+    $corps = $_POST["corps"] ?? '';
+    // Définir une valeur par défaut pour id_candidat (par exemple 1)
+    $id_candidat = 12; // À ajuster selon votre logique métier
+    
+    // Préparer la requête d'insertion avec id_candidat
+    $sql = "INSERT INTO votant (nom_votant, grade_enseignant, IM, corps, prenom, fonction, tel, commentaire, id_etablissement, id_candidat) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+    
     $stmt = $conn->prepare($sql);
     
     if ($stmt === false) {
         die("Erreur de préparation de la requête : " . $conn->error);
     }
-
-    // Lier les paramètres à la requête préparée
-    $stmt->bind_param("ssssssssss", $nom,$grade_enseignant, $IM, $corps, $prenom, $fonction, $tel, $DernierContact, $commentaire, $id_etablissement);
-
+    
+    // Lier les paramètres à la requête préparée (ajout de 'i' pour l'id_candidat)
+    $stmt->bind_param("sssssssssi", 
+        $nom,
+        $grade_enseignant, 
+        $IM, 
+        $corps, 
+        $prenom, 
+        $fonction, 
+        $tel, 
+        $commentaire, 
+        $id_etablissement,
+        $id_candidat
+    );
+    
     // Exécuter la requête
     if ($stmt->execute()) {
-        echo "Le votant a été ajouté avec succès.";
-        
         // Redirection vers view_gateway.php après l'ajout réussi du votant
         header("Location: ../view_gateway.php");
-        exit(); // Assurez-vous de quitter le script après la redirection
+        exit();
     } else {
-        echo "Erreur lors de l'ajout du votant: " . $conn->error;
+        echo "Erreur lors de l'ajout du votant: " . $stmt->error;
     }
     
     // Fermer la déclaration et la connexion
