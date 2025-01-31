@@ -1,11 +1,7 @@
 <?php
 // Connexion à la base de données
-$conn = new mysqli("mysql-mahafeno.alwaysdata.net", "mahafeno", "antso0201", "mahafeno_longin");
+include './config/db.php';
 
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("Échec de la connexion à la base de données: " . $conn->connect_error);
-}
 
 // Requête SQL pour compter les votants "indécis"
 $sql_indecis = "

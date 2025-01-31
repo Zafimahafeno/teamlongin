@@ -61,7 +61,7 @@
           <li class="treeview">
             <a href="#"><i class="fa fa-angle-right"></i> Liste des Votants</a>
             <ul class="treeview-menu">
-              <li><a href="liste_pat.php"><i class="fa fa-angle-right"></i> Liste des PAT</a></li>
+              <li><a href="view_gateway.php"><i class="fa fa-angle-right"></i> Liste des PAT</a></li>
               <li><a href="liste_enseignants.php"><i class="fa fa-angle-right"></i> Liste des Enseignants</a></li>
             </ul>
           </li>

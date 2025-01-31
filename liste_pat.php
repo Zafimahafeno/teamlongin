@@ -84,7 +84,10 @@ include './includes/sidebar.php';
                                                 <option value='indécis'" . ($row['intentionVote'] == 'indécis' ? ' selected' : '') . ">Indécis</option>
                                             </select>
                                         </td>";
-                                        echo "<td>" . htmlspecialchars($row['DernierContact']) . "</td>";
+                                        echo "<td>
+                                        <input type='date' id='date-" . $row['id'] . "' value='" . htmlspecialchars($row['DernierContact']) . "' 
+                                          onchange='updateDate(" . $row['id'] . ", this.value)' class='form-control'>
+                                        </td>";
                                         echo "<td>
                                             <!-- Bouton Modifier avec une icône -->
 <button class='btn btn-success btn-sm' onclick='modifierVotant(" . $row['id'] . ")'>
@@ -187,6 +190,20 @@ include './includes/sidebar.php';
                             let modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
                             modal.hide();
                         }
+
+                    function updateDate(id, newDate) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "update_date.php", true);
+                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+                        xhr.onreadystatechange = function () {
+                       if (xhr.readyState === 4 && xhr.status === 200) {
+                       console.log("Mise à jour réussie : " + xhr.responseText);
+                       }
+                   };
+    
+                   xhr.send("id=" + id + "&DernierContact=" + newDate);
+                    }
                     </script>
 
                     <?php

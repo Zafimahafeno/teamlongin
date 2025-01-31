@@ -1,8 +1,8 @@
 <?php
 // Connexion à la base de données - Remplacez les valeurs par les vôtres
-  $servername = "mysql-mahafeno.alwaysdata.net";
-  $username = "mahafeno";
-  $password = "antso0201";
+  $servername = "mysql-mahafeno.alwaysdata.net"; //mysql-mahafeno.alwaysdata.net
+  $username = "mahafeno"; //mahafeno
+  $password = "antso0201"; ///antso0201
   $dbname = "mahafeno_longin";
 
   // Création de la connexion

@@ -31,12 +31,13 @@ th, td {
     border: 1px solid #ccc;
 }
 
+
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Liste des PAT</h1>
+        <h1>Liste des Enseignants</h1>
         <ol class="breadcrumb">
             <li><a href="./dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
             <li class="active"><i class="fa fa-envelope-o"></i>Vue Global</li>
@@ -49,7 +50,7 @@ th, td {
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-box">
-                    <h4>PAT</h4>
+                    <h4>ENSEIGNANTS</h4>
                     <!-- Ajout des boutons de filtrage -->
                     <div class="row">
                         <div class="col-md-12">
@@ -57,7 +58,7 @@ th, td {
                                 <!-- <label><input type="radio" name="colorRadio" checked="checked" value="bind"> All</label>
                                 <label><input type="radio" name="colorRadio" value="other"> Active</label> -->
                                
-                                <button class="btn btn-primary" onclick="window.location.href='telecharger_candidat1.php'" title="Télécharger en fichier pdf">
+                                <button class="btn btn-primary" onclick="window.location.href='telecharger_candidat.php'" title="Télécharger en fichier pdf">
                                     <i class="fas fa-download"></i>
                                 </button>
                                                                                                                     
@@ -93,7 +94,7 @@ th, td {
             $sql = "SELECT v.*, e.nom as nom_etablissement 
         FROM votant v 
         LEFT JOIN etablissement e ON v.id_etablissement = e.id_etablissement 
-        WHERE v.fonction = 'PAT' 
+        WHERE v.fonction = 'Enseignant' 
         ORDER BY v.nom_votant";
 
             $result = $conn->query($sql);
@@ -123,7 +124,7 @@ th, td {
                     data-prenom='" . $row["prenom"] . "' 
                     data-fonction='" . $row["fonction"] . "' 
                     data-etablissement='" . ($row["nom_etablissement"] ? $row["nom_etablissement"] : "Aucun établissement") . "' 
-                     
+                   
                     data-tel='" . $row["tel"] . "' 
                     data-vote='" . $row["intentionVote"] . "' 
                     data-derniercontact='" . $row["DernierContact"] . "' 
@@ -192,7 +193,7 @@ th, td {
                             <th style="width: 30%;">Établissement</th>
                             <td id="modalEtablissement"></td>
                         </tr>
-                        
+                       
                         <tr>
                             <th style="width: 30%;">Téléphone</th>
                             <td id="modalTel"></td>
@@ -326,23 +327,24 @@ th, td {
                         }
 
                         $(document).ready(function() {
-                $('#example1').DataTable({
-                "language": {
-                  "lengthMenu": "Afficher _MENU_ entrées",
-                 "zeroRecords": "Aucun résultat trouvé",
-                 "info": "Affichage de _START_ à _END_ sur _TOTAL_ entrées",
-                 "infoEmpty": "Aucune entrée disponible",
-                 "infoFiltered": "(filtré à partir de _MAX_ entrées au total)",
-                  "search": "Filtrer :",
-                 "paginate": {
+    $('#example1').DataTable({
+        "language": {
+            "search": "Rechercher :",
+            "lengthMenu": "Afficher _MENU_ entrées",
+            "zeroRecords": "Aucune donnée trouvée",
+            "info": "Affichage de _START_ à _END_ sur _TOTAL_ entrées",
+            "paginate": {
                 "first": "Premier",
                 "last": "Dernier",
                 "next": "Suivant",
                 "previous": "Précédent"
             }
-        }
+        },
+        "autoWidth": false, // Désactive l'ajustement automatique de la largeur
+        "responsive": true // Rend le tableau plus fluide
     });
 });
+
 
                     </script>
 
