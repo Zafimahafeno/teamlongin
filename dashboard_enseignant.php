@@ -103,7 +103,7 @@ include './backend/stats.php';
 
       <!-- Votants Section -->
       <div class="col-md-3 col-xs-6">
-        <a href="./view_gateway.php">
+        <a href="./liste_enseignants.php">
           <div class="media-box">
             <div class="media-icon">
               <i class="fa fa-users"></i> <span class="nombre_dash"> <?php include './backend/totalVotantsEnseignant.php'; ?></span>
@@ -117,7 +117,7 @@ include './backend/stats.php';
 
       <!-- Favorables Section -->
       <div class="col-md-3 col-xs-6">
-        <a href="favorable.php">
+        <a href="liste_enseignant_favorable.php">
           <div class="media-box bg-green">
             <div class="media-icon">
               <i class="fa fa-thumbs-up"></i> <?php include('./backend/totalFavorableEnseignant.php'); ?>
@@ -131,7 +131,7 @@ include './backend/stats.php';
 
       <!-- Opposants Section -->
       <div class="col-md-3 col-xs-6">
-        <a href="opposants.php">
+        <a href="liste_enseignant_opposant.php">
           <div class="media-box bg-sea">
             <div class="media-icon">
               <i class="fa fa-thumbs-down"></i> <?php include('./backend/totalOpposantEnseignant.php'); ?>
@@ -145,7 +145,7 @@ include './backend/stats.php';
 
       <!-- Indécis Section -->
       <div class="col-md-3 col-xs-6">
-        <a href="indecis.php">
+        <a href="liste_enseigant_indecis.php">
           <div class="media-box bg-blue">
             <div class="media-icon">
               <i class="fa fa-meh"></i>  <?php include('./backend/totalIndecisEnseignant.php'); ?>

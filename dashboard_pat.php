@@ -117,7 +117,7 @@ include './backend/statspat.php';
 
       <!-- Favorables Section -->
       <div class="col-md-3 col-xs-6">
-        <a href="favorable.php">
+        <a href="liste_pat_favorable.php">
           <div class="media-box bg-green">
             <div class="media-icon">
               <i class="fa fa-thumbs-up"></i> <?php include('./backend/totalFavorablePat.php'); ?>
@@ -131,7 +131,7 @@ include './backend/statspat.php';
 
       <!-- Opposants Section -->
       <div class="col-md-3 col-xs-6">
-        <a href="opposants.php">
+        <a href="liste_pat_opposant.php">
           <div class="media-box bg-sea">
             <div class="media-icon">
               <i class="fa fa-thumbs-down"></i> <?php include('./backend/totalOpposantPat.php'); ?>
@@ -145,7 +145,7 @@ include './backend/statspat.php';
 
       <!-- Indécis Section -->
       <div class="col-md-3 col-xs-6">
-        <a href="indecis.php">
+        <a href="liste_pat_indecis.php">
           <div class="media-box bg-blue">
             <div class="media-icon">
               <i class="fa fa-meh"></i>  <?php include('./backend/totalIndecisPat.php'); ?>
