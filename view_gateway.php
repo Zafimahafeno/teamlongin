@@ -107,6 +107,7 @@ th, td {
                     echo "<td data-field='id_etablissement'>" . htmlspecialchars($row["corps"]) . "</td>";
                     echo "<td>
                         <select id='vote-" . $row['id'] . "' onchange='updateVote(" . $row['id'] . ", this.value)' class='form-select'>
+                            <option value='Non traité'" . ($row['intentionVote'] == 'Non traité' ? ' selected' : '') . ">Non traité</option>
                             <option value='favorable'" . ($row['intentionVote'] == 'favorable' ? ' selected' : '') . ">Favorable</option>
                             <option value='opposant'" . ($row['intentionVote'] == 'opposant' ? ' selected' : '') . ">Opposant</option>
                             <option value='indécis'" . ($row['intentionVote'] == 'indécis' ? ' selected' : '') . ">Indécis</option>
