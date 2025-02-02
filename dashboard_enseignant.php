@@ -187,9 +187,11 @@ include './backend/stats.php';
               <tr>
                 <th>ÉTABLISSEMENT</th>
                 <th>Effectif par établissement</th>
+                <th>Non traité</th>
                 <th>Favorable</th>
                 <th>Indécis</th>
                 <th>Opposant</th>
+                <th>% Non traité</th>
                 <th>% Favorable</th>
                 <th>% Indécis</th>
                 <th>% Opposant</th>
@@ -200,9 +202,11 @@ include './backend/stats.php';
                 <tr>
                     <td><?= htmlspecialchars($row['etablissement']) ?></td>
                     <td><?= $row['total'] ?></td>
+                    <td><?= $row['nonTraite'] ?></td>
                     <td><?= $row['favorable'] ?></td>
                     <td><?= $row['indecis'] ?></td>
                     <td><?= $row['opposant'] ?></td>
+                    <td><?= $row['pourcentageNontraite'] ?></td>
                     <td><?= $row['pourcentageFavorable'] ?></td>
                     <td><?= $row['pourcentageIndecis'] ?></td>
                     <td><?= $row['pourcentageOpposant'] ?></td>

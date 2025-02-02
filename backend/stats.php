@@ -15,6 +15,7 @@ if ($conn->connect_error) {
 $query = "
     SELECT 
         e.nom AS etablissement,
+        SUM(CASE WHEN v.intentionVote = '' OR 'Non traité' THEN 1 ELSE 0 END) AS nonTraite,
         SUM(CASE WHEN v.intentionVote = 'favorable' THEN 1 ELSE 0 END) AS favorable,
         SUM(CASE WHEN v.intentionVote = 'indécis' THEN 1 ELSE 0 END) AS indecis,
         SUM(CASE WHEN v.intentionVote = 'Opposant' THEN 1 ELSE 0 END) AS opposant,
@@ -30,6 +31,7 @@ $result = $conn->query($query);
 $stats = [];
 
 while ($row = $result->fetch_assoc()) {
+    $row["pourcentageNontraite"] = $row["total"] ? round(($row["nonTraite"] / $row["total"]) * 100, 2) . "%" : "0%";
     $row["pourcentageFavorable"] = $row["total"] ? round(($row["favorable"] / $row["total"]) * 100, 2) . "%" : "0%";
     $row["pourcentageIndecis"] = $row["total"] ? round(($row["indecis"] / $row["total"]) * 100, 2) . "%" : "0%";
     $row["pourcentageOpposant"] = $row["total"] ? round(($row["opposant"] / $row["total"]) * 100, 2) . "%" : "0%";
