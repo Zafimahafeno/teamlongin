@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include './includes/header.php';
 include './includes/sidebar.php';
+include './backend/statTotal.php';
 ?>
 
 <header>
@@ -40,6 +41,40 @@ include './includes/sidebar.php';
           color: #333;
           font-weight: bold;
       }
+      .stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+
+      .stats-table th, .stats-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+      }
+
+      .stats-table th {
+        background-color: #4a90e2;
+        color: white;
+      }
+
+      .stats-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .stats-table tr:hover {
+        background-color: #ddd;
+      }
+      .chart-container-table {
+          position: relative;
+          margin: 20px 0;
+          height: 250px;
+          background: #fff;
+          padding: 15px;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          overflow-y: scroll;
+      }
       @media screen and (max-width: 800px) {
         .stats-container {
           width: 100%;
@@ -48,25 +83,20 @@ include './includes/sidebar.php';
   </style>
 </header>
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  
-  <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>BIENVENUE <?php echo $_SESSION['user_prenom']; ?></h1>
     <ol class="breadcrumb">
       <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
     </ol>
   </section>
-  
-  <!-- Main content -->
+
   <section class="content container-fluid">
     <div class="row">
       <div class="col-md-12">
         <h4>Résultat des sondages</h4>
       </div>
 
-      <!-- Votants Section -->
       <div class="col-md-3 col-xs-6">
         <a href="./view_gateway.php">
           <div class="media-box">
@@ -80,7 +110,21 @@ include './includes/sidebar.php';
         </a>
       </div>
 
-      <!-- Opposants Section -->
+      <div class="col-md-3 col-xs-6">
+        <a href="favorable.php">
+          <div class="media-box bg-green">
+            <div class="media-icon">
+              <i class="fa fa-thumbs-up"></i> <?php include('totalFavorable.php'); ?>
+            </div>
+            <div class="media-info">
+              <h5>Favorables</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+   
+
+
       <div class="col-md-3 col-xs-6">
         <a href="opposants.php">
           <div class="media-box bg-sea">
@@ -94,7 +138,6 @@ include './includes/sidebar.php';
         </a>
       </div>
 
-      <!-- Indécis Section -->
       <div class="col-md-3 col-xs-6">
         <a href="indecis.php">
           <div class="media-box bg-blue">
@@ -108,205 +151,49 @@ include './includes/sidebar.php';
         </a>
       </div>
 
-      <!-- Favorables Section -->
-      <div class="col-md-3 col-xs-6">
-        <a href="favorable.php">
-          <div class="media-box bg-green">
-            <div class="media-icon">
-              <i class="fa fa-thumbs-up"></i> <?php include('totalFavorable.php'); ?>
-            </div>
-            <div class="media-info">
-              <h5>Favorables</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-
-    </div>
-
-    <div class="container-fluid">
+     
+     <!-- Tableau récapitulatif des votes -->
+     <div class="container-fluid">
       <div class="stats-container">
         <div class="chart-wrapper">
-          <div class="chart-container">
-            <h4 class="chart-title">Répartition par établissement</h4>
-            <canvas id="voteChart"></canvas>
-          </div>
-        </div>
-
-        <div class="chart-wrapper">
-          <div class="chart-container">
-            <h4 class="chart-title">Vue d'ensemble des votes</h4>
-            <canvas id="overviewChart"></canvas>
+          <div class="chart-container-table">
+            <h3>Tableau récapitulatif des votes</h3> 
+            <table class="stats-table">
+              <thead>
+                <tr>
+                  <th>Effectif Total</th>
+                  <th>Non traité</th>
+                  <th>Favorable</th>
+                  <th>Indécis</th>
+                  <th>Opposant</th>
+                  <th>% Non traité</th>
+                  <th>% Favorable</th>
+                  <th>% Indécis</th>
+                  <th>% Opposant</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><?= $stats['total'] ?></td>
+                  <td><?= $stats['nonTraite'] ?></td>
+                  <td><?= $stats['favorable'] ?></td>
+                  <td><?= $stats['indecis'] ?></td>
+                  <td><?= $stats['opposant'] ?></td>
+                  <td><?= $stats['pourcentageNontraite'] ?></td>
+                  <td><?= $stats['pourcentageFavorable'] ?></td>
+                  <td><?= $stats['pourcentageIndecis'] ?></td>
+                  <td><?= $stats['pourcentageOpposant'] ?></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
+    
   </section>
+</div>
 
- 
-</div> <!-- Fin de la content-wrapper -->
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // Fonction pour charger les données des graphiques depuis le backend
-  async function loadChartData() {
-    try {
-      const response = await fetch('get_vote_data.php');
-      const data = await response.json();
-      createCharts(data);
-    } catch (error) {
-      console.error('Erreur de chargement:', error);
-    }
-  }
-
-  // Fonction pour créer les graphiques
-  function createCharts(rawData) {
-    createVoteChart(rawData);
-    createOverviewChart(rawData);
-  }
-
-  // Créer le graphique des votes par établissement
-  function createVoteChart(data) {
-    const ctx = document.getElementById('voteChart').getContext('2d');
-    const etablissements = Object.keys(data);
-
-    const datasets = [
-      {
-        label: 'PAT - Favorable',
-        data: etablissements.map(e => data[e].PAT.Favorable),
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        stack: 'PAT'
-      },
-      {
-        label: 'PAT - Opposant',
-        data: etablissements.map(e => data[e].PAT.Opposant),
-        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-        stack: 'PAT'
-      },
-      {
-        label: 'PAT - Indécis',
-        data: etablissements.map(e => data[e].PAT.Indécis),
-        backgroundColor: 'rgba(86, 255, 133, 0.6) ',
-        stack: 'PAT'
-      },
-      {
-        label: 'Enseignant - Favorable',
-        data: etablissements.map(e => data[e].Enseignant.Favorable),
-        // backgroundColor: 'rgba(54, 162, 235, 0.6)',
-        backgroundColor: 'rgba(47, 8, 219, 0.6)',
-        stack: 'Enseignant'
-      },
-      {
-        label: 'Enseignant - Opposant',
-        data: etablissements.map(e => data[e].Enseignant.Opposant),
-        backgroundColor: 'rgba(153, 102, 255, 0.6)',
-        stack: 'Enseignant'
-      },
-      {
-        label: 'Enseignant - Indécis',
-        data: etablissements.map(e => data[e].Enseignant.Indécis),
-        backgroundColor: 'rgba(255, 159, 64, 0.6)',
-        stack: 'Enseignant'
-      }
-    ];
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: etablissements,
-        datasets: datasets
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            stacked: true
-          },
-          y: {
-            stacked: true,
-            beginAtZero: true
-          }
-        },
-        plugins: {
-          legend: {
-            position: 'top',
-            align: 'start'
-          },
-          tooltip: {
-            mode: 'index',
-            intersect: false
-          }
-        }
-      }
-    });
-  }
-
-  // Créer le graphique de vue d'ensemble des votes
-  function createOverviewChart(data) {
-    const ctx = document.getElementById('overviewChart').getContext('2d');
-
-    let totals = {
-      Favorable: 0,
-      Opposant: 0,
-      Indécis: 0
-    };
-
-    // Calcul des totaux pour chaque catégorie
-    Object.values(data).forEach(etablissement => {
-      ['PAT', 'Enseignant'].forEach(fonction => {
-        Object.entries(etablissement[fonction]).forEach(([intention, count]) => {
-          totals[intention] += count;
-        });
-      });
-    });
-
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: Object.keys(totals),
-        datasets: [{
-          data: Object.values(totals),
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(255, 206, 86, 0.6)'
-          ],
-          borderColor: [
-            'rgba(75, 192, 192, 1)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(255, 206, 86, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom'
-          },
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                const total = Object.values(totals).reduce((a, b) => a + b, 0);
-                const percentage = ((context.raw / total) * 100).toFixed(1);
-                return `${context.label}: ${context.raw} (${percentage}%)`;
-              }
-            }
-          }
-        }
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', loadChartData);
-</script>
-
-</div> <!-- Fermeture de content-wrapper -->
- <!-- Le footer doit être à la fin, en dehors de la section "content-wrapper" -->
- <?php
-  include './includes/footer.php';
-  ?>
-
+<?php
+include './includes/footer.php';
+?>

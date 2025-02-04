@@ -90,11 +90,11 @@ while ($row = $result->fetch_assoc()) {
     </section>
 
     <section class="content container-fluid">
-        <div class="text-center mb-3">
+        <!-- <div class="text-center mb-3">
             <button class="btn btn-primary" onclick="ajouterPresenceTous()">Enregistrer Présences du Jour</button>
             <button class="btn btn-danger" onclick="exportPDF('tableEnseignants', 'Historique_Enseignants')">Exporter Enseignants en PDF</button>
             <button class="btn btn-danger" onclick="exportPDF('tablePAT', 'Historique_PAT')">Exporter PAT en PDF</button>
-        </div>
+        </div> -->
 
         <input type="text" id="searchInput" class="form-control search-bar" placeholder="Rechercher...">
         

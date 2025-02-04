@@ -165,7 +165,7 @@
 ?>
 
 <!-- Section de notification -->
-<li class="dropdown notifications-menu">
+<!-- <li class="dropdown notifications-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="icon-megaphone"></i>
         <div class="notify">
@@ -181,12 +181,12 @@
                 <li><a href="#"><i class="icon-lightbulb"></i> Vous avez <?php echo $count_en_cours; ?> tâche(s) en cours</a></li>
                 <li><a href="#"><i class="icon-lightbulb"></i> Vous avez <?php echo $count_validation; ?> tâche(s) en validation</a></li>
                 <li><a href="#"><i class="icon-lightbulb"></i> Vous avez <?php echo $count_terminee; ?> tâche(s) terminée(s)</a></li>
-                <!-- Vous pouvez ajouter d'autres notifications ici -->
+                
             </ul>
         </li>
         <li class="footer"><a href="#">Voir tout</a></li>
     </ul>
-</li>
+</li> -->
           <!-- Tasks Menu --> 
           <!-- User Account Menu -->
           <li class="dropdown user user-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/logo.png" class="user-image" alt="User Image"> <span class="hidden-xs">Compagne et Élection UF</span> </a>
@@ -202,7 +202,7 @@
               <li role="separator" class="divider"></li>
               <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
               <li role="separator" class="divider"></li> -->
-              <li><a href="../teamlongin/backend/logout.php"><i class="fa fa-power-off"></i> Se déconnecter</a></li>
+              <li><a href="../Electorale/backend/logout.php"><i class="fa fa-power-off"></i> Se déconnecter</a></li>
             </ul>
           </li>
         </ul>

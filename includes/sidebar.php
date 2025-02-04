@@ -33,6 +33,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
+          <li><a href="dashboard.php"><i class="fa fa-angle-right"></i> Tableau de bord Principale</a></li>
           <li><a href="dashboard_pat.php"><i class="fa fa-angle-right"></i> Tableau de bord PAT</a></li>
           <li><a href="dashboard_enseignant.php"><i class="fa fa-angle-right"></i> Tableau de bord Enseignant</a></li>
         </ul>
@@ -97,7 +98,7 @@
         <!-- <li><a href="message.php"><i class="fa fa-angle-right"></i> Envoyer des messages</a></li> -->
       </ul>
       </li>
-      <li> <a href="../teamlongin/backend/logout.php"><i class="fa fa-power-off"></i> <span>Déconnexion</span> <span
+      <li> <a href="../Electorale/backend/logout.php"><i class="fa fa-power-off"></i> <span>Déconnexion</span> <span
             class="pull-right-container"></span> </a>
       </li>
   </section>
