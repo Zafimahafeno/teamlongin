@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 $sql_opposant_enseignant = "
     SELECT COUNT(*) AS total_opposant_enseignant
     FROM votant
-    WHERE fonction = 'Enseignant' AND intentionVote = 'opposant'
+    WHERE fonction = 'Enseignant' AND intentionVote = 'opposant'  AND tel <> ''
 ";
 
 $result = $conn->query($sql_opposant_enseignant);

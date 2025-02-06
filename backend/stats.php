@@ -22,6 +22,7 @@ $query = "
         COUNT(v.id) AS total
     FROM etablissement e
     LEFT JOIN votant v ON e.id_etablissement = v.id_etablissement
+    WHERE v.tel <> ''
     GROUP BY e.nom
     HAVING total > 0
 ";
