@@ -17,144 +17,148 @@ include './includes/sidebar.php';
 ?>
 
 <header>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="./dist/css/responsive.css">
-  <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./dist/css/responsive.css">
+    <style>
     .stats-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 20px;
-    }
-    .chart-wrapper {
-      flex: 1;
-      min-width: 300px;
-    }
-    .stats-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-      font-family: Arial, sans-serif;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
     }
 
-    .stats-table th, .stats-table td {
-      border: 1px solid #ccc;
-      padding: 8px;
+    .chart-wrapper {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .stats-table th,
+    .stats-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
     }
 
     .stats-table th {
-      background-color: #4a90e2;
-      color: white;
+        background-color: #4a90e2;
+        color: white;
     }
 
     .stats-table tr:nth-child(even) {
-      background-color: #f2f2f2;
+        background-color: #f2f2f2;
     }
 
     .stats-table tr:hover {
-      background-color: #ddd;
+        background-color: #ddd;
     }
 
     @media screen and (max-width: 800px) {
-      .stats-container {
-        width: 100%;
-      }
+        .stats-container {
+            width: 100%;
+        }
     }
-  </style>
+    </style>
 </header>
 
 <div class="content-wrapper">
-  <section class="content-header">
-    <h1>Bienvenue <?php echo $_SESSION['user_prenom']; ?></h1>
-    <ol class="breadcrumb">
-      <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
-    </ol>
-  </section>
-  
-  <section class="content container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <h4>Résultat des sondages Enseignants</h4>
-      </div>
+    <section class="content-header">
+        <h1>Bienvenue <?php echo $_SESSION['user_prenom']; ?></h1>
+        <ol class="breadcrumb">
+            <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
+        </ol>
+    </section>
 
-      <!-- Votants Section -->
-      <div class="col-md-3 col-xs-6">
-        <a href="./liste_enseignants.php">
-          <div class="media-box">
-            <div class="media-icon">
-              <i class="fa fa-users"></i> <span class="nombre_dash"><?php include './backend/totalVotantsEnseignant.php'; ?></span>
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Résultat des sondages Enseignants</h4>
             </div>
-            <div class="media-info">
-              <h5>Votants</h5>
-            </div>
-          </div>
-        </a>
-      </div>
 
-      <!-- Favorables Section -->
-      <div class="col-md-3 col-xs-6">
-        <a href="liste_enseignant_favorable.php">
-          <div class="media-box bg-green">
-            <div class="media-icon">
-              <i class="fa fa-thumbs-up"></i> <?php include('./backend/totalFavorableEnseignant.php'); ?>
+            <!-- Votants Section -->
+            <div class="col-md-3 col-xs-6">
+                <a href="./liste_enseignants.php">
+                    <div class="media-box">
+                        <div class="media-icon">
+                            <i class="fa fa-users"></i> <span
+                                class="nombre_dash"><?php include './backend/totalVotantsEnseignant.php'; ?></span>
+                        </div>
+                        <div class="media-info">
+                            <h5>Votants</h5>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="media-info">
-              <h5>Favorables</h5>
-            </div>
-          </div>
-        </a>
-      </div>
 
-      <!-- Opposants Section -->
-      <div class="col-md-3 col-xs-6">
-        <a href="liste_enseignant_opposant.php">
-          <div class="media-box bg-sea">
-            <div class="media-icon">
-              <i class="fa fa-thumbs-down"></i> <?php include('./backend/totalOpposantEnseignant.php'); ?>
+            <!-- Favorables Section -->
+            <div class="col-md-3 col-xs-6">
+                <a href="liste_enseignant_favorable.php">
+                    <div class="media-box bg-green">
+                        <div class="media-icon">
+                            <i class="fa fa-thumbs-up"></i> <?php include('./backend/totalFavorableEnseignant.php'); ?>
+                        </div>
+                        <div class="media-info">
+                            <h5>Favorables</h5>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="media-info">
-              <h5>Opposants</h5>
-            </div>
-          </div>
-        </a>
-      </div>
 
-      <!-- Indécis Section -->
-      <div class="col-md-3 col-xs-6">
-        <a href="liste_enseignant_indecis.php">
-          <div class="media-box bg-blue">
-            <div class="media-icon">
-              <i class="fa fa-meh"></i>  <?php include('./backend/totalIndecisEnseignant.php'); ?>
+            <!-- Opposants Section -->
+            <div class="col-md-3 col-xs-6">
+                <a href="liste_enseignant_opposant.php">
+                    <div class="media-box bg-sea">
+                        <div class="media-icon">
+                            <i class="fa fa-thumbs-down"></i> <?php include('./backend/totalOpposantEnseignant.php'); ?>
+                        </div>
+                        <div class="media-info">
+                            <h5>Opposants</h5>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="media-info">
-              <h5>Indécis</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
 
-    <!-- Tableau récapitulatif -->
-    <div class="container-fluid">
-      <div class="chart-wrapper">
-        <div class="chart-container-table">
-          <h3>Tableau récapitulatif</h3>  
-          <table class="table stats-table table-striped">
-            <thead>
-              <tr>
-                <th>Effectif</th>
-                <th>Non traité</th>
-                <th>Favorable</th>
-                <th>Indécis</th>
-                <th>Opposant</th>
-                <th>% Non traité</th>
-                <th>% Favorable</th>
-                <th>% Indécis</th>
-                <th>% Opposant</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
+            <!-- Indécis Section -->
+            <div class="col-md-3 col-xs-6">
+                <a href="liste_enseignant_indecis.php">
+                    <div class="media-box bg-blue">
+                        <div class="media-icon">
+                            <i class="fa fa-meh"></i> <?php include('./backend/totalIndecisEnseignant.php'); ?>
+                        </div>
+                        <div class="media-info">
+                            <h5>Indécis</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tableau récapitulatif -->
+        <div class="container-fluid">
+            <div class="chart-wrapper">
+                <div class="chart-container-table">
+                    <h3>Tableau récapitulatif</h3>
+                    <table class="table stats-table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Effectif</th>
+                                <th>Non traité</th>
+                                <th>Favorable</th>
+                                <th>Indécis</th>
+                                <th>Opposant</th>
+                                <th>% Non traité</th>
+                                <th>% Favorable</th>
+                                <th>% Indécis</th>
+                                <th>% Opposant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
               $servername = "mysql-mahafeno.alwaysdata.net";
               $username = "mahafeno";
               $password = "antso0201";
@@ -228,24 +232,24 @@ include './includes/sidebar.php';
 
               ?>
 
-              <tr>
-                <td><?= $stats['totalEnseignant'] ?></td>
-                <td><?= $stats['nonTraite'] ?></td>
-                <td><?= $stats['favorable'] ?></td>
-                <td><?= $stats['indecis'] ?></td>
-                <td><?= $stats['opposant'] ?></td>
-                <td><?= $stats['pourcentageNonTraite'] ?>%</td>
-                <td><?= $stats['pourcentageFavorable'] ?>%</td>
-                <td><?= $stats['pourcentageIndecis'] ?>%</td>
-                <td><?= $stats['pourcentageOpposant'] ?>%</td>
-              </tr>
-            </tbody>
-          </table>
+                            <tr>
+                                <td><?= $stats['totalEnseignant'] ?></td>
+                                <td><?= $stats['nonTraite'] ?></td>
+                                <td><?= $stats['favorable'] ?></td>
+                                <td><?= $stats['indecis'] ?></td>
+                                <td><?= $stats['opposant'] ?></td>
+                                <td><?= $stats['pourcentageNonTraite'] ?>%</td>
+                                <td><?= $stats['pourcentageFavorable'] ?>%</td>
+                                <td><?= $stats['pourcentageIndecis'] ?>%</td>
+                                <td><?= $stats['pourcentageOpposant'] ?>%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  <?php $conn->close(); ?>
-  </section>
+        <?php $conn->close(); ?>
+    </section>
 </div>
 
 <?php include './includes/footer.php'; ?>
