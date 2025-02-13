@@ -111,7 +111,7 @@ include './backend/statTotal.php';
       </div>
 
       <div class="col-md-3 col-xs-6">
-        <a href="#">
+        <a href="./listeNonTraite.php">
           <div class="media-box" style="background-color: #607D8B; color: white;">
             <div class="media-icon">
               <i class="fa fa-hourglass-half"></i> <?php include('./backend/totalNonTraite.php'); ?>
