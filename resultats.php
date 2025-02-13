@@ -55,7 +55,7 @@ include './includes/sidebar.php';
 
 <div class="content-wrapper">
     <section class="content-header">
-        <h1 class="text-primary">Résultats des votes par chaque Candidat</h1>
+        <h1 class="text-primary">Résultats des votes de chaque Candidat</h1>
         <ol class="breadcrumb">
             <li><a href="dashboard.php"><i class="fa fa-home"></i> Accueil</a></li>
             <li class="active"><i class="fa fa-bar-chart"></i> Résultats</li>
