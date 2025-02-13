@@ -96,7 +96,7 @@ include './backend/statTotal.php';
       <div class="col-md-12">
         <h4>Résultat des sondages</h4>
       </div>
-
+      <div class="row d-flex justify-content-center align-items-center">
       <div class="col-md-3 col-xs-6">
         <a href="./view_gateway.php">
           <div class="media-box">
@@ -105,6 +105,19 @@ include './backend/statTotal.php';
             </div>
             <div class="media-info">
               <h5>Votants</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-3 col-xs-6">
+        <a href="#">
+          <div class="media-box" style="background-color: #607D8B; color: white;">
+            <div class="media-icon">
+              <i class="fa fa-hourglass-half"></i> <?php include('./backend/totalNonTraite.php'); ?>
+            </div>
+            <div class="media-info">
+              <h5>Non traité</h5>
             </div>
           </div>
         </a>
@@ -122,8 +135,6 @@ include './backend/statTotal.php';
           </div>
         </a>
       </div>
-   
-
 
       <div class="col-md-3 col-xs-6">
         <a href="opposants.php">
@@ -149,6 +160,7 @@ include './backend/statTotal.php';
             </div>
           </div>
         </a>
+      </div>
       </div>
 
      
