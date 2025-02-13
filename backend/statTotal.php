@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $query = "
     SELECT 
         (SELECT COUNT(*) FROM votant WHERE fonction = 'PAT' OR (fonction = 'Enseignant' AND tel <> '')) AS total,  -- Total incluant les 'Non traité'
-        SUM(CASE WHEN v.intentionVote = 'Non traité' OR v.intentionVote = '' THEN 1 ELSE 0 END) AS nonTraite,
+        SUM(CASE WHEN (v.intentionVote = 'Non traité' OR v.intentionVote = '') AND (v.fonction = 'PAT' OR (v.fonction = 'Enseignant' AND v.tel <> '')) THEN 1 ELSE 0 END) AS nonTraite,
         SUM(CASE WHEN v.intentionVote = 'favorable' THEN 1 ELSE 0 END) AS favorable,
         SUM(CASE WHEN v.intentionVote = 'indécis' THEN 1 ELSE 0 END) AS indecis,
         SUM(CASE WHEN v.intentionVote = 'Opposant' THEN 1 ELSE 0 END) AS opposant
