@@ -132,8 +132,8 @@ $queryCandidats = "
                                 $pourcentage = ($totalVotantsPAT > 0 && $totalVotantsEnseignant > 0) ? (($voixPAT / $totalVotantsPAT) * 10) + (($voixEnseignant / $totalVotantsEnseignant) * 90) : 0;
                                 echo "<tr class='text-center'>";
                                 echo "<td>{$row['nom']}</td>";
-                                echo "<td>{$voixPAT}</td>";
-                                echo "<td>{$voixEnseignant}</td>";
+                                echo "<td contenteditable='true' class='editable' data-id='{$row['id']}' data-fonction='PAT'>{$voixPAT}</td>";
+                                echo "<td contenteditable='true' class='editable' data-id='{$row['id']}' data-fonction='Enseignant'>{$voixEnseignant}</td>";
                                 echo "<td>{$totalVoix}</td>";
                                 echo "<td><strong>" . number_format($pourcentage, 2) . "%</strong></td>";
                                 echo "</tr>";
@@ -183,5 +183,34 @@ $queryCandidats = "
         </div>
     </div>
 </div>
+
+<script>
+document.querySelectorAll(".editable").forEach(cell => {
+    cell.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            let id = this.getAttribute("data-id");
+            let fonction = this.getAttribute("data-fonction");
+            let nombreVote = this.innerText.trim();
+
+            fetch("update_votes.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `id_candidat=${id}&fonction_votant=${fonction}&nombreVote=${nombreVote}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    location.reload(); // Recharge la page après la mise à jour
+                })
+                .catch(error => console.error("Erreur :", error));
+        }
+    });
+});
+</script>
+
+
 
 <?php include './includes/footer.php'; ?>
